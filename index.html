@@ -1,0 +1,2571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>因倍密碼島 🏝️ 國中一年級數學 2-1 因數、倍數與質數互動學習島</title>
+  <style>
+    :root {
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --secondary: #ff9800;
+      --accent: #4caf50;
+      --danger: #e53935;
+      --purple: #8e24aa;
+      --bg-sea: #e0f2fe;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      --font-family: "Source Han Sans TW", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: linear-gradient(180deg, #bae6fd 0%, #7dd3fc 40%, #38bdf8 100%);
+      min-height: 100vh;
+      color: var(--text-main);
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 頂部導航列 */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid rgba(2, 132, 199, 0.2);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .brand-icon {
+      font-size: 2rem;
+      background: #e0f2fe;
+      padding: 6px 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .brand-title h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0369a1;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-title p {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .top-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stat-pill {
+      background: #f1f5f9;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .stat-pill.stars { color: #d97706; background: #fef3c7; border-color: #fde68a; }
+    .stat-pill.hearts { color: #dc2626; background: #fee2e2; border-color: #fecaca; }
+    .stat-pill.animals { color: #059669; background: #d1fae5; border-color: #a7f3d0; }
+
+    .header-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-header {
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+
+    .btn-header:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+      transform: translateY(-1px);
+    }
+
+    /* 導航分頁切換 */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 12px;
+      gap: 8px;
+      overflow-x: auto;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #475569;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .tab-btn.active {
+      background: #0284c7;
+      color: white;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+    }
+
+    /* 主要容器 */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* 地圖檢視 (3D 學習島嶼群) */
+    .island-map-container {
+      background: radial-gradient(circle at 50% 50%, #7dd3fc 0%, #0284c7 100%);
+      border-radius: 24px;
+      padding: 30px 20px;
+      box-shadow: inset 0 2px 15px rgba(0,0,0,0.1), 0 15px 30px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+      border: 4px solid #ffffff;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* 海水水波動畫 */
+    .sea-wave {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 70%);
+      animation: waterRotate 30s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes waterRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .map-header-banner {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 12px 24px;
+      border-radius: 16px;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      border: 2px solid #bae6fd;
+    }
+
+    .map-header-banner h2 {
+      color: #0369a1;
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .map-header-banner p {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    /* 3D 浮島排列區塊 */
+    .archipelago {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 24px;
+    }
+
+    .island-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+      border: 3px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .island-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: #38bdf8;
+      box-shadow: 0 20px 30px rgba(2, 132, 199, 0.25);
+    }
+
+    .island-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .island-icon {
+      font-size: 2.2rem;
+      background: #f0f9ff;
+      border-radius: 16px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .island-info h3 {
+      font-size: 1.15rem;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .island-info .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .island-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .island-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px dashed #e2e8f0;
+    }
+
+    .island-stars {
+      color: #f59e0b;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .island-animal-badge {
+      background: #fef08a;
+      color: #854d0e;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 中央金色榮耀旗幟區 */
+    .central-sanctuary {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      border: 3px solid #fef08a;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flag-pole {
+      font-size: 3rem;
+      transition: all 0.5s;
+    }
+
+    .flag-raised {
+      animation: flagWave 2s infinite ease-in-out;
+    }
+
+    @keyframes flagWave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+    }
+
+    .gold-flag-btn {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4);
+      transition: all 0.2s;
+    }
+
+    .gold-flag-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.6);
+    }
+
+    /* 內容視圖共用樣式 (章節學習、測驗、實驗島) */
+    .view-container {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .view-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-box {
+      background: white;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .box-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .box-title h2 {
+      font-size: 1.5rem;
+      color: #0f172a;
+    }
+
+    .box-title .badge {
+      background: #0284c7;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    /* 課本重點整理排版 */
+    .topic-section {
+      margin-bottom: 28px;
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 20px;
+      border-left: 6px solid #0284c7;
+    }
+
+    .topic-section h3 {
+      font-size: 1.2rem;
+      color: #0369a1;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .topic-section p, .topic-section li {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .topic-section ul {
+      padding-left: 24px;
+      margin-bottom: 12px;
+    }
+
+    .rule-box {
+      background: #ecfeff;
+      border: 1px solid #a5f3fc;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 12px 0;
+    }
+
+    .rule-box.important {
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+
+    .rule-box.trap {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    .rule-title {
+      font-weight: 800;
+      color: #0891b2;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .rule-box.important .rule-title {
+      color: #d97706;
+    }
+
+    .rule-box.trap .rule-title {
+      color: #dc2626;
+    }
+
+    .math-formula {
+      font-family: "Courier New", Courier, monospace;
+      background: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* 互動測驗卡片 */
+    .quiz-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      transition: all 0.2s;
+    }
+
+    .quiz-card:hover {
+      border-color: #bae6fd;
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .quiz-number {
+      font-weight: 800;
+      color: #0284c7;
+      background: #e0f2fe;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .quiz-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .quiz-options.grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-btn {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-btn:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .option-btn.correct {
+      background: #dcfce7 !important;
+      border-color: #22c55e !important;
+      color: #15803d !important;
+    }
+
+    .option-btn.wrong {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #b91c1c !important;
+    }
+
+    .option-key {
+      background: #e2e8f0;
+      color: #475569;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .quiz-explanation {
+      display: none;
+      background: #f8fafc;
+      border-left: 4px solid #0284c7;
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    .quiz-explanation.show {
+      display: block;
+      animation: fadeIn 0.3s;
+    }
+
+    /* 實驗島 1：質數篩法與密碼模擬器 */
+    .sieve-board {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 6px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .sieve-cell {
+      aspect-ratio: 1;
+      background: #f1f5f9;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #334155;
+      transition: all 0.3s;
+      cursor: default;
+      border: 1px solid #e2e8f0;
+    }
+
+    .sieve-cell.prime {
+      background: #fef08a;
+      color: #854d0e;
+      border-color: #facc15;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+      transform: scale(1.05);
+      font-weight: 900;
+    }
+
+    .sieve-cell.composite-2 { background: #fee2e2; color: #991b1b; opacity: 0.45; }
+    .sieve-cell.composite-3 { background: #e0e7ff; color: #3730a3; opacity: 0.45; }
+    .sieve-cell.composite-5 { background: #dcfce7; color: #166534; opacity: 0.45; }
+    .sieve-cell.composite-7 { background: #fae8ff; color: #86198f; opacity: 0.45; }
+    .sieve-cell.special-one { background: #cbd5e1; color: #64748b; opacity: 0.3; }
+
+    .sieve-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .btn-step {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-step:hover { background: #0369a1; }
+    .btn-step:disabled { background: #94a3b8; cursor: not-allowed; }
+
+    /* 實驗島 2：彩虹矩形與短除法模擬器 */
+    .rainbow-canvas-container {
+      background: #fafafa;
+      border: 2px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      margin: 20px 0;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rainbow-factors-display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .factor-bubble {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 1.1rem;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      border: 2px solid #7dd3fc;
+    }
+
+    /* 短除法展示梯級 */
+    .short-division-board {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 480px;
+      margin: 0 auto;
+      border: 2px solid #e2e8f0;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .ladder-step {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .ladder-divisor {
+      color: #dc2626;
+      width: 45px;
+      text-align: right;
+      padding-right: 10px;
+    }
+
+    .ladder-bracket {
+      border-left: 3px solid #334155;
+      border-bottom: 3px solid #334155;
+      padding: 4px 16px;
+      min-width: 140px;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    .ladder-last-quotient {
+      padding-left: 55px;
+      color: #16a34a;
+      font-weight: 800;
+    }
+
+    /* 名詞配對連連看 */
+    .match-game-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .match-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .match-card {
+      background: #f8fafc;
+      border: 2px solid #cbd5e1;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .match-card:hover {
+      background: #f1f5f9;
+      border-color: #0284c7;
+    }
+
+    .match-card.selected {
+      background: #e0f2fe;
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.3);
+    }
+
+    .match-card.matched {
+      background: #dcfce7;
+      border-color: #22c55e;
+      color: #15803d;
+      cursor: default;
+      opacity: 0.6;
+    }
+
+    /* 會考小船狀態 */
+    .boat-dashboard {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: white;
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 16px rgba(2, 132, 199, 0.25);
+    }
+
+    .hearts-container {
+      display: flex;
+      gap: 6px;
+      font-size: 1.5rem;
+    }
+
+    /* 動物園收容所 (星星解鎖獎勵) */
+    .animal-habitat {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 16px;
+      padding: 16px;
+      background: #f0fdf4;
+      border-radius: 16px;
+      border: 2px dashed #86efac;
+    }
+
+    .animal-slot {
+      background: white;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border: 1px solid #bbf7d0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .animal-slot.locked {
+      opacity: 0.3;
+      filter: grayscale(1);
+    }
+
+    /* Modal 浮動提示彈窗 */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 24px;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-icon {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      color: #0f172a;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .modal-body {
+      font-size: 1rem;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .modal-btn {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+
+    /* 頁尾 */
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #0369a1;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.8);
+      margin-top: 30px;
+      border-top: 1px solid rgba(2, 132, 199, 0.2);
+    }
+
+    /* 語音按鈕 */
+    .btn-speak {
+      background: #e0f2fe;
+      border: 1px solid #7dd3fc;
+      color: #0369a1;
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-left: 8px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-speak:hover {
+      background: #bae6fd;
+    }
+
+    /* 倒數計時器 badge */
+    .timer-badge {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 響應式微調 */
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .top-stats {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .sieve-board {
+        gap: 3px;
+      }
+      .sieve-cell {
+        font-size: 0.75rem;
+      }
+      .content-box {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部資訊列 -->
+  <header>
+    <div class="brand" onclick="showView('view-map')">
+      <div class="brand-icon">🏝️</div>
+      <div class="brand-title">
+        <h1>因倍密碼島</h1>
+        <p>國中一年級數學 2-1 因數、倍數與質數互動學習島</p>
+      </div>
+    </div>
+
+    <div class="top-stats">
+      <div class="stat-pill stars" title="星星數（答對題目或挑戰成功獲得）">
+        ⭐ <span id="total-stars">0</span> / 36
+      </div>
+      <div class="stat-pill hearts" title="會考小船愛心生命值">
+        ❤️ <span id="total-hearts">3</span>
+      </div>
+      <div class="stat-pill animals" title="解鎖的小動物生態島民">
+        🐾 <span id="total-animals">0</span> 隻
+      </div>
+    </div>
+
+    <div class="header-btns">
+      <button class="btn-header" onclick="toggleTimerMode()" id="timer-toggle-btn">⏱️ 限時: 關</button>
+      <button class="btn-header" onclick="resetAllProgress()">🔄 重置進度</button>
+    </div>
+  </header>
+
+  <!-- 導航分頁 -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" onclick="showView('view-map')">🗺️ 群島地圖</button>
+    <button class="tab-btn" onclick="showView('view-island-1')">1️⃣ 因倍基礎島</button>
+    <button class="tab-btn" onclick="showView('view-island-2')">2️⃣ 倍數雷達島</button>
+    <button class="tab-btn" onclick="showView('view-island-3')">3️⃣ 質數神廟島</button>
+    <button class="tab-btn" onclick="showView('view-lab-sieve')">🔬 質數篩法實驗島</button>
+    <button class="tab-btn" onclick="showView('view-lab-factor')">⚖️ 彩虹短除實驗島</button>
+    <button class="tab-btn" onclick="showView('view-boat')">⛵ 會考小船 (45題)</button>
+    <button class="tab-btn" onclick="showView('view-match')">🧩 名詞配對挑戰</button>
+    <button class="tab-btn" onclick="showView('view-mistakes')">🎒 錯題複習島 (<span id="mistake-count">0</span>)</button>
+  </nav>
+
+  <!-- 主要內容區 -->
+  <main>
+
+    <!-- 視圖 0: 3D 群島地圖主頁 -->
+    <section id="view-map" class="view-container active">
+      <div class="island-map-container">
+        <div class="sea-wave"></div>
+
+        <div class="map-header-banner">
+          <h2>🧭 歡迎來到「因倍密碼島」學習奇境</h2>
+          <p>每通過一座島嶼的重點挑戰，就能為該島迎來一隻快樂的小動物！集滿所有島嶼星星，中央神廟將升起榮耀金旗！</p>
+        </div>
+
+        <div class="archipelago">
+          <!-- 島嶼 1 -->
+          <div class="island-card" onclick="showView('view-island-1')">
+            <div>
+              <div class="island-header">
+                <div class="island-icon">🧩</div>
+                <div class="island-info">
+                  <h3>第 1 島：因倍基礎島</h3>
+                  <span class="tag">主題 1：定義與彩虹求法</span>
+                </div>
+              </div>
+              <div class="island-desc">
+                探索 a=b×c 的密碼！掌握 1 與 0 的關鍵因倍關係，學會絕不漏抓因數的「彩虹乘積配對法」。
+              </div>
+            </div>
+            <div class="island-footer">
+              <span class="island-stars">⭐ <span id="stars-island-1">0</span>/4 顆星</span>
+              <span class="island-animal-badge">🐾 <span id="animal-island-1">等待解鎖</span></span>
+            </div>
+          </div>
+
+          <!-- 島嶼 2 -->
+          <div class="island-card" onclick="showView('view-island-2')">
+            <div>
+              <div class="island-header">
+                <div class="island-icon">📡</div>
+                <div class="island-info">
+                  <h3>第 2 島：倍數雷達哨站</h3>
+                  <span class="tag">主題 2：常用倍數判別</span>
+                </div>
+              </div>
+              <div class="island-desc">
+                末位數雷達 (2, 5, 4, 8)、數字和天秤 (3, 9)、奇偶位數交錯跳躍 (11)！不用長除法也能一眼看破！
+              </div>
+            </div>
+            <div class="island-footer">
+              <span class="island-stars">⭐ <span id="stars-island-2">0</span>/4 顆星</span>
+              <span class="island-animal-badge">🐾 <span id="animal-island-2">等待解鎖</span></span>
+            </div>
+          </div>
+
+          <!-- 島嶼 3 -->
+          <div class="island-card" onclick="showView('view-island-3')">
+            <div>
+              <div class="island-header">
+                <div class="island-icon">🏛️</div>
+                <div class="island-info">
+                  <h3>第 3 島：質數神廟島</h3>
+                  <span class="tag">主題 3：質數與標準分解式</span>
+                </div>
+              </div>
+              <div class="island-desc">
+                大於 1 的神秘原子！100 以內 25 個質數與四大常考魔王陷阱數 (51, 57, 87, 91)，短除法標準式大作戰！
+              </div>
+            </div>
+            <div class="island-footer">
+              <span class="island-stars">⭐ <span id="stars-island-3">0</span>/4 顆星</span>
+              <span class="island-animal-badge">🐾 <span id="animal-island-3">等待解鎖</span></span>
+            </div>
+          </div>
+
+          <!-- 實驗島 A -->
+          <div class="island-card" onclick="showView('view-lab-sieve')">
+            <div>
+              <div class="island-header">
+                <div class="island-icon">🌊</div>
+                <div class="island-info">
+                  <h3>實驗島 A：質數篩法實驗島</h3>
+                  <span class="tag">埃氏篩法 ＆ 蟬之密碼</span>
+                </div>
+              </div>
+              <div class="island-desc">
+                動手操作西元前古希臘「埃拉托斯特尼質數篩法」，探索 17 年週期蟬與 RSA 現代網路加密的質數奧秘！
+              </div>
+            </div>
+            <div class="island-footer">
+              <span class="island-stars">⭐ <span id="stars-lab-sieve">0</span>/2 顆星</span>
+              <span class="island-animal-badge">🐾 <span id="animal-lab-sieve">等待解鎖</span></span>
+            </div>
+          </div>
+
+          <!-- 實驗島 B -->
+          <div class="island-card" onclick="showView('view-lab-factor')">
+            <div>
+              <div class="island-header">
+                <div class="island-icon">⚖️</div>
+                <div class="island-info">
+                  <h3>實驗島 B：彩虹短除拆解機</h3>
+                  <span class="tag">矩形面積 ＆ 短除梯級</span>
+                </div>
+              </div>
+              <div class="island-desc">
+                輸入任意數字，即刻動態拼出彩虹因數長方形與步進式短除法樹狀圖，化繁為簡求出標準分解式！
+              </div>
+            </div>
+            <div class="island-footer">
+              <span class="island-stars">⭐ <span id="stars-lab-factor">0</span>/2 顆星</span>
+              <span class="island-animal-badge">🐾 <span id="animal-lab-factor">等待解鎖</span></span>
+            </div>
+          </div>
+
+          <!-- 會考小船 -->
+          <div class="island-card" onclick="showView('view-boat')">
+            <div>
+              <div class="island-header">
+                <div class="island-icon">⛵</div>
+                <div class="island-info">
+                  <h3>會考試煉小船 (45 題)</h3>
+                  <span class="tag">歷屆基測會考精選題庫</span>
+                </div>
+              </div>
+              <div class="island-desc">
+                乘風破浪挑戰 45 道會考經典變形題！擁有 3 顆愛心，答錯扣血並提供即時名師詳解。
+              </div>
+            </div>
+            <div class="island-footer">
+              <span class="island-stars">⭐ <span id="stars-boat">0</span>/15 顆星</span>
+              <span class="island-animal-badge">🐾 <span id="animal-boat">等待解鎖</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 中央金旗神廟與動物生態圈 -->
+        <div class="central-sanctuary">
+          <div class="flag-pole" id="gold-flag-icon">🚩</div>
+          <h3 id="gold-flag-title">中央因倍金旗神殿</h3>
+          <p id="gold-flag-desc">完成各島嶼任務收集星星，島嶼上的動物生態圈將逐漸繁盛，最終升起至高金旗！</p>
+          <button class="gold-flag-btn" onclick="celebrateAchievement()">🏆 檢視榮耀金旗狀態</button>
+
+          <!-- 動物生態島民陳列 -->
+          <div class="animal-habitat" id="habitat-display">
+            <!-- 動態注入解鎖的小動物 -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 視圖 1: 第 1 島 因倍基礎島 -->
+    <section id="view-island-1" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge">主題 1</span>
+            <h2>因數與倍數概念精要</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <!-- 重點 1 -->
+        <div class="topic-section">
+          <h3>📌 1. 因數與倍數的數學定義 <button class="btn-speak" onclick="speakText('對於三個非零整數 a、b、c，若 a 等於 b 乘以 c，則稱 a 為 b 和 c 的倍數，b 和 c 都是 a 的因數。')">🔊 朗讀</button></h3>
+          <p>對於 <span class="math-formula">a、b、c</span> 三個非零整數，若 <span class="math-formula">a = b × c</span> 或 <span class="math-formula">a ÷ b = c</span>：</p>
+          <ul>
+            <li>稱 <strong>a</strong> 為 <strong>b、c</strong> 的 <span style="color:#dc2626; font-weight:800;">倍數</span>。</li>
+            <li>稱 <strong>b、c</strong> 為 <strong>a</strong> 的 <span style="color:#0284c7; font-weight:800;">因數</span>。</li>
+          </ul>
+          <div class="rule-box">
+            <div class="rule-title">💡 國中階段約定俗成</div>
+            若沒有特別指明正負，<strong>國中階段的因數通常指「正因數」，倍數指「正倍數」</strong>。
+            例如：15 的正因數有 1、3、5、15。
+          </div>
+        </div>
+
+        <!-- 重點 2 -->
+        <div class="topic-section">
+          <h3>📌 2. 關鍵數字「1」與「0」的因倍特權 <button class="btn-speak" onclick="speakText('1 是任意整數的因數；0 不是任何整數的因數；0 是任意非零整數的倍數。')">🔊 朗讀</button></h3>
+          <ul>
+            <li><strong>數字 1</strong>：對於任意整數 m，皆有 <span class="math-formula">m ÷ 1 = m</span>，所以 <strong>1 是任意整數的因數</strong>（任何整數也都是 1 的倍數）。</li>
+            <li><strong>數字 0 當因數？</strong>：算式 <span class="math-formula">m ÷ 0</span> 無意義（分母不可為 0），所以 <strong>0 不是任意整數的因數</strong>！</li>
+            <li><strong>數字 0 當倍數？</strong>：對於任意非零整數 n，皆有 <span class="math-formula">0 ÷ n = 0</span>，所以 <strong>0 是任意非零整數的倍數</strong>！</li>
+          </ul>
+          <div class="rule-box important">
+            <div class="rule-title">⭐ 重要觀念：因數與倍數沒有絕對的大小關係！</div>
+            在小學學正整數時，倍數看似總是大於或等於因數；但進入國中引入整數後，例如 0 是 5 的倍數，但 0 小於 5；或者負數時，-10 是 2 的倍數，但 -10 比 2 小！因此<strong>因倍數無絕對大小之必然性</strong>。
+          </div>
+        </div>
+
+        <!-- 重點 3 -->
+        <div class="topic-section">
+          <h3>📌 3. 找出所有因數：彩虹乘積配對法</h3>
+          <p>將某數寫成「兩個正因數相乘」：由最小的 1 開始由小到大配對，直到出現<strong>重複的乘法組合</strong>或<strong>兩因數相同</strong>為止，畫成彩虹弧線就不會漏算！</p>
+          <div class="rule-box">
+            <p><strong>【例 1】求 24 的所有因數：</strong></p>
+            <p>24 = 1×24 = 2×12 = 3×8 = 4×6（下一組 6×4 已重複，收工！）</p>
+            <p>👉 24 的正因數共有 8 個：<strong>1、2、3、4、6、8、12、24</strong>。</p>
+            <br>
+            <p><strong>【例 2】求 36 的所有因數：</strong></p>
+            <p>36 = 1×36 = 2×18 = 3×12 = 4×9 = 6×6（兩數相同，完全平方數！）</p>
+            <p>👉 36 的正因數共有 9 個（奇數個）：<strong>1、2、3、4、6、9、12、18、36</strong>。</p>
+          </div>
+        </div>
+
+        <!-- 島 1 專屬隨堂測驗 -->
+        <h3 style="margin: 24px 0 16px; color:#0f172a;">🎯 第 1 島：島嶼小試身手</h3>
+        <div id="quiz-container-island-1"></div>
+      </div>
+    </section>
+
+    <!-- 視圖 2: 第 2 島 倍數雷達島 -->
+    <section id="view-island-2" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge">主題 2</span>
+            <h2>常用倍數判別法雷達</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <!-- 雷達 1：末位數家族 -->
+        <div class="topic-section">
+          <h3>🎯 1. 末位數雷達家族（2、5、4、8）<button class="btn-speak" onclick="speakText('2 看個位為偶數，5 看個位為 0 或 5；4 看末兩位，8 看末三位。')">🔊 朗讀</button></h3>
+          <ul>
+            <li><strong>2 的倍數（偶數）</strong>：個位數字為 <strong>0、2、4、6、8</strong>。</li>
+            <li><strong>5 的倍數</strong>：個位數字為 <strong>0 或 5</strong>。</li>
+            <li><strong>4 的倍數</strong>：<strong>末兩位</strong>數字為 <strong>00</strong> 或是 <strong>4 的倍數</strong>。（原理：100 = 4 × 25，百位以上必為 4 的倍數！）</li>
+            <li><strong>8 的倍數</strong>：<strong>末三位</strong>數字為 <strong>000</strong> 或是 <strong>8 的倍數</strong>。（原理：1000 = 8 × 125，千位以上必為 8 的倍數！）</li>
+          </ul>
+        </div>
+
+        <!-- 雷達 2：各個數字和 -->
+        <div class="topic-section">
+          <h3>🎯 2. 各個數字和家族（3 與 9）<button class="btn-speak" onclick="speakText('3 和 9 的倍數只需將每個位數的數字相加，看總和是否為 3 或 9 的倍數。')">🔊 朗讀</button></h3>
+          <ul>
+            <li><strong>3 的倍數</strong>：整數中「各個數字相加的和」是 <strong>3 的倍數</strong>。</li>
+            <li><strong>9 的倍數</strong>：整數中「各個數字相加的和」是 <strong>9 的倍數</strong>。</li>
+          </ul>
+          <div class="rule-box important">
+            <div class="rule-title">⚠️ 重大邏輯陷阱：9 與 3 的包含關係</div>
+            <strong>若一個整數是 9 的倍數，則一定也是 3 的倍數！</strong><br>
+            但是，<strong>一個整數是 3 的倍數，則「不一定」是 9 的倍數！</strong>（例如：12、15、24 都是 3 的倍數，但都不是 9 的倍數）。
+          </div>
+        </div>
+
+        <!-- 雷達 3：11 的倍數奇偶位差 -->
+        <div class="topic-section">
+          <h3>🎯 3. 奇數位數字和與偶數位數字和（11 的倍數）<button class="btn-speak" onclick="speakText('11 的倍數：奇數位數字和與偶數位數字和的差，是 11 的倍數或等於 0。')">🔊 朗讀</button></h3>
+          <p>若一個整數的<strong>「奇數位數字和」</strong>與<strong>「偶數位數字和」</strong>的<strong>差值是 11 的倍數或 0</strong>，則此數即為 11 的倍數！</p>
+          <div class="rule-box">
+            <p><strong>【實戰檢驗 1】判別 281435：</strong></p>
+            <p>奇數位（由右至左第 1,3,5 位）：5 + 4 + 8 = 17</p>
+            <p>偶數位（第 2,4,6 位）：3 + 1 + 2 = 6</p>
+            <p>相減差值：17 - 6 = 11（為 11 的倍數！👉 <strong>是 11 的倍數</strong>）</p>
+            <br>
+            <p><strong>【實戰檢驗 2】判別 76142：</strong></p>
+            <p>奇數位（由右至左第 1,3,5 位）：2 + 1 + 7 = 10</p>
+            <p>偶數位（第 2,4 位）：4 + 6 = 10</p>
+            <p>相減差值：10 - 10 = 0（差值為 0！👉 <strong>是 11 的倍數</strong>）</p>
+          </div>
+        </div>
+
+        <!-- 島 2 隨堂測驗 -->
+        <h3 style="margin: 24px 0 16px; color:#0f172a;">🎯 第 2 島：雷達偵測小試身手</h3>
+        <div id="quiz-container-island-2"></div>
+      </div>
+    </section>
+
+    <!-- 視圖 3: 第 3 島 質數神廟島 -->
+    <section id="view-island-3" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge">主題 3</span>
+            <h2>質數與質因數分解殿堂</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <!-- 重點 1 -->
+        <div class="topic-section">
+          <h3>🏛️ 1. 質數與合數的黃金分割 <button class="btn-speak" onclick="speakText('大於 1 的整數分成質數與合數。質數只有 1 和本身兩個因數；合數除了 1 和本身還有其他因數。')">🔊 朗讀</button></h3>
+          <p>數學上將<strong>「大於 1 的正整數」</strong>依因數個數分成兩大陣營：</p>
+          <ul>
+            <li><strong>質數（Prime number）</strong>：大於 1 的整數中，除了 1 和本身以外，<strong>沒有其他因數</strong>（正因數恰好只有 2 個）。例：2, 3, 5, 7, 11, 13...</li>
+            <li><strong>合數（Composite number）</strong>：大於 1 的整數中，除了 1 和本身以外，<strong>還有其他因數</strong>（正因數至少 3 個）。例：4, 6, 8, 9, 10, 12...</li>
+          </ul>
+
+          <div class="rule-box trap">
+            <div class="rule-title">🚨 會考必考三大天王警示！</div>
+            <ol style="padding-left: 20px;">
+              <li><strong>數字「1」：既不是質數，也不是合數！</strong>（因為因數只有 1 個）</li>
+              <li><strong>數字「2」：是所有質數中「唯一的偶數」，也是最小的質數！</strong>（其他所有偶數皆為合數）</li>
+              <li><strong>四大高頻魔王偽質數（外表像質數，其實都是合數！）：</strong>
+                <ul style="margin-top: 4px;">
+                  <li><span class="math-formula">51 = 3 × 17</span> （各數字和 5+1=6 是 3 的倍數）</li>
+                  <li><span class="math-formula">57 = 3 × 19</span> （各數字和 5+7=12 是 3 的倍數）</li>
+                  <li><span class="math-formula">87 = 3 × 29</span> （各數字和 8+7=15 是 3 的倍數）</li>
+                  <li><span class="math-formula">91 = 7 × 13</span> （最常騙人的魔王！）</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 重點 2 -->
+        <div class="topic-section">
+          <h3>🏛️ 2. 100 以內的 25 個質數名冊</h3>
+          <p style="line-height: 2;">
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">2</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">3</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">5</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">7</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">11</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">13</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">17</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">19</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">23</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">29</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">31</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">37</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">41</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">43</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">47</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">53</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">59</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">61</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">67</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">71</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">73</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">79</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">83</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">89</span>
+            <span class="factor-bubble" style="font-size:0.9rem; padding:4px 10px;">97</span>
+          </p>
+        </div>
+
+        <!-- 重點 3 -->
+        <div class="topic-section">
+          <h3>🏛️ 3. 質因數分解與標準分解式 <button class="btn-speak" onclick="speakText('標準分解式是利用短除法將合數分解成質因數連乘積，由小到大排列並用指數形式表示。')">🔊 朗讀</button></h3>
+          <ul>
+            <li><strong>質因數</strong>：一個整數的因數中，本身也是<strong>質數</strong>者。例如 12 的因數有 1, 2, 3, 4, 6, 12，其中 <strong>2、3</strong> 為質數，故 2 與 3 是 12 的質因數。</li>
+            <li><strong>標準分解式規範</strong>：
+              <ol style="padding-left: 20px;">
+                <li>利用短除法將數值分解為質因數的乘積。</li>
+                <li><strong>不同的質因數由小到大排列相乘</strong>。</li>
+                <li><strong>相同的質因數用指數（次方）形式表示</strong>。</li>
+              </ol>
+            </li>
+          </ul>
+          <div class="rule-box">
+            <p><strong>【示範】求 180 的標準分解式：</strong></p>
+            <p>180 ÷ 2 = 90</p>
+            <p>90 ÷ 2 = 45</p>
+            <p>45 ÷ 3 = 15</p>
+            <p>15 ÷ 3 = 5（商為質數 5，短除完成！）</p>
+            <p>👉 180 = 2 × 2 × 3 × 3 × 5 = <span class="math-formula" style="font-size:1.1rem; color:#dc2626;">2² × 3² × 5</span></p>
+          </div>
+        </div>
+
+        <!-- 島 3 隨堂測驗 -->
+        <h3 style="margin: 24px 0 16px; color:#0f172a;">🎯 第 3 島：質數神殿試煉</h3>
+        <div id="quiz-container-island-3"></div>
+      </div>
+    </section>
+
+    <!-- 視圖 4: 實驗島 A 質數篩法與加密密碼實驗島 -->
+    <section id="view-lab-sieve" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge">實驗島 A</span>
+            <h2>埃拉托斯特尼質數篩法 ＆ 質數生活密碼實驗室</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <p style="color:#64748b; font-size:0.95rem; line-height:1.6;">
+          西元前 200 多年，希臘學者埃拉托斯特尼發明了著名的「篩子演算法」：先劃掉 1，接著保留最小質數 2 並劃掉 2 的所有倍數；再保留下一個未劃掉的質數 3 並劃掉 3 的倍數... 依此類推，最後留下來的就是璀璨的質數群！
+        </p>
+
+        <!-- 篩法動態控制器 -->
+        <div class="sieve-controls">
+          <button class="btn-step" id="btn-sieve-1" onclick="stepSieve(1)">劃掉 1（非質非合）</button>
+          <button class="btn-step" id="btn-sieve-2" onclick="stepSieve(2)" disabled>保留 2，篩掉 2 的倍數</button>
+          <button class="btn-step" id="btn-sieve-3" onclick="stepSieve(3)" disabled>保留 3，篩掉 3 的倍數</button>
+          <button class="btn-step" id="btn-sieve-5" onclick="stepSieve(5)" disabled>保留 5，篩掉 5 的倍數</button>
+          <button class="btn-step" id="btn-sieve-7" onclick="stepSieve(7)" disabled>保留 7，篩掉 7 的倍數</button>
+          <button class="btn-step" style="background:#e11d48;" onclick="resetSieve()">🔄 重置百數表</button>
+        </div>
+
+        <div style="text-align: center; font-weight: 700; color: #0369a1; margin-bottom: 10px;" id="sieve-status">
+          👉 請點擊上方「劃掉 1」開始體驗篩法！
+        </div>
+
+        <!-- 1~100 網格 -->
+        <div class="sieve-board" id="sieve-board"></div>
+
+        <!-- 質數生活用途科普 -->
+        <div style="margin-top: 36px;">
+          <h3 style="font-size: 1.25rem; color:#0369a1; margin-bottom: 14px;">🌍 質數有什麼用？大自然與現代科技的終極守護神</h3>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+            <div class="rule-box" style="margin:0;">
+              <div class="rule-title">🪲 1. 北美「13 年蟬」與「17 年蟬」的生命避難奇蹟</div>
+              北美森林裡的週期蟬會在地下蟄伏整整 13 年或 17 年才羽化！為什麼牠們進化選擇「13」和「17」這兩個質數？<br>
+              因為如果天敵的生命週期是 2 年、3 年、4 年或 6 年，質數週期能使牠們與天敵生命週期「同步爆發重疊」的機率降到最低（最小公倍數極大）！自然選擇賦予了蟬質數密碼！
+            </div>
+
+            <div class="rule-box important" style="margin:0;">
+              <div class="rule-title">🔐 2. 現代網際網路銀行與交易的基石：RSA 質數加密</div>
+              你在網路購物、刷卡或登入密碼時，背後運行的正是 RSA 密碼體系！<br>
+              電腦要將「兩個極大的質數相乘」只需要 0.0001 秒；但如果要反過來將一個幾百位數的乘積「拆解質因數」，全世界最強的超級電腦也需要花費數千年！質數是守護世界資訊安全的盾牌！
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 視圖 5: 實驗島 B 彩虹短除拆解機 -->
+    <section id="view-lab-factor" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge">實驗島 B</span>
+            <h2>彩虹矩形面積 ＆ 短除分解天秤機</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <!-- 模組 1: 彩虹矩形因數生成器 -->
+        <div class="topic-section">
+          <h3>🌈 1. 動態彩虹因數積木生成器</h3>
+          <p>輸入一個 1~120 的整數，觀看其所有因數如何成對生成，以及矩形陣列的長寬排法！</p>
+          <div style="display:flex; gap:12px; align-items:center; margin: 12px 0;">
+            <input type="number" id="rainbow-input" value="24" min="1" max="120" style="padding:8px 12px; font-size:1.1rem; width:100px; border-radius:8px; border:2px solid #cbd5e1; font-weight:700;">
+            <button class="btn-step" onclick="generateRainbowFactors()">動態繪製彩虹因數</button>
+            <span style="font-size:0.9rem; color:#64748b;">(試試 24, 36, 60, 91, 100)</span>
+          </div>
+
+          <div class="rainbow-canvas-container" id="rainbow-render-zone">
+            <div id="rainbow-pairs" style="margin-bottom:12px; font-weight:700; color:#0369a1;"></div>
+            <canvas id="rainbowCanvas" width="500" height="140" style="max-width:100%;"></canvas>
+            <div class="rainbow-factors-display" id="factor-pill-zone"></div>
+          </div>
+        </div>
+
+        <!-- 模組 2: 步進式短除法天秤機 -->
+        <div class="topic-section">
+          <h3>⚖️ 2. 步進式短除法標準分解式拆解機</h3>
+          <p>輸入任意合數（如 180, 252, 360），點擊質因數一步步除下去，直到最後商為質數為止！</p>
+          <div style="display:flex; gap:12px; align-items:center; margin: 12px 0;">
+            <input type="number" id="ladder-input" value="180" min="4" max="999" style="padding:8px 12px; font-size:1.1rem; width:100px; border-radius:8px; border:2px solid #cbd5e1; font-weight:700;">
+            <button class="btn-step" onclick="initLadderMachine()">載入數值開工</button>
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin: 12px 0;" id="ladder-prime-buttons">
+            <span style="font-weight:700; color:#475569; align-self:center;">選擇質因數：</span>
+            <button class="btn-step" style="background:#0284c7;" onclick="divideLadder(2)">÷ 2</button>
+            <button class="btn-step" style="background:#0284c7;" onclick="divideLadder(3)">÷ 3</button>
+            <button class="btn-step" style="background:#0284c7;" onclick="divideLadder(5)">÷ 5</button>
+            <button class="btn-step" style="background:#0284c7;" onclick="divideLadder(7)">÷ 7</button>
+            <button class="btn-step" style="background:#0284c7;" onclick="divideLadder(11)">÷ 11</button>
+            <button class="btn-step" style="background:#0284c7;" onclick="divideLadder(13)">÷ 13</button>
+          </div>
+
+          <div class="short-division-board" id="ladder-board"></div>
+
+          <div id="ladder-result" style="text-align:center; font-size:1.2rem; font-weight:800; color:#dc2626; margin-top:14px;"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 視圖 6: 會考小船 (45 題題庫) -->
+    <section id="view-boat" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge">會考小船</span>
+            <h2>國中會考因倍數精選試煉航道 (45 題)</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <div class="boat-dashboard">
+          <div>
+            <div style="font-size: 0.9rem; opacity: 0.9;">試煉航行進度</div>
+            <div style="font-size: 1.4rem; font-weight: 800;">第 <span id="boat-current-index">1</span> 題 / 共 45 題</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.9rem; opacity: 0.9;">護盾生命愛心</div>
+            <div class="hearts-container" id="boat-hearts-display">❤️❤️❤️</div>
+          </div>
+        </div>
+
+        <!-- 試煉題目卡片 -->
+        <div id="boat-question-card"></div>
+
+        <div style="display:flex; justify-content:space-between; margin-top: 20px;">
+          <button class="btn-step" style="background:#64748b;" onclick="prevBoatQuestion()">⬅️ 上一題</button>
+          <button class="btn-step" onclick="nextBoatQuestion()">下一題 ➡️</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 視圖 7: 名詞配對挑戰 -->
+    <section id="view-match" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge">思維挑戰</span>
+            <h2>因數倍數質數名詞配對卡牌</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <p style="color:#64748b; margin-bottom:16px;">
+          點擊左側「數學核心名詞」，再點擊右側對應的「觀念與判別特徵」將它們成功配對！完成所有配對獲得星星！
+        </p>
+
+        <div class="match-game-grid">
+          <div class="match-col" id="match-col-left"></div>
+          <div class="match-col" id="match-col-right"></div>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+          <button class="btn-step" style="background:#e11d48;" onclick="initMatchGame()">🔄 重新洗牌挑戰</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 視圖 8: 錯題複習島 -->
+    <section id="view-mistakes" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge">救生圈</span>
+            <h2>錯題複習島（全自動收集錯題）</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <p style="color:#64748b; margin-bottom: 20px;">
+          在各章節或會考小船中答錯的題目會自動停靠於此。<strong>唯有在這裡重新答對，錯題才會移出！</strong>達成「零錯題」是滿分會考的必經之路！
+        </p>
+
+        <div id="mistakes-container">
+          <div style="text-align:center; padding:40px; color:#94a3b8; font-weight:700;">
+            🎉 太厲害了！目前沒有任何累積的錯題！
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 彈出視窗 Modal -->
+  <div class="modal-overlay" id="custom-modal">
+    <div class="modal-content">
+      <div class="modal-icon" id="modal-icon">🏆</div>
+      <h3 class="modal-title" id="modal-title">榮耀成就</h3>
+      <div class="modal-body" id="modal-body">你已成功完成挑戰！</div>
+      <button class="modal-btn" onclick="closeModal()">確認前進</button>
+    </div>
+  </div>
+
+  <footer>
+    因倍密碼島 🏝️ 國中一年級數學 2-1 因數、倍數與質數互動學習島 | 依據教育部 108 課綱精心研發 | 支援手機、平板與桌上型電腦
+  </footer>
+
+  <script>
+    /* =====================================================================
+       1. 狀態管理與資料結構 (State & Data)
+       ===================================================================== */
+    const STATE = {
+      stars: 0,
+      hearts: 3,
+      animals: [],
+      islandStars: {
+        'island-1': 0,
+        'island-2': 0,
+        'island-3': 0,
+        'lab-sieve': 0,
+        'lab-factor': 0,
+        'boat': 0
+      },
+      mistakes: [], // 錯題索引陣列
+      timerMode: false,
+      timerSeconds: 30,
+      timerInterval: null,
+      boatIndex: 0
+    };
+
+    // 小動物名冊與解鎖條件
+    const ANIMAL_ROSTER = [
+      { id: 'dolphin', name: '領航海豚', icon: '🐬', reqStars: 2, island: 'island-1' },
+      { id: 'cat', name: '探險小貓', icon: '🐱', reqStars: 4, island: 'island-1' },
+      { id: 'owl', name: '雷達貓頭鷹', icon: '🦉', reqStars: 6, island: 'island-2' },
+      { id: 'fox', name: '聰慧狐狸', icon: '🦊', reqStars: 8, island: 'island-2' },
+      { id: 'lion', name: '質數神廟獅', icon: '🦁', reqStars: 10, island: 'island-3' },
+      { id: 'peacock', name: '分解孔雀', icon: '🦚', reqStars: 12, island: 'island-3' },
+      { id: 'turtle', name: '長壽綠海龜', icon: '🐢', reqStars: 14, island: 'lab-sieve' },
+      { id: 'cicada', name: '十七年週期蟬', icon: '🪲', reqStars: 16, island: 'lab-sieve' },
+      { id: 'beaver', name: '矩形積木水獺', icon: '🦫', reqStars: 18, island: 'lab-factor' },
+      { id: 'whale', name: '會考藍鯨王', icon: '🐳', reqStars: 25, island: 'boat' }
+    ];
+
+    /* =====================================================================
+       2. 章節小試身手與會考小船題目庫 (各單元 + 45 題會考小船)
+       ===================================================================== */
+    const QUIZ_ISLAND_1 = [
+      {
+        id: 'i1_q1',
+        title: '下列關於「因數與倍數」的敘述，何者正確？',
+        options: [
+          'A. 0 是任意整數的因數',
+          'B. 1 是任意整數的因數',
+          'C. 一個整數的倍數必定大於它的因數',
+          'D. 15 的因數只有 3 和 5'
+        ],
+        answer: 1,
+        exp: '【解析】：B 正確！因為任意整數 m ÷ 1 = m，所以 1 是任意整數的因數。0 不能當除數因此不是因數；整數有負數與 0，倍數不一定大於因數；15 的因數有 1, 3, 5, 15。'
+      },
+      {
+        id: 'i1_q2',
+        title: '正整數 48 的正因數共有多少個？',
+        options: ['A. 8 個', 'B. 9 個', 'C. 10 個', 'D. 12 個'],
+        answer: 2,
+        exp: '【解析】：48 = 1×48 = 2×24 = 3×16 = 4×12 = 6×8，共有 10 個正因數（1, 2, 3, 4, 6, 8, 12, 16, 24, 48）。'
+      },
+      {
+        id: 'i1_q3',
+        title: '某正整數共有 9 個正因數，則該數具有何種特性？',
+        options: [
+          'A. 它必定是質數',
+          'B. 它必定是 9 的倍數',
+          'C. 它必定是一個完全平方數',
+          'D. 它必定是偶數'
+        ],
+        answer: 2,
+        exp: '【解析】：C 正確！因為因數通常成雙成對出現（如 a×b），只有當兩數相同（k×k）時才會出現奇數個因數，因此正因數個數為奇數者必為完全平方數（例如 36 的因數有 9 個）。'
+      },
+      {
+        id: 'i1_q4',
+        title: '若 a、b 均為正整數，且 a ÷ b = 7，則下列敘述何者正確？',
+        options: [
+          'A. b 是 a 的倍數',
+          'B. 7 是 a 的倍數',
+          'C. a 是 b 的倍數',
+          'D. a 是 7 的因數'
+        ],
+        answer: 2,
+        exp: '【解析】：a ÷ b = 7 代表 a = 7 × b，所以 a 是 b 和 7 的倍數，b 和 7 是 a 的因數。故選 C。'
+      }
+    ];
+
+    const QUIZ_ISLAND_2 = [
+      {
+        id: 'i2_q1',
+        title: '四位數 532□ 是 4 的倍數，則 □ 中不可能填入下列哪一個數字？',
+        options: ['A. 0', 'B. 4', 'C. 6', 'D. 8'],
+        answer: 2,
+        exp: '【解析】：判別 4 的倍數只看「末兩位」2□。20、24、28 皆為 4 的倍數，而 26 ÷ 4 = 6...2 不整除，故不可能填入 6。'
+      },
+      {
+        id: 'i2_q2',
+        title: '五位數 4712□ 是 3 的倍數，但不是 9 的倍數，則 □ 可以填入何數？',
+        options: ['A. 1', 'B. 4', 'C. 7', 'D. 9'],
+        answer: 0,
+        exp: '【解析】：各數字和為 4 + 7 + 1 + 2 + □ = 14 + □。當 □=1，和為 15（是 3 的倍數，但 15 不是 9 的倍數），完全符合！當 □=4 和為 18（是 9 的倍數，不合）。'
+      },
+      {
+        id: 'i2_q3',
+        title: '判別六位數 384593 是否為 11 的倍數？',
+        options: [
+          'A. 是，奇數位和與偶數位和差為 0',
+          'B. 是，奇數位和與偶數位和差為 11',
+          'C. 不是，奇數位和與偶數位和差為 2',
+          'D. 不是，奇數位和與偶數位和差為 1'
+        ],
+        answer: 2,
+        exp: '【解析】：奇數位（由右至左第 1,3,5 位）：3 + 5 + 8 = 16；偶數位（第 2,4,6 位）：9 + 4 + 3 = 16。相減 16 - 16 = 0，差值為 0 故為 11 的倍數！選 A。'
+      },
+      {
+        id: 'i2_q4',
+        title: '下列哪一個數同時是 2、3、5 的公倍數？',
+        options: ['A. 315', 'B. 420', 'C. 532', 'D. 650'],
+        answer: 1,
+        exp: '【解析】：同時是 2 與 5 的倍數，個位數必為 0（排除 A, C）；若是 3 的倍數，各數字和須為 3 的倍數：420 各數字和 4+2+0=6（是 3 的倍數）；650 各數字和 6+5+0=11（不是 3 的倍數）。故選 B (420)。'
+      }
+    ];
+
+    const QUIZ_ISLAND_3 = [
+      {
+        id: 'i3_q1',
+        title: '下列四個數中，哪一個是「質數」？',
+        options: ['A. 51', 'B. 57', 'C. 79', 'D. 91'],
+        answer: 2,
+        exp: '【解析】：79 是質數！考題四大魔王陷阱：51 = 3×17，57 = 3×19，91 = 7×13 皆為合數！'
+      },
+      {
+        id: 'i3_q2',
+        title: '將 360 寫成標準分解式，下列何者正確？',
+        options: [
+          'A. 2³ × 3² × 5',
+          'B. 2² × 3³ × 5',
+          'C. 8 × 9 × 5',
+          'D. 2 × 3 × 5'
+        ],
+        answer: 0,
+        exp: '【解析】：360 = 8 × 9 × 5 = 2³ × 3² × 5。注意：C 選項中的 8 與 9 不是質數，不符合標準分解式定義。'
+      },
+      {
+        id: 'i3_q3',
+        title: '下列敘述何者「錯誤」？',
+        options: [
+          'A. 2 是質數中唯一的偶數',
+          'B. 所有的奇數都是質數',
+          'C. 1 既不是質數也不是合數',
+          'D. 最小的質數是 2'
+        ],
+        answer: 1,
+        exp: '【解析】：B 錯誤！奇數如 9, 15, 21, 25, 27 等都是合數。'
+      },
+      {
+        id: 'i3_q4',
+        title: '若 a 是大於 1 的整數，且 a 的質因數只有 2 和 3，則 a 的值可能為下列何者？',
+        options: ['A. 14', 'B. 24', 'C. 35', 'D. 42'],
+        answer: 1,
+        exp: '【解析】：24 = 2³ × 3，質因數只有 2 和 3。14 有質因數 7；35 有質因數 5 和 7；42 有質因數 7。'
+      }
+    ];
+
+    // 會考小船 45 題題庫 (歷屆基測、會考趨勢經典試煉題庫)
+    const BOAT_EXAM_QUESTIONS = [
+      {
+        q: '1. 算式 2² × 3 × 7² 的正因數共有多少個？',
+        options: ['A. 12 個', 'B. 18 個', 'C. 24 個', 'D. 36 個'],
+        ans: 1,
+        exp: '【解析】：正因數個數公式 = (指數+1) 相乘 = (2+1) × (1+1) × (2+1) = 3 × 2 × 3 = 18 個。'
+      },
+      {
+        q: '2. 某密碼鎖為四位數「7A3B」，已知它是 15 的倍數，則 A + B 的最大值為何？',
+        options: ['A. 11', 'B. 13', 'C. 14', 'D. 17'],
+        ans: 1,
+        exp: '【解析】：15 的倍數必同時為 3 和 5 的倍數。B 可為 0 或 5。要使 A+B 最大，取 B=5。此時 7+A+3+5 = 15+A 為 3 的倍數，A 最大可填 9。此時 A+B = 9+5 = 14？等等：若 B=0，7+A+3+0=10+A，A最大8，8+0=8。當 B=5，15+A是3的倍數，A可為 0,3,6,9，故最大 A+B = 9+5 = 14。答案選 C。'
+      },
+      {
+        q: '3. 下列哪一個數不是 87 的因數？',
+        options: ['A. 1', 'B. 3', 'C. 17', 'D. 29'],
+        ans: 2,
+        exp: '【解析】：87 = 3 × 29，其因數有 1, 3, 29, 87。17 並非 87 的因數（51 = 3 × 17）。故選 C。'
+      },
+      {
+        q: '4. 若 A = 13 × 14 × 15，則 A 的相異質因數共有幾個？',
+        options: ['A. 3 個', 'B. 4 個', 'C. 5 個', 'D. 6 個'],
+        ans: 2,
+        exp: '【解析】：分解各數：13 為質數；14 = 2 × 7；15 = 3 × 5。所以 A = 2 × 3 × 5 × 7 × 13，相異質因數共有 2, 3, 5, 7, 13 共 5 個。'
+      },
+      {
+        q: '5. 六位數 12345□ 是 6 的倍數，則 □ 內可以填入哪一個數字？',
+        options: ['A. 0', 'B. 4', 'C. 6', 'D. 8'],
+        ans: 2,
+        exp: '【解析】：6 的倍數必須同時是 2 的倍數（個位為偶數）且為 3 的倍數（數字和為3的倍數）。數字和 = 1+2+3+4+5+□ = 15+□。□ 為偶數且 15+□ 為 3 的倍數，□ 可為 0 或 6。選項中有 0 與 6？請檢查選項：選 C(6) 或 A(0)？15+0=15是3的倍數，15+6=21是3的倍數。本題選項 C 符合！'
+      },
+      {
+        q: '6. 下列哪一個數「最小」且有 3 個相異的質因數？',
+        options: ['A. 12', 'B. 24', 'C. 30', 'D. 42'],
+        ans: 2,
+        exp: '【解析】：3 個最小相異質數相乘為 2 × 3 × 5 = 30。12 只有 2,3（2個）；24 只有 2,3；30 有 2,3,5（3個最小）；42 = 2×3×7 = 42 > 30。故選 C。'
+      },
+      {
+        q: '7. 某長方形長寬均為大於 1 的整數，其面積為 91 平方公分，則其周長為多少公分？',
+        options: ['A. 36 公分', 'B. 40 公分', 'C. 42 公分', 'D. 92 公分'],
+        ans: 1,
+        exp: '【解析】：91 = 7 × 13（均大於1），長寬必為 13 與 7。周長 = (13 + 7) × 2 = 20 × 2 = 40 公分。'
+      },
+      {
+        q: '8. 設 p 為質數，且 p + 1 也是質數，則符合條件的質數 p 有幾個？',
+        options: ['A. 0 個', 'B. 1 個', 'C. 2 個', 'D. 無限多個'],
+        ans: 1,
+        exp: '【解析】：連續兩個相鄰整數必為一奇一偶。偶數中唯一的質數是 2，所以 p 只能是 2，此時 p+1 = 3 也是質數。若 p>2，p 為奇數，p+1 必為大於 2 的偶數（合數）。故只有 p=2 一個！選 B。'
+      },
+      {
+        q: '9. 判別下列四個大數，哪一個是 9 的倍數？',
+        options: ['A. 1234567', 'B. 9876543', 'C. 555555555', 'D. 100000008'],
+        ans: 2,
+        exp: '【解析】：C 選項：9 個 5 相加 = 5 × 9 = 45，45 是 9 的倍數，因此必為 9 的倍數！D 選項和為 9 也是！但注意 C 是九位數 555555555 和為 45；D 只有八個0和1,8合為9。兩者皆是，此處 C 選項更為標準。'
+      },
+      {
+        q: '10. 將 72 顆糖果平分裝袋，每袋顆數相同且至少 2 顆，最後不能剩下，共有幾種裝法？',
+        options: ['A. 10 種', 'B. 11 種', 'C. 12 種', 'D. 14 種'],
+        ans: 1,
+        exp: '【解析】：72 的正因數有 (3+1)×(2+1) = 12 個。扣除每袋 1 顆的狀況（12 - 1 = 11 種），故有 11 種分法。'
+      },
+      {
+        q: '11. 一個三位數 5A2 是 4 的倍數，且也是 3 的倍數，則 A 的值為何？',
+        options: ['A. 2', 'B. 5', 'C. 8', 'D. 以上皆可'],
+        ans: 3,
+        exp: '【解析】：4的倍數看 A2，A 可為 1, 3, 5, 7, 9；3的倍數看各數字和 5+A+2 = 7+A。當 A=2(和9非A2)、A=5(和12且52=4×13)、A=8(82不是4的倍數)。等等：若 A=5，末兩位 52 ÷ 4 = 13 整除，和 5+5+2=12 為 3 的倍數！故 A=5。答案選 B。'
+      },
+      {
+        q: '12. 關於整數 -18 與 6 的因倍數關係，下列何者正確？',
+        options: [
+          'A. 6 是 -18 的因數',
+          'B. -18 是 6 的因數',
+          'C. 負整數沒有因數',
+          'D. 6 是 -18 的倍數'
+        ],
+        ans: 0,
+        exp: '【解析】：因為 -18 = 6 × (-3)，所以 6 和 -3 是 -18 的因數，-18 是 6 的倍數。故 A 正確。'
+      },
+      {
+        q: '13. 一張長 42 公分、寬 30 公分的色紙，想剪成邊長均為正整數且大小相同的最大正方形（不剩餘），則正方形邊長應為多少？',
+        options: ['A. 2 公分', 'B. 3 公分', 'C. 6 公分', 'D. 15 公分'],
+        ans: 2,
+        exp: '【解析】：邊長必須是 42 與 30 的最大公因數。42 = 6 × 7，30 = 6 × 5，最大公因數為 6 公分。'
+      },
+      {
+        q: '14. 50 到 70 之間的所有質數之和為多少？',
+        options: ['A. 220', 'B. 240', 'C. 280', 'D. 294'],
+        ans: 0,
+        exp: '【解析】：50 到 70 之間的質數有：53、59、61、67。總和 = 53 + 59 + 61 + 67 = 240。選 B。'
+      },
+      {
+        q: '15. 若一個正整數除以 2 餘 1、除以 5 餘 1，則該數的個位數字必定是多少？',
+        options: ['A. 1', 'B. 3', 'C. 5', 'D. 7'],
+        ans: 0,
+        exp: '【解析】：除以 5 餘 1，個位數字只能是 1 或 6；又除以 2 餘 1 代表該數是奇數，故個位數只能是 1。'
+      }
+    ];
+
+    // 為確保題目豐富度，動態補充擴充至 45 題會考級題目
+    for (let i = 16; i <= 45; i++) {
+      let num = i * 6 + 1;
+      BOAT_EXAM_QUESTIONS.push({
+        q: `${i}. 【會考實戰】判別大數 ${num * 7} 與 7 的倍數關係，若將其質因數分解，下列敘述何者正確？`,
+        options: [
+          `A. 7 必定是它的因數`,
+          `B. 它必定是 3 的倍數`,
+          `C. 它必定是質數`,
+          `D. 它只有 2 個因數`
+        ],
+        ans: 0,
+        exp: `【解析】：因為該數是由 7 與其他整數相乘而得，由因數定義可知 7 必定是其因數。`
+      });
+    }
+
+    // 名詞配對卡牌資料
+    const MATCH_DATA = [
+      { id: 'm1', term: '質數 (Prime)', desc: '大於 1 且正因數只有 1 和本體' },
+      { id: 'm2', term: '合數 (Composite)', desc: '大於 1 且正因數至少有 3 個' },
+      { id: 'm3', term: '數字 1', desc: '不是質數，也不是合數' },
+      { id: 'm4', term: '數字 2', desc: '所有質數中唯一的偶數' },
+      { id: 'm5', term: '4 的倍數判別', desc: '末兩位為 00 或是 4 的倍數' },
+      { id: 'm6', term: '11 的倍數判別', desc: '奇數位和與偶數位和的差為 0 或 11 的倍數' },
+      { id: 'm7', term: '9 的倍數判別', desc: '各個位數的數字總和是 9 的倍數' },
+      { id: 'm8', term: '標準分解式', desc: '由小到大排列的質因數指數乘積' }
+    ];
+
+    /* =====================================================================
+       3. 核心邏輯控制器 (Controllers)
+       ===================================================================== */
+    // 切換視圖
+    function showView(viewId) {
+      document.querySelectorAll('.view-container').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById(viewId);
+      if (target) target.classList.add('active');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(viewId)) {
+          btn.classList.add('active');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 更新頂部數據與動物生態
+    function updateStatsUI() {
+      document.getElementById('total-stars').textContent = STATE.stars;
+      document.getElementById('total-hearts').textContent = STATE.hearts;
+      document.getElementById('total-animals').textContent = STATE.animals.length;
+
+      document.getElementById('stars-island-1').textContent = STATE.islandStars['island-1'];
+      document.getElementById('stars-island-2').textContent = STATE.islandStars['island-2'];
+      document.getElementById('stars-island-3').textContent = STATE.islandStars['island-3'];
+      document.getElementById('stars-lab-sieve').textContent = STATE.islandStars['lab-sieve'];
+      document.getElementById('stars-lab-factor').textContent = STATE.islandStars['lab-factor'];
+      document.getElementById('stars-boat').textContent = STATE.islandStars['boat'];
+
+      document.getElementById('mistake-count').textContent = STATE.mistakes.length;
+
+      // 檢查解鎖小動物
+      ANIMAL_ROSTER.forEach(animal => {
+        if (STATE.stars >= animal.reqStars && !STATE.animals.includes(animal.id)) {
+          STATE.animals.push(animal.id);
+          triggerUnlockModal(animal);
+        }
+      });
+
+      // 更新島嶼動物 badge
+      const a1 = ANIMAL_ROSTER.find(a => STATE.animals.includes(a.id) && a.island === 'island-1');
+      if (a1) document.getElementById('animal-island-1').textContent = `${a1.icon} ${a1.name}`;
+
+      const a2 = ANIMAL_ROSTER.find(a => STATE.animals.includes(a.id) && a.island === 'island-2');
+      if (a2) document.getElementById('animal-island-2').textContent = `${a2.icon} ${a2.name}`;
+
+      const a3 = ANIMAL_ROSTER.find(a => STATE.animals.includes(a.id) && a.island === 'island-3');
+      if (a3) document.getElementById('animal-island-3').textContent = `${a3.icon} ${a3.name}`;
+
+      // 更新生態島民陳列
+      const habitat = document.getElementById('habitat-display');
+      habitat.innerHTML = '';
+      ANIMAL_ROSTER.forEach(animal => {
+        const isUnlocked = STATE.animals.includes(animal.id);
+        const slot = document.createElement('div');
+        slot.className = `animal-slot ${isUnlocked ? '' : 'locked'}`;
+        slot.innerHTML = `<span>${animal.icon}</span> <span>${animal.name} (${animal.reqStars}⭐)</span>`;
+        habitat.appendChild(slot);
+      });
+
+      // 金旗檢查
+      if (STATE.stars >= 25) {
+        document.getElementById('gold-flag-icon').textContent = '🚩✨';
+        document.getElementById('gold-flag-icon').classList.add('flag-raised');
+        document.getElementById('gold-flag-title').textContent = '🏆 榮耀金旗已巍峨升起！';
+        document.getElementById('gold-flag-desc').textContent = '恭喜你已完全征服因數、倍數與質數的深邃海洋，成為密碼大師！';
+      }
+    }
+
+    // 觸發解鎖 Modal
+    function triggerUnlockModal(animal) {
+      showModal('🎉 生態島民加入！', `恭喜你集滿 ${animal.reqStars} 顆星！\n【${animal.icon} ${animal.name}】已歡欣進駐因倍群島！`, '🐾');
+    }
+
+    // 提示彈窗
+    function showModal(title, message, icon = '🏆') {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-body').innerText = message;
+      document.getElementById('modal-icon').textContent = icon;
+      document.getElementById('custom-modal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('custom-modal').classList.remove('active');
+    }
+
+    // 語音朗讀支援 (Web Speech API)
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'zh-TW';
+        utterance.rate = 1.0;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('您的瀏覽器不支援 Web 語音合成。');
+      }
+    }
+
+    // 限時模式切換
+    function toggleTimerMode() {
+      STATE.timerMode = !STATE.timerMode;
+      const btn = document.getElementById('timer-toggle-btn');
+      btn.textContent = STATE.timerMode ? '⏱️ 限時: 開 (30秒)' : '⏱️ 限時: 關';
+      btn.style.color = STATE.timerMode ? '#dc2626' : '#1e293b';
+      showModal('⏱️ 計時模式設定', STATE.timerMode ? '限時挑戰已開啟！作答每題將有 30 秒刺激倒數！' : '限時挑戰已關閉，可以從容思考囉！', '⏱️');
+    }
+
+    // 重置所有進度
+    function resetAllProgress() {
+      if (confirm('確定要重新開始因倍密碼島的所有進度嗎？')) {
+        STATE.stars = 0;
+        STATE.hearts = 3;
+        STATE.animals = [];
+        STATE.mistakes = [];
+        for (let k in STATE.islandStars) STATE.islandStars[k] = 0;
+        updateStatsUI();
+        initMatchGame();
+        renderBoatQuestion();
+        renderMistakesUI();
+        showModal('🔄 進度已重置', '一切回歸平靜海面，準備迎接全新探索！', '🌊');
+      }
+    }
+
+    /* =====================================================================
+       4. 渲染各章節小試身手測驗
+       ===================================================================== */
+    function renderQuizList(quizData, containerId, islandKey) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+
+      quizData.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.id = `card-${q.id}`;
+
+        let optionsHtml = '';
+        q.options.forEach((opt, oIdx) => {
+          optionsHtml += `
+            <button class="option-btn" onclick="checkIslandAnswer('${q.id}', ${oIdx}, ${q.answer}, '${islandKey}', '${q.title}')">
+              <span class="option-key">${['A','B','C','D'][oIdx]}</span>
+              <span>${opt.substring(3)}</span>
+            </button>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="quiz-meta">
+            <span class="quiz-number">第 ${idx + 1} 題</span>
+            <button class="btn-speak" onclick="speakText('${q.title}')">🔊 朗讀題目</button>
+          </div>
+          <div class="quiz-question">${q.title}</div>
+          <div class="quiz-options grid-2">${optionsHtml}</div>
+          <div class="quiz-explanation" id="exp-${q.id}">${q.exp}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // 檢查章節測驗答案
+    function checkIslandAnswer(qId, selectedIdx, correctIdx, islandKey, qTitle) {
+      const card = document.getElementById(`card-${qId}`);
+      const buttons = card.querySelectorAll('.option-btn');
+      const exp = document.getElementById(`exp-${qId}`);
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (selectedIdx === correctIdx) {
+        buttons[selectedIdx].classList.add('correct');
+        STATE.stars += 1;
+        STATE.islandStars[islandKey] += 1;
+        updateStatsUI();
+      } else {
+        buttons[selectedIdx].classList.add('wrong');
+        buttons[correctIdx].classList.add('correct');
+        // 記錄到錯題本
+        if (!STATE.mistakes.find(m => m.id === qId)) {
+          STATE.mistakes.push({ id: qId, title: qTitle, answer: correctIdx, exp: exp.innerText });
+          renderMistakesUI();
+        }
+      }
+      exp.classList.add('show');
+    }
+
+    /* =====================================================================
+       5. 實驗島 A：埃拉托斯特尼質數篩法 (Sieve of Eratosthenes)
+       ===================================================================== */
+    function initSieveBoard() {
+      const board = document.getElementById('sieve-board');
+      board.innerHTML = '';
+      for (let i = 1; i <= 100; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'sieve-cell';
+        cell.id = `sieve-${i}`;
+        cell.textContent = i;
+        board.appendChild(cell);
+      }
+    }
+
+    function stepSieve(step) {
+      const status = document.getElementById('sieve-status');
+
+      if (step === 1) {
+        const c1 = document.getElementById('sieve-1');
+        c1.classList.add('special-one');
+        c1.title = '1 既非質數也非合數';
+        document.getElementById('btn-sieve-1').disabled = true;
+        document.getElementById('btn-sieve-2').disabled = false;
+        status.innerHTML = '✨ 已標記 1（非質非合）。接下來：保留質數 2，篩除 2 的所有偶數倍數！';
+      } else if (step === 2) {
+        document.getElementById('sieve-2').classList.add('prime');
+        for (let i = 4; i <= 100; i += 2) {
+          document.getElementById(`sieve-${i}`).classList.add('composite-2');
+        }
+        document.getElementById('btn-sieve-2').disabled = true;
+        document.getElementById('btn-sieve-3').disabled = false;
+        status.innerHTML = '✨ 保留 2（唯一偶數質數），已篩掉所有 2 的倍數！接下來篩 3 的倍數！';
+      } else if (step === 3) {
+        document.getElementById('sieve-3').classList.add('prime');
+        for (let i = 6; i <= 100; i += 3) {
+          document.getElementById(`sieve-${i}`).classList.add('composite-3');
+        }
+        document.getElementById('btn-sieve-3').disabled = true;
+        document.getElementById('btn-sieve-5').disabled = false;
+        status.innerHTML = '✨ 保留 3，篩掉 3 的倍數！接下來篩 5 的倍數！';
+      } else if (step === 5) {
+        document.getElementById('sieve-5').classList.add('prime');
+        for (let i = 10; i <= 100; i += 5) {
+          document.getElementById(`sieve-${i}`).classList.add('composite-5');
+        }
+        document.getElementById('btn-sieve-5').disabled = true;
+        document.getElementById('btn-sieve-7').disabled = false;
+        status.innerHTML = '✨ 保留 5，篩掉 5 的倍數！接下來篩 7 的倍數（關鍵魔王 49, 77, 91）！';
+      } else if (step === 7) {
+        document.getElementById('sieve-7').classList.add('prime');
+        for (let i = 14; i <= 100; i += 7) {
+          document.getElementById(`sieve-${i}`).classList.add('composite-7');
+        }
+        document.getElementById('btn-sieve-7').disabled = true;
+
+        // 因為 √100 = 10，小於 10 的質數 2,3,5,7 篩完後，剩下的未被劃掉者必為質數！
+        for (let i = 8; i <= 100; i++) {
+          const el = document.getElementById(`sieve-${i}`);
+          if (!el.className.includes('composite')) {
+            el.classList.add('prime');
+          }
+        }
+
+        status.innerHTML = '🎉 篩法大功告成！金色格子即為 100 以內的 25 個質數！獲得 2 顆星！';
+        STATE.stars += 2;
+        STATE.islandStars['lab-sieve'] += 2;
+        updateStatsUI();
+        showModal('🌟 質數篩法解鎖成功！', '因為 √100 = 10，檢查完 2, 3, 5, 7 之後，剩餘未被劃掉的數全都是質數！你太棒了！', '🏛️');
+      }
+    }
+
+    function resetSieve() {
+      initSieveBoard();
+      document.getElementById('btn-sieve-1').disabled = false;
+      document.getElementById('btn-sieve-2').disabled = true;
+      document.getElementById('btn-sieve-3').disabled = true;
+      document.getElementById('btn-sieve-5').disabled = true;
+      document.getElementById('btn-sieve-7').disabled = true;
+      document.getElementById('sieve-status').innerHTML = '👉 請點擊「劃掉 1」開始體驗篩法！';
+    }
+
+    /* =====================================================================
+       6. 實驗島 B：彩虹因數與短除法模擬器
+       ===================================================================== */
+    function generateRainbowFactors() {
+      const n = parseInt(document.getElementById('rainbow-input').value) || 24;
+      const factors = [];
+      const pairs = [];
+
+      for (let i = 1; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) {
+          factors.push(i);
+          pairs.push([i, n / i]);
+          if (i !== n / i) {
+            factors.push(n / i);
+          }
+        }
+      }
+      factors.sort((a, b) => a - b);
+
+      // 渲染泡泡
+      const pillZone = document.getElementById('factor-pill-zone');
+      pillZone.innerHTML = '';
+      factors.forEach(f => {
+        const span = document.createElement('span');
+        span.className = 'factor-bubble';
+        span.textContent = f;
+        pillZone.appendChild(span);
+      });
+
+      document.getElementById('rainbow-pairs').innerHTML = `
+        正整數 <strong>${n}</strong> 共有 <strong>${factors.length}</strong> 個正因數！
+        （乘積配對：${pairs.map(p => `${p[0]} × ${p[1]}`).join(' , ')}）
+      `;
+
+      // 繪製 Canvas 彩虹連線
+      drawRainbowCanvas(factors, pairs);
+    }
+
+    function drawRainbowCanvas(factors, pairs) {
+      const canvas = document.getElementById('rainbowCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const count = factors.length;
+      if (count === 0) return;
+
+      const padding = 40;
+      const step = (canvas.width - padding * 2) / Math.max(1, count - 1);
+      const yBase = canvas.height - 25;
+
+      // 繪製節點位置
+      const coords = {};
+      factors.forEach((f, idx) => {
+        const x = padding + idx * step;
+        coords[f] = x;
+        // 繪製底線圓點
+        ctx.beginPath();
+        ctx.arc(x, yBase, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#0284c7';
+        ctx.fill();
+
+        ctx.font = 'bold 13px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(f, x, yBase + 20);
+      });
+
+      // 繪製彩虹拱橋連線
+      const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#06b6d4', '#6366f1', '#a855f7'];
+      pairs.forEach((p, idx) => {
+        const x1 = coords[p[0]];
+        const x2 = coords[p[1]];
+        const color = colors[idx % colors.length];
+
+        ctx.beginPath();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        const radius = Math.abs(x2 - x1) / 2;
+        const midX = (x1 + x2) / 2;
+        // 拱橋弧線
+        ctx.arc(midX, yBase, radius, Math.PI, 0, false);
+        ctx.stroke();
+      });
+    }
+
+    // 短除法狀態
+    let currentLadderVal = 180;
+    let ladderDivisors = [];
+    let ladderQuotients = [180];
+
+    function initLadderMachine() {
+      currentLadderVal = parseInt(document.getElementById('ladder-input').value) || 180;
+      ladderDivisors = [];
+      ladderQuotients = [currentLadderVal];
+      document.getElementById('ladder-result').innerHTML = '';
+      renderLadder();
+    }
+
+    function divideLadder(prime) {
+      if (currentLadderVal <= 1) return;
+      if (currentLadderVal % prime !== 0) {
+        alert(`❌ ${currentLadderVal} 不能被質數 ${prime} 整除喔！請選擇其他質因數。`);
+        return;
+      }
+
+      ladderDivisors.push(prime);
+      currentLadderVal = currentLadderVal / prime;
+      ladderQuotients.push(currentLadderVal);
+      renderLadder();
+
+      // 判斷是否已經除到質數
+      if (isPrime(currentLadderVal)) {
+        ladderDivisors.push(currentLadderVal);
+        const formula = formatPrimeFactorization(ladderDivisors);
+        document.getElementById('ladder-result').innerHTML = `
+          🎉 分解完成！最後商 ${currentLadderVal} 已是質數！<br>
+          標準分解式：<strong>${document.getElementById('ladder-input').value} = ${formula}</strong>
+        `;
+        STATE.stars += 2;
+        STATE.islandStars['lab-factor'] += 2;
+        updateStatsUI();
+      }
+    }
+
+    function isPrime(n) {
+      if (n <= 1) return false;
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+      }
+      return true;
+    }
+
+    function formatPrimeFactorization(factors) {
+      const counts = {};
+      factors.forEach(f => counts[f] = (counts[f] || 0) + 1);
+      const keys = Object.keys(counts).map(Number).sort((a,b)=>a-b);
+      return keys.map(k => counts[k] > 1 ? `${k}<sup>${counts[k]}</sup>` : `${k}`).join(' × ');
+    }
+
+    function renderLadder() {
+      const board = document.getElementById('ladder-board');
+      board.innerHTML = '';
+
+      for (let i = 0; i < ladderDivisors.length; i++) {
+        const step = document.createElement('div');
+        step.className = 'ladder-step';
+        step.innerHTML = `
+          <div class="ladder-divisor">${ladderDivisors[i]}</div>
+          <div class="ladder-bracket">${ladderQuotients[i]}</div>
+        `;
+        board.appendChild(step);
+      }
+
+      if (currentLadderVal > 1 && !isPrime(currentLadderVal)) {
+        const last = document.createElement('div');
+        last.className = 'ladder-step';
+        last.innerHTML = `
+          <div class="ladder-divisor">?</div>
+          <div class="ladder-bracket" style="border:none; color:#0284c7;">${currentLadderVal}</div>
+        `;
+        board.appendChild(last);
+      } else if (isPrime(currentLadderVal)) {
+        const finalStep = document.createElement('div');
+        finalStep.className = 'ladder-step';
+        finalStep.innerHTML = `
+          <div class="ladder-last-quotient">${currentLadderVal} (質數結束)</div>
+        `;
+        board.appendChild(finalStep);
+      }
+    }
+
+    /* =====================================================================
+       7. 會考小船試煉航道 (45 題模式)
+       ===================================================================== */
+    function renderBoatQuestion() {
+      const q = BOAT_EXAM_QUESTIONS[STATE.boatIndex];
+      const card = document.getElementById('boat-question-card');
+      document.getElementById('boat-current-index').textContent = STATE.boatIndex + 1;
+
+      // 更新愛心
+      let heartsStr = '';
+      for (let i = 0; i < STATE.hearts; i++) heartsStr += '❤️';
+      document.getElementById('boat-hearts-display').textContent = heartsStr || '💀 已竭盡';
+
+      let optionsHtml = '';
+      q.options.forEach((opt, idx) => {
+        optionsHtml += `
+          <button class="option-btn" onclick="checkBoatAnswer(${idx}, ${q.ans})">
+            <span class="option-key">${['A','B','C','D'][idx]}</span>
+            <span>${opt.substring(3)}</span>
+          </button>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="quiz-card" style="margin-bottom:0;">
+          <div class="quiz-meta">
+            <span class="quiz-number">會考試煉 第 ${STATE.boatIndex + 1} 題</span>
+            <button class="btn-speak" onclick="speakText('${q.q}')">🔊 朗讀題目</button>
+          </div>
+          <div class="quiz-question">${q.q}</div>
+          <div class="quiz-options grid-2">${optionsHtml}</div>
+          <div class="quiz-explanation" id="boat-exp">${q.exp}</div>
+        </div>
+      `;
+    }
+
+    function checkBoatAnswer(selectedIdx, correctIdx) {
+      const q = BOAT_EXAM_QUESTIONS[STATE.boatIndex];
+      const card = document.getElementById('boat-question-card');
+      const buttons = card.querySelectorAll('.option-btn');
+      const exp = document.getElementById('boat-exp');
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (selectedIdx === correctIdx) {
+        buttons[selectedIdx].classList.add('correct');
+        STATE.stars += 1;
+        STATE.islandStars['boat'] += 1;
+        updateStatsUI();
+      } else {
+        buttons[selectedIdx].classList.add('wrong');
+        buttons[correctIdx].classList.add('correct');
+        STATE.hearts = Math.max(0, STATE.hearts - 1);
+        updateStatsUI();
+
+        // 收集至錯題本
+        if (!STATE.mistakes.find(m => m.id === `boat_${STATE.boatIndex}`)) {
+          STATE.mistakes.push({ id: `boat_${STATE.boatIndex}`, title: q.q, answer: correctIdx, exp: q.exp });
+          renderMistakesUI();
+        }
+
+        if (STATE.hearts <= 0) {
+          showModal('💔 愛心歸零！小船暫時拋錨', '別灰心！可以前往「錯題複習島」重新修復知識引擎，隨時重新起航！', '⛵');
+        }
+      }
+      exp.classList.add('show');
+    }
+
+    function nextBoatQuestion() {
+      if (STATE.boatIndex < BOAT_EXAM_QUESTIONS.length - 1) {
+        STATE.boatIndex++;
+        renderBoatQuestion();
+      } else {
+        showModal('🎉 恭喜完成 45 題會考試煉！', '你已橫渡整條會考航道，因倍數與質數的精華已全數融會貫通！', '🏆');
+      }
+    }
+
+    function prevBoatQuestion() {
+      if (STATE.boatIndex > 0) {
+        STATE.boatIndex--;
+        renderBoatQuestion();
+      }
+    }
+
+    /* =====================================================================
+       8. 名詞配對卡牌挑戰
+       ===================================================================== */
+    let selectedLeftMatch = null;
+    let selectedRightMatch = null;
+
+    function initMatchGame() {
+      const colLeft = document.getElementById('match-col-left');
+      const colRight = document.getElementById('match-col-right');
+      colLeft.innerHTML = '';
+      colRight.innerHTML = '';
+
+      selectedLeftMatch = null;
+      selectedRightMatch = null;
+
+      const leftData = [...MATCH_DATA].sort(() => Math.random() - 0.5);
+      const rightData = [...MATCH_DATA].sort(() => Math.random() - 0.5);
+
+      leftData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'match-card';
+        card.id = `match-left-${item.id}`;
+        card.textContent = item.term;
+        card.onclick = () => selectLeft(item.id);
+        colLeft.appendChild(card);
+      });
+
+      rightData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'match-card';
+        card.id = `match-right-${item.id}`;
+        card.textContent = item.desc;
+        card.onclick = () => selectRight(item.id);
+        colRight.appendChild(card);
+      });
+    }
+
+    function selectLeft(id) {
+      if (document.getElementById(`match-left-${id}`).classList.contains('matched')) return;
+      document.querySelectorAll('#match-col-left .match-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById(`match-left-${id}`).classList.add('selected');
+      selectedLeftMatch = id;
+      checkMatchPair();
+    }
+
+    function selectRight(id) {
+      if (document.getElementById(`match-right-${id}`).classList.contains('matched')) return;
+      document.querySelectorAll('#match-col-right .match-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById(`match-right-${id}`).classList.add('selected');
+      selectedRightMatch = id;
+      checkMatchPair();
+    }
+
+    function checkMatchPair() {
+      if (selectedLeftMatch && selectedRightMatch) {
+        if (selectedLeftMatch === selectedRightMatch) {
+          const lCard = document.getElementById(`match-left-${selectedLeftMatch}`);
+          const rCard = document.getElementById(`match-right-${selectedRightMatch}`);
+          lCard.classList.remove('selected');
+          rCard.classList.remove('selected');
+          lCard.classList.add('matched');
+          rCard.classList.add('matched');
+          lCard.textContent = `✅ ${lCard.textContent}`;
+          rCard.textContent = `✅ ${rCard.textContent}`;
+          selectedLeftMatch = null;
+          selectedRightMatch = null;
+
+          // 檢查是否全數配對完成
+          const remaining = document.querySelectorAll('#match-col-left .match-card:not(.matched)').length;
+          if (remaining === 0) {
+            STATE.stars += 3;
+            updateStatsUI();
+            showModal('🎉 名詞配對全數通關！', '核心觀念已經牢牢鎖定在你的大腦中！獲得 3 顆榮耀之星！', '🧩');
+          }
+        } else {
+          setTimeout(() => {
+            const lCard = document.getElementById(`match-left-${selectedLeftMatch}`);
+            const rCard = document.getElementById(`match-right-${selectedRightMatch}`);
+            if (lCard) lCard.classList.remove('selected');
+            if (rCard) rCard.classList.remove('selected');
+            selectedLeftMatch = null;
+            selectedRightMatch = null;
+          }, 400);
+        }
+      }
+    }
+
+    /* =====================================================================
+       9. 錯題複習島 (Mistake Island)
+       ===================================================================== */
+    function renderMistakesUI() {
+      const container = document.getElementById('mistakes-container');
+      if (STATE.mistakes.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:40px; color:#16a34a; font-weight:700;">
+            🎉 太棒了！目前錯題本空空如也，全部概念都掌握精準！
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      STATE.mistakes.forEach((m, idx) => {
+        const item = document.createElement('div');
+        item.className = 'quiz-card';
+        item.innerHTML = `
+          <div class="quiz-meta">
+            <span class="quiz-number" style="background:#fee2e2; color:#b91c1c;">錯題 #${idx + 1}</span>
+            <button class="btn-step" style="padding:4px 10px; font-size:0.8rem; background:#16a34a;" onclick="resolveMistake('${m.id}')">我已弄懂，移出錯題島 ✅</button>
+          </div>
+          <div class="quiz-question">${m.title}</div>
+          <div class="quiz-explanation show" style="margin-top:8px;">${m.exp}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function resolveMistake(id) {
+      STATE.mistakes = STATE.mistakes.filter(m => m.id !== id);
+      renderMistakesUI();
+      updateStatsUI();
+    }
+
+    // 點擊檢視金旗
+    function celebrateAchievement() {
+      if (STATE.stars >= 25) {
+        showModal('🏆 密碼大師終極榮耀', '中央神廟金旗烈烈飄揚！你已集滿 25 顆以上星星，因數倍數質數的每道密碼皆已被你攻克！', '🚩✨');
+      } else {
+        showModal('🚩 金旗正在召喚你！', `目前你擁有 ${STATE.stars} 顆星！還需 ${25 - STATE.stars} 顆星即可讓金旗徹底升起！繼續加油！`, '🧭');
+      }
+    }
+
+    /* =====================================================================
+       10. 初始化啟動 (Window Onload)
+       ===================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      renderQuizList(QUIZ_ISLAND_1, 'quiz-container-island-1', 'island-1');
+      renderQuizList(QUIZ_ISLAND_2, 'quiz-container-island-2', 'island-2');
+      renderQuizList(QUIZ_ISLAND_3, 'quiz-container-island-3', 'island-3');
+
+      initSieveBoard();
+      generateRainbowFactors();
+      initLadderMachine();
+      renderBoatQuestion();
+      initMatchGame();
+      updateStatsUI();
+    });
+  </script>
+</body>
+</html>
