@@ -2239,6 +2239,13 @@
         </p>
 
         <!-- 題號切換選單列 -->
+        
+        <!-- 圖解島單元章節切換分頁 -->
+        <div style="display:flex; justify-content:center; gap:10px; margin-bottom:16px;">
+          <button class="btn-mode-toggle active" id="btn-unit-ch1" onclick="switchDiagramUnit('ch1')">⚡ 第 1 章：整數四則運算 (8大題)</button>
+          <button class="btn-mode-toggle" id="btn-unit-ch2" onclick="switchDiagramUnit('ch2')">🧩 第 2 章：因數倍數與質數 (8大題)</button>
+        </div>
+
         <div class="diagram-nav-bar" id="diagram-q-navbar">
           <!-- 8 題動態按鈕由 JS 注入 -->
         </div>
@@ -3374,6 +3381,478 @@
     /* =====================================================================
        會考經典 8 大題圖解島資料庫與簡報播放機 (Diagram Island Engine)
        ===================================================================== */
+    
+    // 第二單元：國中一年級 第 1 章 整數四則運算與分配律 8 大會考經典題
+    const INTEGER_QUESTIONS_DATA = [
+      {
+        id: 1,
+        title: '算式 (-8) + (-2) × (-3) 之值為何？',
+        source: '會考 110',
+        options: ['(A) -14', '(B) -2', '(C) 18', '(D) 30'],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：運算順序法則（先乘除後加減）',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">四則運算鐵律：先乘除，後加減！</div>
+                <p>算式：<span class="math-formula">(-8) + (-2) × (-3)</span></p>
+                <p>1. 絕對不能從左到右先算 (-8) + (-2)！</p>
+                <p>2. 必須先把後面的乘法部分 <strong>(-2) × (-3)</strong> 優先算出來！</p>
+              </div>
+            `,
+            speech: '第一步運算順序：四則運算最基本的鐵律是先乘除後加減！絕對不能先把負八加負二，必須先把後面的乘法負二乘負三算出來！'
+          },
+          {
+            badge: '📊 步驟 2：正負號運算口訣圖解（負負得正）',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-size:1.1rem; font-weight:800; color:#0369a1; margin-bottom:12px;">乘法正負號口訣：負負得正！</div>
+                <div style="display:flex; align-items:center; justify-content:center; gap:12px; font-size:1.3rem; font-weight:800;">
+                  <span style="background:#fee2e2; color:#dc2626; padding:8px 14px; border-radius:10px;">(-2)</span>
+                  <span>×</span>
+                  <span style="background:#fee2e2; color:#dc2626; padding:8px 14px; border-radius:10px;">(-3)</span>
+                  <span>＝</span>
+                  <span style="background:#dcfce7; color:#16a34a; padding:8px 16px; border-radius:10px; border:2px solid #22c55e;">+6</span>
+                </div>
+              </div>
+            `,
+            speech: '第二步正負號口訣：負負得正！負二乘以負三等於正六！'
+          },
+          {
+            badge: '🧮 步驟 3：加法結合完成運算',
+            html: `
+              <div class="rule-box">
+                <p>將結果代回原式：</p>
+                <p style="font-size:1.25rem; font-weight:800; color:#0369a1;">
+                  原式 ＝ (-8) + 6 ＝ <span style="color:#dc2626;">-2</span>
+                </p>
+                <p>負債 8 元，賺進 6 元，結果依然負債 2 元！故選 (B)！</p>
+              </div>
+            `,
+            speech: '第三步合併：把正六放回原式，負八加六等於負二，答案選B！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑指南',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 最常犯的致命失分陷阱：</div>
+                <p>如果粗心從左到右算：(-8) + (-2) = -10，再算 (-10) × (-3) = <strong>30</strong>，就會掉入選項 (D) 的陷阱！</p>
+                <p>會考每年第 1 題幾乎都是四則運算，<strong>畫底線標記先乘除部分</strong>是零失分秘訣！</p>
+              </div>
+            `,
+            speech: '名師提醒：很多人從左到右算成負十乘負三等於正三十，直接選D送分給別人！考試時一定要先拿筆在乘除法底下畫底線！'
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: '算式 (-2) × |-5| - |-3| 之值為何？',
+        source: '會考 106',
+        options: ['(A) 13', '(B) 7', '(C) -13', '(D) -7'],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：絕對值的幾何與代數意義',
+            html: `
+              <div class="rule-box important">
+                <p><strong>絕對值 |x| 代表數線上該點與原點 0 的「距離」</strong>，距離永遠是非負數（正數或 0）！</p>
+                <ul>
+                  <li><span class="math-formula">|-5| = 5</span></li>
+                  <li><span class="math-formula">|-3| = 3</span></li>
+                </ul>
+              </div>
+            `,
+            speech: '第一步解構絕對值：絕對值代表數線上的距離，所以絕對值拿出來一定是正數！負五的絕對值是五，負三的絕對值是三！'
+          },
+          {
+            badge: '📊 步驟 2：去絕對值代換展開',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-size:1.15rem; font-weight:800; color:#0369a1; margin-bottom:12px;">將絕對值化簡後填回算式：</div>
+                <div style="background:#e0f2fe; padding:12px 20px; border-radius:12px; font-size:1.3rem; font-weight:800;">
+                  (-2) × <span style="color:#16a34a;">5</span> - <span style="color:#16a34a;">3</span>
+                </div>
+              </div>
+            `,
+            speech: '第二步代換：原式變成負二乘以五減三！'
+          },
+          {
+            badge: '🧮 步驟 3：先乘除後減法',
+            html: `
+              <div class="rule-box">
+                <p>1. 乘法：(-2) × 5 = -10</p>
+                <p>2. 減法：-10 - 3 = <strong>-13</strong></p>
+                <p style="font-size:1.2rem; font-weight:800; color:#15803d;">正確答案選 (C) -13！</p>
+              </div>
+            `,
+            speech: '第三步計算：負二乘五等於負十，負十再減三等於負十三，答案選C！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑指南（減號與負號混淆）',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 混淆符號陷阱：</div>
+                <p>千萬別把算式中間的「減號」跟絕對值裡面的「負三」搞成負負得正！</p>
+                <p>式子是 <span class="math-formula">－ |－3|</span>，絕對值算完是 3，前面帶著原本的減號，依然是 <strong>－ 3</strong>！</p>
+              </div>
+            `,
+            speech: '名師避坑：很多人把減掉負三絕對值，看成減負三負負得正變成加三，算成負七選D！千萬記住，絕對值算完是三，減號仍然是減號！'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: '計算 12 - 7 × (-32) + 16 ÷ (-4) 之值為何？',
+        source: '基Ⅰ 98',
+        options: ['(A) 36', '(B) -164', '(C) -216', '(D) 232'],
+        ans: 3,
+        steps: [
+          {
+            badge: '🔍 步驟 1：算式區塊劃分',
+            html: `
+              <div class="rule-box important">
+                <p>將長算式拆分成三個獨立區塊：</p>
+                <p style="font-size:1.2rem; font-weight:800; text-align:center;">
+                  [ 12 ] － [ 7 × (-32) ] ＋ [ 16 ÷ (-4) ]
+                </p>
+              </div>
+            `,
+            speech: '第一步拆分區塊：先把算式分成三塊，第一塊是十二，第二塊是七乘負三十二，第三塊是十六除以負四！'
+          },
+          {
+            badge: '📊 步驟 2：各區塊精確計算',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="display:flex; flex-direction:column; gap:8px; width:100%; max-width:440px; font-weight:800; text-align:left;">
+                  <div style="background:#e0f2fe; padding:8px 12px; border-radius:8px;">
+                    第二塊乘法：7 × (-32) = -224 ➔ 前面有減號：- (-224) = <strong>+224</strong>
+                  </div>
+                  <div style="background:#fee2e2; padding:8px 12px; border-radius:8px; color:#991b1b;">
+                    第三塊除法：16 ÷ (-4) = <strong>-4</strong>
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '第二步計算乘除：七乘負三十二等於負兩百二十四，減負兩百二十四負負得正變成加兩百二十四！十六除以負四等於負四！'
+          },
+          {
+            badge: '🧮 步驟 3：加減總結',
+            html: `
+              <div class="rule-box">
+                <p>原式 ＝ 12 + 224 - 4 ＝ 236 - 4 ＝ <span style="color:#dc2626; font-size:1.25rem; font-weight:800;">232</span></p>
+                <p>正確答案選 (D) 232！</p>
+              </div>
+            `,
+            speech: '第三步總結：十二加兩百二十四減四，等於兩百三十六減四等於兩百三十二，答案選D！'
+          },
+          {
+            badge: '💡 步驟 4：名師心算速簡巧思',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚡ 速算小技巧：</div>
+                <p>可以先算頭尾的加減：12 - 4 = 8，再算 8 + 224 = <strong>232</strong>！完全不用列大除法豎式！</p>
+              </div>
+            `,
+            speech: '名師速算技巧：先算頭尾十二減四等於八，八再加上兩百二十四等於兩百三十二，心算就能秒殺！'
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: '算式 743 × 369 - 741 × 370 之值為何？',
+        source: '會考 103',
+        options: ['(A) -3', '(B) -2', '(C) 2', '(D) 3'],
+        ans: 0,
+        steps: [
+          {
+            badge: '🔍 步驟 1：洞悉數字特徵（硬乘必敗！）',
+            html: `
+              <div class="rule-box important">
+                <p>看到三位數乘法：743 × 369 與 741 × 370，如果直接硬算會耗費大量時間且極易算錯！</p>
+                <p>觀察數字：<strong>369 與 370 只差 1</strong>！<strong>743 與 741 只差 2</strong>！</p>
+                <p>👉 <strong>標準解題策略：乘法分配律拆解！</strong></p>
+              </div>
+            `,
+            speech: '第一步觀察數字：這種大數相乘如果硬算就中計了！觀察發現，三百六十九和三百七十只差一，七百四十三和七百四十一只差二，這一定要用分配律來拆解！'
+          },
+          {
+            badge: '📊 步驟 2：利用 369 = 370 - 1 拆項',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-size:1.1rem; font-weight:800; color:#0369a1; margin-bottom:12px;">將 369 換成 (370 - 1)：</div>
+                <div style="text-align:left; font-weight:800; font-size:1rem; line-height:1.8;">
+                  原式 ＝ 743 × <span style="color:#dc2626;">(370 - 1)</span> - 741 × 370<br>
+                  ＝ 743 × 370 - 743 - 741 × 370<br>
+                  ＝ 370 × <span style="color:#16a34a;">(743 - 741)</span> - 743
+                </div>
+              </div>
+            `,
+            speech: '第二步分配律展開：把三百六十九拆成三百七十減一。展開後提出三百七十，變成三百七十乘以括號七百四十三減七百四十一，再減七百四十三！'
+          },
+          {
+            badge: '🧮 步驟 3：精準收斂得解',
+            html: `
+              <div class="rule-box">
+                <p>＝ 370 × 2 - 743</p>
+                <p>＝ 740 - 743 ＝ <span style="font-size:1.25rem; font-weight:800; color:#dc2626;">-3</span></p>
+                <p>正確答案選 (A) -3！</p>
+              </div>
+            `,
+            speech: '第三步化簡：七百四十三減七百四十一等於二，三百七十乘二等於七百四十，七百四十減七百四十三等於負三，選A！'
+          },
+          {
+            badge: '💡 步驟 4：名師雙向拆法驗證',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">另解：若拆 743 = 741 + 2 同樣秒殺！</div>
+                <p>(741 + 2) × 369 - 741 × 370 ＝ 741 × (369 - 370) + 2 × 369 ＝ 741 × (-1) + 738 ＝ -741 + 738 ＝ <strong>-3</strong>！</p>
+              </div>
+            `,
+            speech: '名師另解：如果拆前面七百四十三等於七百四十一加二，算出來同樣也是負三，兩種方法都超級快！'
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: '求 536×0.52 - 364×0.48 + 364×0.52 - 536×0.48 之值？',
+        source: '基Ⅰ 93',
+        options: ['(A) 0', '(B) 20', '(C) 36', '(D) 40'],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：分組對稱結構觀察',
+            html: `
+              <div class="rule-box important">
+                <p>式子中有四個項，反覆出現 <strong>0.52</strong> 與 <strong>0.48</strong>！</p>
+                <p>同時數字 <strong>536</strong> 與 <strong>364</strong> 相加恰好是 <span class="math-formula">536 + 364 = 900</span> 整數！</p>
+              </div>
+            `,
+            speech: '第一步觀察特徵：四個項裡面，有兩項有零點五二，有兩項有零點四八！而且五百三十六加三百六十四剛好等於九百！這提示我們一定要分組提出公因數！'
+          },
+          {
+            badge: '📊 步驟 2：提出共同公因數分組',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="text-align:left; font-weight:800; font-size:1.05rem; line-height:2;">
+                  原式 ＝ 0.52 × (536 + 364) - 0.48 × (364 + 536)<br>
+                  ＝ 0.52 × <span style="color:#0284c7;">900</span> - 0.48 × <span style="color:#0284c7;">900</span>
+                </div>
+              </div>
+            `,
+            speech: '第二步分組提出：把有零點五二的放在一起，有零點四八的放在一起，兩邊都出現了乘以九百！'
+          },
+          {
+            badge: '🧮 步驟 3：再次提出 900 完成秒殺',
+            html: `
+              <div class="rule-box">
+                <p>＝ 900 × (0.52 - 0.48)</p>
+                <p>＝ 900 × 0.04 ＝ <span style="font-size:1.25rem; font-weight:800; color:#15803d;">36</span></p>
+                <p>正確答案選 (C) 36！</p>
+              </div>
+            `,
+            speech: '第三步秒殺：提出九百，括號裡面是零點五二減零點四八等於零點零四，九百乘以零點零四剛好等於三十六，答案選C！'
+          },
+          {
+            badge: '💡 步驟 4：名師代數十字交乘模型',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">本質即為因式分解：(A + B)(C - D)</div>
+                <p>令 A=536, B=364, C=0.52, D=0.48。原式即為 (A+B)(C-D) = 900 × 0.04 = <strong>36</strong>！國二因式分解的雛形！</p>
+              </div>
+            `,
+            speech: '名師點撥：這題本質上就是國二要學的因式分解分組提公因式，提早掌握分配律，代數基礎會非常強！'
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: '數線上點 c < -1 < 0 < a < 1 < b，判斷下列何者正確？',
+        source: '基Ⅰ 99',
+        options: ['(A) (a-1)(b-1)>0', '(B) (b-1)(c-1)>0', '(C) (a+1)(b+1)<0', '(D) (b+1)(c+1)<0'],
+        ans: 3,
+        steps: [
+          {
+            badge: '🔍 步驟 1：由數線解讀各點區間位置',
+            html: `
+              <div class="rule-box important">
+                <p>從題目數線圖精準判讀四數大小關係：</p>
+                <p style="font-size:1.2rem; font-weight:800; text-align:center; color:#0369a1;">
+                  c < -1 < 0 < a < 1 < b
+                </p>
+                <ul>
+                  <li><strong>a</strong> 介於 0 與 1 之間（0 < a < 1，如 0.5）</li>
+                  <li><strong>b</strong> 大於 1（b > 1，如 2）</li>
+                  <li><strong>c</strong> 小於 -1（c < -1，如 -2）</li>
+                </ul>
+              </div>
+            `,
+            speech: '第一步看圖判讀區間：c比負一小，a在零到一之間，b比一大。我們可以心中帶入簡單數字，例如a是零點五，b是二，c是負二！'
+          },
+          {
+            badge: '📊 步驟 2：四選項正負號逐步定性',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="display:flex; flex-direction:column; gap:8px; width:100%; max-width:440px; font-weight:800; text-align:left;">
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px; border-radius:8px;">
+                    (A) (a-1)<0 且 (b-1)>0 ➔ 負 × 正 ＝ 負 (<0) ❌ (題目寫>0)
+                  </div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px; border-radius:8px;">
+                    (B) (b-1)>0 且 (c-1)<0 ➔ 正 × 負 ＝ 負 (<0) ❌ (題目寫>0)
+                  </div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px; border-radius:8px;">
+                    (C) (a+1)>0 且 (b+1)>0 ➔ 正 × 正 ＝ 正 (>0) ❌ (題目寫<0)
+                  </div>
+                  <div style="background:#dcfce7; color:#15803d; border:2px solid #22c55e; padding:8px; border-radius:8px;">
+                    (D) (b+1)>0 且 (c+1)<0 ➔ 正 × 負 ＝ 負 (<0) ✅ (完全正確！)
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '第二步判斷正負號：A選項負乘正是負的；B選項正乘負也是負的；C選項正乘正是正的；D選項b加一是正的，c加一是負的，正乘負小於零，完全正確！'
+          },
+          {
+            badge: '🧮 步驟 3：精準鎖定 (D) 選項',
+            html: `
+              <div class="rule-box">
+                <p>因為 c < -1 ➔ 兩邊同加 1 得：<strong>c + 1 < 0（負數）</strong></p>
+                <p>因為 b > 1 ➔ 兩邊同加 1 得：<strong>b + 1 > 2 > 0（正數）</strong></p>
+                <p>所以 (b + 1)(c + 1) 為「正 × 負 ＝ 負」，小於 0 成立！選 (D)！</p>
+              </div>
+            `,
+            speech: '第三步總結：因為c小於負一，所以c加一是負數；b比一大，b加一是正數。正乘負小於零，選D！'
+          },
+          {
+            badge: '💡 步驟 4：名師特值法速驗技巧',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚡ 考試救命「特值檢驗法」：</div>
+                <p>直接代入具體數字：令 a = 0.5, b = 2, c = -2！</p>
+                <p>(D) 項：(2 + 1)(-2 + 1) = 3 × (-1) = <strong>-3 < 0</strong>，秒殺確認！</p>
+              </div>
+            `,
+            speech: '名師大招：如果不習慣符號運算，考試時直接假設a等於零點五、b等於二、c等於負二代進去，五秒鐘就能驗算完成！'
+          }
+        ]
+      },
+      {
+        id: 7,
+        title: '微波爐第一天賣 10 臺銷售 61000 元（前20臺每臺折800），若賣50臺總額？',
+        source: '會考 107',
+        options: ['(A) 305000', '(B) 321000', '(C) 329000', '(D) 342000'],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：還原促銷單價（分段計價題型）',
+            html: `
+              <div class="rule-box important">
+                <p>第一天賣出 10 臺，都在<strong>「前 20 臺每臺再折 800 元」</strong>的優惠範圍內！</p>
+                <p>10 臺共 61000 元 ➔ <strong>折價後每臺售價 ＝ 61000 ÷ 10 ＝ 6100 元</strong>！</p>
+                <p>由此推算原本特價 ＝ 6100 + 800 ＝ <strong>6900 元</strong>！</p>
+              </div>
+            `,
+            speech: '第一步求單價：第一天賣十台都在前二十台的優惠內，十台六萬一，所以前二十台折價後的單價是六千一百元！原特價就是六千一百加八百等於六千九百元！'
+          },
+          {
+            badge: '📊 步驟 2：50 臺分段銷售結構拆解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-size:1.1rem; font-weight:800; color:#0369a1; margin-bottom:12px;">50 臺的分段銷售分組：</div>
+                <div style="display:flex; flex-direction:column; gap:10px; width:100%; max-width:440px; font-weight:800;">
+                  <div style="background:#dcfce7; padding:10px; border-radius:10px;">
+                    優惠組（前 20 臺）：每臺 6100 元 ➔ 20 × 6100 ＝ <strong>122,000 元</strong>
+                  </div>
+                  <div style="background:#e0f2fe; padding:10px; border-radius:10px;">
+                    正常組（後 30 臺）：每臺 6900 元 ➔ 30 × 6900 ＝ <strong>207,000 元</strong>
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '第二步分段計算：總共五十台分成兩批。前二十台每台六千一，小計十二萬兩千元；後三十台每台六千九，小計二十萬七千元！'
+          },
+          {
+            badge: '🧮 步驟 3：加總求總銷售額',
+            html: `
+              <div class="rule-box">
+                <p>總銷售額 ＝ 122000 + 207000 ＝ <span style="font-size:1.3rem; font-weight:800; color:#dc2626;">329,000 元</span></p>
+                <p>正確答案選 (C) 329000！</p>
+              </div>
+            `,
+            speech: '第三步總計：十二萬兩千加二十萬七千等於三十二萬九千元，答案選C！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑指南（原價干擾項）',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 傳單「原價 7800 元」是無效干擾資訊！</div>
+                <p>很多同學會拿 7800 去減 800，但傳單寫「特價中，限量50臺，前20臺每臺再折800」，這意味著所有 50 臺都是以特價（非原價）為基準！</p>
+                <p>必須依據實際成交金額 61000 元逆推特價，才不會踩雷！</p>
+              </div>
+            `,
+            speech: '名師提醒：題目傳單上的原價七千八是干擾資訊，因為微波爐已經特價中了，千萬不要拿七千八去算喔！'
+          }
+        ]
+      },
+      {
+        id: 8,
+        title: '5 人打羽球雙打（4人同時上場），8:55 到 11:15，平均每人上場幾分鐘？',
+        source: '基Ⅰ 98',
+        options: ['(A) 112 分鐘', '(B) 136 分鐘', '(C) 140 分鐘', '(D) 175 分鐘'],
+        ans: 0,
+        steps: [
+          {
+            badge: '🔍 步驟 1：計算總營業打球時長',
+            html: `
+              <div class="rule-box important">
+                <p>從上午 8 : 55 到上午 11 : 15：</p>
+                <ul>
+                  <li>8:55 到 10:55 ＝ 2 小時（120 分鐘）</li>
+                  <li>10:55 到 11:15 ＝ 20 分鐘</li>
+                  <li><strong>總時間 ＝ 120 + 20 ＝ 140 分鐘</strong></li>
+                </ul>
+              </div>
+            `,
+            speech: '第一步算總時間：八點五十五分到十一點十五分，一共打了兩小時二十分鐘，也就是一百四十分鐘！'
+          },
+          {
+            badge: '📊 步驟 2：核心物理量「場上總人·分鐘數」',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-size:1.1rem; font-weight:800; color:#0369a1; margin-bottom:12px;">羽球雙打機制：球場上無時無刻都有 4 個人！</div>
+                <div style="background:#fef08a; padding:12px 20px; border-radius:12px; font-size:1.25rem; font-weight:800; color:#854d0e;">
+                  場上總供應時間 ＝ 140 分鐘 × 4 人 ＝ <span style="color:#dc2626;">560 人·分鐘</span>
+                </div>
+              </div>
+            `,
+            speech: '第二步算總人次時間：因為是打雙打，球場上任何一分鐘都必須有四個人在打！所以總共產生的上場時間總量，是一百四十乘四等於五百六十分鐘！'
+          },
+          {
+            badge: '🧮 步驟 3：5 位同學均分總時間',
+            html: `
+              <div class="rule-box">
+                <p>這 560 人·分鐘由 5 個同學公平輪流均分：</p>
+                <p style="font-size:1.25rem; font-weight:800; color:#15803d;">
+                  平均每人上場時間 ＝ 560 ÷ 5 ＝ <strong>112 分鐘</strong>！
+                </p>
+                <p>正確答案選 (A) 112！</p>
+              </div>
+            `,
+            speech: '第三步均分：把這五百六十分鐘平均分給五個同學，五百六十除以五等於一百一十二分鐘，答案選A！'
+          },
+          {
+            badge: '💡 步驟 4：名師秒殺比值公式',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚡ 秒殺口訣：每人時間 ＝ 總時間 × (上場人數 ÷ 總人數)</div>
+                <p>本題直接算：140 × (4 / 5) ＝ 140 × 0.8 ＝ <strong>112 分鐘</strong>！10 秒完成！</p>
+              </div>
+            `,
+            speech: '名師口訣：平均每人上場時間，就等於總時間乘以五分之四！一百四十乘零點八等於一百一十二，十秒搞定！'
+          }
+        ]
+      }
+    ];
+
     const DIAGRAM_QUESTIONS_DATA = [
       {
         id: 1,
@@ -3926,13 +4405,30 @@
       }
     ];
 
+    let currentDiagramUnit = 'ch1'; // 預設展示新上傳的整數四則運算
     let currentDiagramQIndex = 0;
     let currentDiagramSlideStep = 0;
+
+    function getActiveDiagramDataset() {
+      return currentDiagramUnit === 'ch1' ? INTEGER_QUESTIONS_DATA : DIAGRAM_QUESTIONS_DATA;
+    }
+
+    function switchDiagramUnit(unitKey) {
+      currentDiagramUnit = unitKey;
+      currentDiagramQIndex = 0;
+      currentDiagramSlideStep = 0;
+
+      document.getElementById('btn-unit-ch1').classList.toggle('active', unitKey === 'ch1');
+      document.getElementById('btn-unit-ch2').classList.toggle('active', unitKey === 'ch2');
+
+      initDiagramIsland();
+    }
 
     function initDiagramIsland() {
       const navbar = document.getElementById('diagram-q-navbar');
       navbar.innerHTML = '';
-      DIAGRAM_QUESTIONS_DATA.forEach((q, idx) => {
+      const dataset = getActiveDiagramDataset();
+      dataset.forEach((q, idx) => {
         const btn = document.createElement('button');
         btn.className = `btn-q-select ${idx === 0 ? 'active' : ''}`;
         btn.id = `btn-dq-${idx}`;
@@ -3957,7 +4453,7 @@
     }
 
     function renderCurrentDiagramSlide() {
-      const q = DIAGRAM_QUESTIONS_DATA[currentDiagramQIndex];
+      const q = getActiveDiagramDataset()[currentDiagramQIndex];
       const stepData = q.steps[currentDiagramSlideStep];
 
       document.getElementById('current-slide-qtitle').innerHTML = `
@@ -4008,13 +4504,13 @@
     }
 
     function playVoiceover() {
-      const q = DIAGRAM_QUESTIONS_DATA[currentDiagramQIndex];
+      const q = getActiveDiagramDataset()[currentDiagramQIndex];
       const text = q.steps[currentDiagramSlideStep].speech;
       speakText(text);
     }
 
     function renderDiagramInstantQuiz() {
-      const q = DIAGRAM_QUESTIONS_DATA[currentDiagramQIndex];
+      const q = getActiveDiagramDataset()[currentDiagramQIndex];
       const container = document.getElementById('diagram-instant-quiz');
 
       let optionsHtml = '';
