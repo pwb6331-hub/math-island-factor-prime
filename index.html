@@ -985,6 +985,232 @@
         padding: 16px;
       }
     }
+  
+    /* =====================================================================
+       3D 立體微縮沙盒學習島模組 (Isometric Diorama Island Styles)
+       ===================================================================== */
+    .diorama-sandbox-card {
+      position: relative;
+      background: radial-gradient(ellipse at 50% 45%, #a5f3fc 0%, #38bdf8 50%, #0369a1 100%);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 4px solid #ffffff;
+      box-shadow: inset 0 2px 25px rgba(0,0,0,0.18), 0 20px 40px rgba(2, 132, 199, 0.28);
+      margin-bottom: 24px;
+      user-select: none;
+    }
+
+    .diorama-viewbox {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 3D 浮動立體 Pin 標籤 (仿原圖圓角藥丸風格) */
+    .diorama-pin {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      z-index: 30;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .diorama-pin:hover {
+      transform: translate(-50%, -60%) scale(1.12);
+      z-index: 50;
+    }
+
+    .diorama-pin.active {
+      transform: translate(-50%, -65%) scale(1.18);
+      z-index: 60;
+    }
+
+    .pin-pill {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(6px);
+      padding: 5px 12px 5px 6px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18), 0 2px 4px rgba(0,0,0,0.1);
+      border: 2px solid #ffffff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #0f172a;
+      white-space: nowrap;
+    }
+
+    .pin-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: white;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+
+    /* 各種色彩的標籤分類 */
+    .pin-blue .pin-icon { background: #0284c7; }
+    .pin-blue .pin-pill { border-color: #7dd3fc; }
+
+    .pin-orange .pin-icon { background: #ea580c; }
+    .pin-orange .pin-pill { border-color: #fdba74; }
+
+    .pin-green .pin-icon { background: #16a34a; }
+    .pin-green .pin-pill { border-color: #86efac; }
+
+    .pin-purple .pin-icon { background: #9333ea; }
+    .pin-purple .pin-pill { border-color: #d8b4fe; }
+
+    .pin-red .pin-icon { background: #dc2626; }
+    .pin-red .pin-pill { border-color: #fca5a5; }
+
+    .pin-gold .pin-icon { background: #d97706; }
+    .pin-gold .pin-pill { border-color: #fde047; }
+
+    /* 浮動小動畫 */
+    .float-slow {
+      animation: floatAnim 4s ease-in-out infinite;
+    }
+    .float-delay-1 { animation-delay: 1s; }
+    .float-delay-2 { animation-delay: 2s; }
+    .float-delay-3 { animation-delay: 3s; }
+
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* 海上小船巡弋動畫 */
+    .sea-boat-1 {
+      position: absolute;
+      top: 50%;
+      left: 18%;
+      font-size: 1.8rem;
+      z-index: 15;
+      animation: boatCruise1 24s linear infinite;
+    }
+
+    @keyframes boatCruise1 {
+      0% { transform: translate(0, 0) rotate(15deg); }
+      50% { transform: translate(80px, -40px) rotate(-5deg); }
+      100% { transform: translate(0, 0) rotate(15deg); }
+    }
+
+    .sea-plane {
+      position: absolute;
+      top: 15%;
+      left: 10%;
+      font-size: 2.2rem;
+      z-index: 25;
+      animation: planeFly 20s linear infinite;
+      filter: drop-shadow(10px 20px 10px rgba(0,0,0,0.15));
+    }
+
+    @keyframes planeFly {
+      0% { transform: translate(0, 0) rotate(35deg) scale(0.9); }
+      100% { transform: translate(700px, 350px) rotate(35deg) scale(0.9); }
+    }
+
+    .hot-air-balloon {
+      position: absolute;
+      bottom: 25%;
+      right: 14%;
+      font-size: 2.4rem;
+      z-index: 25;
+      animation: balloonDrift 6s ease-in-out infinite;
+    }
+
+    @keyframes balloonDrift {
+      0%, 100% { transform: translateY(0px) rotate(2deg); }
+      50% { transform: translateY(-16px) rotate(-2deg); }
+    }
+
+    /* 點擊標籤彈出的精美抽屜簡介卡 */
+    .pin-popup-drawer {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      padding: 16px 22px;
+      border-radius: 20px;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+      border: 3px solid #7dd3fc;
+      z-index: 100;
+      width: 90%;
+      max-width: 540px;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pin-popup-drawer.show {
+      transform: translateX(-50%) translateY(0%);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0369a1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .drawer-desc {
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .drawer-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .view-mode-switch {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .btn-mode-toggle {
+      background: white;
+      border: 2px solid #bae6fd;
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      color: #0284c7;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-mode-toggle.active {
+      background: #0284c7;
+      color: white;
+      border-color: #0284c7;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+
   </style>
 </head>
 <body>
@@ -1043,7 +1269,239 @@
           <p>每通過一座島嶼的重點挑戰，就能為該島迎來一隻快樂的小動物！集滿所有島嶼星星，中央神廟將升起榮耀金旗！</p>
         </div>
 
-        <div class="archipelago">
+        
+        <!-- 地圖呈現模式切換器 -->
+        <div class="view-mode-switch">
+          <button class="btn-mode-toggle active" id="btn-mode-3d" onclick="switchMapMode('3d')">🗺️ 3D 立體沙盒地圖</button>
+          <button class="btn-mode-toggle" id="btn-mode-cards" onclick="switchMapMode('cards')">📋 單元卡片清單</button>
+        </div>
+
+        <!-- 3D 立體微縮沙盒學習島容器 -->
+        <div class="diorama-sandbox-card" id="diorama-sandbox-container">
+          <div class="diorama-viewbox" id="diorama-viewport">
+            
+            <!-- 天空飛行物與海面動態小船 -->
+            <div class="sea-plane" title="航向未來的巡航客機">✈️</div>
+            <div class="hot-air-balloon" title="花東熱氣球">🎈</div>
+            <div class="sea-boat-1" title="會考探險巡弋號">⛵</div>
+            <div style="position:absolute; bottom:18%; left:12%; font-size:1.6rem; z-index:15;">🚤</div>
+
+            <!-- 3D Isometric 微縮台灣與群島 SVG 底圖 -->
+            <svg viewBox="0 0 1000 640" style="width:100%; height:100%; position:absolute; top:0; left:0; z-index:10; pointer-events:none;">
+              <defs>
+                <!-- 綠色島嶼表面漸層 -->
+                <linearGradient id="islandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#86efac" />
+                  <stop offset="60%" stop-color="#4ade80" />
+                  <stop offset="100%" stop-color="#22c55e" />
+                </linearGradient>
+                <!-- 島嶼厚度土層漸層 -->
+                <linearGradient id="dirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#a16207" />
+                  <stop offset="100%" stop-color="#713f12" />
+                </linearGradient>
+                <!-- 雪山漸層 -->
+                <linearGradient id="snowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#e2e8f0" />
+                </linearGradient>
+                <!-- 海浪光澤濾鏡 -->
+                <filter id="shadowFilter" x="-10%" y="-10%" width="130%" height="130%">
+                  <feDropShadow dx="0" dy="18" stdDeviation="15" flood-color="#075985" flood-opacity="0.35" />
+                </filter>
+              </defs>
+
+              <!-- 馬祖列島 (左上方獨立微縮小島) -->
+              <g transform="translate(180, 80)" filter="url(#shadowFilter)">
+                <!-- 厚度 -->
+                <polygon points="0,40 100,40 120,65 20,65" fill="url(#dirtGrad)" />
+                <!-- 頂層 -->
+                <polygon points="20,15 100,10 120,40 0,40" fill="url(#islandGrad)" />
+                <!-- 燈塔 -->
+                <rect x="50" y="-10" width="8" height="25" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+                <polygon points="46,-10 62,-10 54,-22" fill="#ef4444" />
+                <!-- 小樹木 -->
+                <circle cx="28" cy="25" r="7" fill="#15803d" />
+                <circle cx="92" cy="25" r="6" fill="#166534" />
+              </g>
+
+              <!-- 澎湖群島 (左中央微縮小島 + 雙心石滬) -->
+              <g transform="translate(110, 260)" filter="url(#shadowFilter)">
+                <polygon points="0,50 110,50 130,80 20,80" fill="url(#dirtGrad)" />
+                <polygon points="20,20 110,15 130,50 0,50" fill="url(#islandGrad)" />
+                <!-- 雙心石滬線條 -->
+                <path d="M 40,42 C 40,35 55,35 60,42 C 65,35 80,35 80,42 C 80,52 60,60 60,60 C 60,60 40,52 40,42 Z" fill="none" stroke="#0284c7" stroke-width="3" />
+                <circle cx="95" cy="32" r="8" fill="#15803d" />
+              </g>
+
+              <!-- 台灣本島主體 (微縮低多面體 Diorama) -->
+              <g filter="url(#shadowFilter)">
+                <!-- 1. 島嶼厚度泥土層 -->
+                <path d="
+                  M 620,120 L 710,165 L 755,270 L 720,380 L 620,480 L 510,550 L 440,560 L 440,580 L 520,570 L 630,500 L 735,395 L 775,280 L 725,175 L 635,130 Z
+                " fill="url(#dirtGrad)" />
+
+                <!-- 2. 台灣本島草皮頂層板塊 (帶有地形多面體) -->
+                <path d="
+                  M 600,105 
+                  C 680,130 730,190 740,260 
+                  C 750,330 720,400 670,450 
+                  C 620,500 540,545 460,545 
+                  C 390,535 340,480 320,410 
+                  C 300,340 330,270 380,220 
+                  C 430,170 510,120 600,105 Z
+                " fill="url(#islandGrad)" />
+
+                <!-- 3. 木棧道格網 (連接各城鎮的木色步道) -->
+                <path d="
+                  M 580,140 Q 530,180 500,210
+                  T 460,280 T 440,360 T 420,440 T 460,500
+                  M 500,210 Q 570,250 630,290 T 650,380 T 600,450
+                  M 570,250 Q 550,340 540,420
+                " fill="none" stroke="#d97706" stroke-width="5" stroke-dasharray="7,3" opacity="0.8" />
+
+                <!-- 4. 中央山脈立體雪峰山丘群 (Low-Poly Cones) -->
+                <!-- 山峰 1 (雪山/大霸) -->
+                <polygon points="560,180 535,240 585,240" fill="#15803d" />
+                <polygon points="560,180 585,240 600,235" fill="#166534" />
+                <polygon points="560,180 550,205 572,205" fill="url(#snowGrad)" />
+
+                <!-- 山峰 2 (玉山/南投峰) -->
+                <polygon points="540,280 505,360 575,360" fill="#15803d" />
+                <polygon points="540,280 575,360 595,350" fill="#14532d" />
+                <polygon points="540,280 526,312 554,312" fill="url(#snowGrad)" />
+
+                <!-- 山峰 3 (中央山脈南段) -->
+                <polygon points="500,390 470,460 530,460" fill="#16a34a" />
+                <polygon points="500,390 530,460 545,450" fill="#166534" />
+                <polygon points="500,390 488,418 512,418" fill="url(#snowGrad)" />
+
+                <!-- 山峰 4 (東部海岸山脈) -->
+                <polygon points="650,280 625,340 675,340" fill="#22c55e" />
+                <polygon points="650,280 675,340 685,335" fill="#15803d" />
+
+                <!-- 梯田與農田網格 (中南部平原) -->
+                <rect x="360" y="320" width="40" height="25" fill="#a3e635" opacity="0.6" rx="4" />
+                <rect x="410" y="310" width="35" height="30" fill="#bef264" opacity="0.6" rx="4" />
+                <rect x="350" y="360" width="45" height="30" fill="#84cc16" opacity="0.6" rx="4" />
+                <rect x="400" y="355" width="40" height="35" fill="#a3e635" opacity="0.6" rx="4" />
+
+                <!-- 高雄 85 大樓微縮積木 -->
+                <rect x="385" y="445" width="12" height="35" fill="#0284c7" rx="2" />
+                <polygon points="383,445 399,445 391,432" fill="#0369a1" />
+
+                <!-- 屏東鵝鑾鼻燈塔 -->
+                <rect x="460" y="525" width="8" height="22" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+                <circle cx="464" cy="525" r="5" fill="#facc15" />
+              </g>
+
+              <!-- 蘭嶼/綠島 (右下微縮小島) -->
+              <g transform="translate(680, 480)" filter="url(#shadowFilter)">
+                <polygon points="0,25 50,25 60,40 10,40" fill="url(#dirtGrad)" />
+                <polygon points="10,10 50,8 60,25 0,25" fill="url(#islandGrad)" />
+                <circle cx="30" cy="18" r="6" fill="#15803d" />
+              </g>
+            </svg>
+
+            <!-- 10 個立體圓角藥丸互動地標 Pins (完全復刻原圖標籤質感) -->
+            <!-- 1. 馬祖 -->
+            <div class="diorama-pin pin-purple float-slow" style="top: 14%; left: 24%;" onclick="openPinDrawer('matsu')">
+              <div class="pin-pill">
+                <span class="pin-icon">⚓</span>
+                <span>馬祖・彩虹短除島</span>
+              </div>
+            </div>
+
+            <!-- 2. 澎湖 -->
+            <div class="diorama-pin pin-purple float-slow float-delay-1" style="top: 45%; left: 18%;" onclick="openPinDrawer('penghu')">
+              <div class="pin-pill">
+                <span class="pin-icon">🌊</span>
+                <span>澎湖・質數篩法島</span>
+              </div>
+            </div>
+
+            <!-- 3. 新北 -->
+            <div class="diorama-pin pin-blue float-slow float-delay-2" style="top: 17%; left: 63%;" onclick="openPinDrawer('newtaipei')">
+              <div class="pin-pill">
+                <span class="pin-icon">🏙️</span>
+                <span>新北・因倍定義港</span>
+              </div>
+            </div>
+
+            <!-- 4. 新竹 -->
+            <div class="diorama-pin pin-orange float-slow float-delay-3" style="top: 25%; left: 51%;" onclick="openPinDrawer('hsinchu')">
+              <div class="pin-pill">
+                <span class="pin-icon">🔬</span>
+                <span>新竹・末位數雷達 (2,5,4,8)</span>
+              </div>
+            </div>
+
+            <!-- 5. 苗栗 -->
+            <div class="diorama-pin pin-green float-slow" style="top: 33%; left: 45%;" onclick="openPinDrawer('miaoli')">
+              <div class="pin-pill">
+                <span class="pin-icon">🍓</span>
+                <span>苗栗・數字和天秤 (3,9)</span>
+              </div>
+            </div>
+
+            <!-- 6. 台中 -->
+            <div class="diorama-pin pin-gold float-slow float-delay-1" style="top: 37%; left: 40%;" onclick="openPinDrawer('taichung')">
+              <div class="pin-pill">
+                <span class="pin-icon">☀️</span>
+                <span>台中・倍數包含陷阱峰</span>
+              </div>
+            </div>
+
+            <!-- 7. 南投 -->
+            <div class="diorama-pin pin-green float-slow float-delay-2" style="top: 44%; left: 55%;" onclick="openPinDrawer('nantou')">
+              <div class="pin-pill">
+                <span class="pin-icon">🌲</span>
+                <span>南投・奇偶位差之森 (11)</span>
+              </div>
+            </div>
+
+            <!-- 8. 台南 -->
+            <div class="diorama-pin pin-orange float-slow float-delay-3" style="top: 60%; left: 36%;" onclick="openPinDrawer('tainan')">
+              <div class="pin-pill">
+                <span class="pin-icon">🏰</span>
+                <span>台南・四大偽質數魔王 (51,91)</span>
+              </div>
+            </div>
+
+            <!-- 9. 高雄 -->
+            <div class="diorama-pin pin-red float-slow" style="top: 70%; left: 39%;" onclick="openPinDrawer('kaohsiung')">
+              <div class="pin-pill">
+                <span class="pin-icon">🚢</span>
+                <span>高雄・質數神殿與標準式</span>
+              </div>
+            </div>
+
+            <!-- 10. 會考小船 -->
+            <div class="diorama-pin pin-blue float-slow float-delay-2" style="top: 75%; left: 68%;" onclick="openPinDrawer('boat')">
+              <div class="pin-pill" style="border-color:#f59e0b; background:#fffbeb;">
+                <span class="pin-icon" style="background:#f59e0b;">⛵</span>
+                <span style="color:#b45309;">東部海域・會考試煉號 (45題)</span>
+              </div>
+            </div>
+
+            <!-- 點擊地標展開的微縮資訊抽屜 -->
+            <div class="pin-popup-drawer" id="pin-popup-drawer">
+              <div class="drawer-header">
+                <div class="drawer-title" id="drawer-title">📍 新北・因倍定義港</div>
+                <button style="background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closePinDrawer()">✖</button>
+              </div>
+              <div class="drawer-desc" id="drawer-desc">
+                探索 a=b×c 的數學奧秘！牢記 1 是任何數的因數，0 是任何非零整數的倍數。
+              </div>
+              <div class="drawer-actions">
+                <button class="btn-step" id="drawer-go-btn" onclick="goToIslandFromPin()">🚀 登島闖關</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="archipelago" id="archipelago-cards" style="display:none;">
           <!-- 島嶼 1 -->
           <div class="island-card" onclick="showView('view-island-1')">
             <div>
@@ -2554,6 +3012,109 @@
     /* =====================================================================
        10. 初始化啟動 (Window Onload)
        ===================================================================== */
+    
+    /* =====================================================================
+       3D 微縮地圖互動邏輯 (Diorama Map Interaction Controller)
+       ===================================================================== */
+    const PIN_INFO_DATA = {
+      'matsu': {
+        title: '⚓ 馬祖・彩虹因數與短除拆解島',
+        desc: '透過矩形陣列自動配對彩虹因數，手動操作短除法梯級一步步拆解標準分解式！',
+        viewId: 'view-lab-factor'
+      },
+      'penghu': {
+        title: '🌊 澎湖・埃拉托斯特尼質數篩法島',
+        desc: '體驗古希臘學者動態篩選百數表的智慧！了解 17 年週期蟬與現代 RSA 網路密碼學的守護盾牌。',
+        viewId: 'view-lab-sieve'
+      },
+      'newtaipei': {
+        title: '🏙️ 新北・因倍定義海港',
+        desc: '學習 a=b×c 的精準定義！掌握 0 與 1 的因倍特權，學會彩虹乘積配對求法。',
+        viewId: 'view-island-1'
+      },
+      'hsinchu': {
+        title: '🔬 新竹・末位數雷達哨站',
+        desc: '2 的倍數看偶數，5 的倍數看 0 或 5；4 的倍數檢查末兩位，8 的倍數檢查末三位！',
+        viewId: 'view-island-2'
+      },
+      'miaoli': {
+        title: '🍓 苗栗・各數字和天秤峰',
+        desc: '不必長除法！將每個位數的數字相加，只要總和是 3 或 9 的倍數，該數就是 3 或 9 的倍數！',
+        viewId: 'view-island-2'
+      },
+      'taichung': {
+        title: '☀️ 台中・倍數邏輯陷阱峰',
+        desc: '⚠️ 重大警示：9 的倍數「一定」是 3 的倍數；但 3 的倍數「不一定」是 9 的倍數！',
+        viewId: 'view-island-2'
+      },
+      'nantou': {
+        title: '🌲 南投・奇偶位差之森',
+        desc: '11 的倍數判別絕招：奇數位數字和與偶數位數字和的差值若為 0 或 11 的倍數，即為 11 的倍數！',
+        viewId: 'view-island-2'
+      },
+      'tainan': {
+        title: '🏰 台南・四大偽質數魔王古堡',
+        desc: '🚨 會考必考陷阱：51=3×17、57=3×19、87=3×29、91=7×13！牠們全都是合數，千萬別上當！',
+        viewId: 'view-island-3'
+      },
+      'kaohsiung': {
+        title: '🚢 高雄・質數神殿與標準分解式',
+        desc: '大於 1 且只有 1 與本身的數為質數；2 是唯一偶數質數。學習短除法與質因數標準指數形式。',
+        viewId: 'view-island-3'
+      },
+      'boat': {
+        title: '⛵ 東部海域・會考小船碼頭 (45 題)',
+        desc: '航向歷屆會考基測變形題庫！擁有 3 顆愛心護盾，答錯扣血，即時顯示名師解析。',
+        viewId: 'view-boat'
+      }
+    };
+
+    let currentPinTargetView = 'view-island-1';
+
+    function openPinDrawer(pinKey) {
+      const data = PIN_INFO_DATA[pinKey];
+      if (!data) return;
+
+      document.querySelectorAll('.diorama-pin').forEach(p => p.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      document.getElementById('drawer-title').textContent = data.title;
+      document.getElementById('drawer-desc').textContent = data.desc;
+      currentPinTargetView = data.viewId;
+
+      const drawer = document.getElementById('pin-popup-drawer');
+      drawer.classList.add('show');
+    }
+
+    function closePinDrawer() {
+      document.getElementById('pin-popup-drawer').classList.remove('show');
+      document.querySelectorAll('.diorama-pin').forEach(p => p.classList.remove('active'));
+    }
+
+    function goToIslandFromPin() {
+      closePinDrawer();
+      showView(currentPinTargetView);
+    }
+
+    function switchMapMode(mode) {
+      const sandbox = document.getElementById('diorama-sandbox-container');
+      const cards = document.getElementById('archipelago-cards');
+      const btn3d = document.getElementById('btn-mode-3d');
+      const btnCards = document.getElementById('btn-mode-cards');
+
+      if (mode === '3d') {
+        sandbox.style.display = 'block';
+        cards.style.display = 'none';
+        btn3d.classList.add('active');
+        btnCards.classList.remove('active');
+      } else {
+        sandbox.style.display = 'none';
+        cards.style.display = 'grid';
+        btn3d.classList.remove('active');
+        btnCards.classList.add('active');
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       renderQuizList(QUIZ_ISLAND_1, 'quiz-container-island-1', 'island-1');
       renderQuizList(QUIZ_ISLAND_2, 'quiz-container-island-2', 'island-2');
