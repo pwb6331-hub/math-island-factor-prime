@@ -1417,6 +1417,7 @@
     <button class="tab-btn" onclick="showView('view-island-3')">3️⃣ 質數神廟島</button>
     <button class="tab-btn" onclick="showView('view-lab-sieve')">🔬 質數篩法實驗島</button>
     <button class="tab-btn" onclick="showView('view-lab-factor')">⚖️ 彩虹短除實驗島</button>
+    <button class="tab-btn" onclick="showView('view-world-map')">🌍 三大洋七大洲島</button>
     <button class="tab-btn" onclick="showView('view-diagram-island')">🎬 會考圖解動畫島 (8大題)</button>
     <button class="tab-btn" onclick="showView('view-boat')">⛵ 會考小船 (45題)</button>
     <button class="tab-btn" onclick="showView('view-match')">🧩 名詞配對挑戰</button>
@@ -1439,7 +1440,8 @@
         
         <!-- 地圖呈現模式切換器 -->
         <div class="view-mode-switch">
-          <button class="btn-mode-toggle active" id="btn-mode-3d" onclick="switchMapMode('3d')">🗺️ 3D 立體沙盒地圖</button>
+          <button class="btn-mode-toggle active" id="btn-mode-3d" onclick="switchMapMode('3d')">🗺️ 台灣微縮群島</button>
+          <button class="btn-mode-toggle" id="btn-mode-world" onclick="switchMapMode('world')">🌍 三大洋七大洲航海圖</button>
           <button class="btn-mode-toggle" id="btn-mode-cards" onclick="switchMapMode('cards')">📋 單元卡片清單</button>
         </div>
 
@@ -1664,6 +1666,108 @@
               <div class="pin-pill" style="border-color:#f59e0b; background:#fffbeb;">
                 <span class="pin-icon" style="background:#f59e0b;">⛵</span>
                 <span style="color:#b45309;">東部海域・會考試煉號 (45題)</span>
+              </div>
+            </div>
+
+            
+            <!-- 三大洋七大洲微縮世界航海圖 (預設隱藏，切換 world 模式時顯示) -->
+            <svg id="world-map-svg" viewBox="0 0 1000 600" style="width:100%; height:100%; position:absolute; top:0; left:0; z-index:12; display:none; pointer-events:none;">
+              <defs>
+                <!-- 經緯線網格透明度 -->
+                <style>
+                  .geo-grid { stroke: rgba(2, 132, 199, 0.25); stroke-width: 1.2; fill: none; }
+                  .geo-equator { stroke: #ec4899; stroke-width: 2.2; fill: none; stroke-dasharray: 6,4; }
+                  .canal-line { stroke: #ef4444; stroke-width: 3.5; stroke-dasharray: 4,3; }
+                </style>
+              </defs>
+
+              <!-- 經緯線與赤道、本初子午線 -->
+              <ellipse cx="500" cy="300" rx="460" ry="270" class="geo-grid" />
+              <line x1="40" y1="300" x2="960" y2="300" class="geo-equator" /> <!-- 赤道 0度 -->
+              <line x1="40" y1="170" x2="960" y2="170" class="geo-grid" stroke-dasharray="4,4" /> <!-- 北緯30度 -->
+              <line x1="40" y1="430" x2="960" y2="430" class="geo-grid" stroke-dasharray="4,4" /> <!-- 南緯30度 -->
+              <line x1="500" y1="30" x2="500" y2="570" class="geo-grid" /> <!-- 中央經線 -->
+
+              <!-- 三大洋標籤水紋 -->
+              <text x="750" y="320" fill="#0369a1" font-size="20" font-weight="900" opacity="0.6">太 平 洋 (Pacific)</text>
+              <text x="140" y="360" fill="#0369a1" font-size="20" font-weight="900" opacity="0.6">太 平 洋</text>
+              <text x="210" y="240" fill="#0369a1" font-size="19" font-weight="900" opacity="0.6">大 西 洋 (Atlantic)</text>
+              <text x="440" y="440" fill="#0369a1" font-size="19" font-weight="900" opacity="0.6">印 度 洋 (Indian)</text>
+              <text x="450" y="80" fill="#0284c7" font-size="16" font-weight="900" opacity="0.5">北 極 海</text>
+
+              <!-- 七大洲板塊 (Low-Poly 造型多邊形) -->
+              <!-- 1. 亞洲 (黃色 #fef08a, 邊線 #ca8a04) -->
+              <path d="M 370,120 L 460,90 L 590,110 L 630,190 L 600,280 L 540,320 L 490,290 L 440,240 L 370,220 L 360,160 Z" fill="#fef08a" stroke="#eab308" stroke-width="3" opacity="0.9" filter="url(#shadowFilter)" />
+
+              <!-- 2. 歐洲 (紫藍色 #e0e7ff, 邊線 #6366f1) -->
+              <path d="M 280,120 L 370,110 L 360,200 L 300,210 L 260,170 Z" fill="#e0e7ff" stroke="#6366f1" stroke-width="2.5" opacity="0.9" />
+
+              <!-- 3. 非洲 (綠色 #bbf7d0, 邊線 #22c55e) -->
+              <path d="M 270,230 L 360,230 L 380,310 L 330,420 L 290,420 L 250,300 Z" fill="#bbf7d0" stroke="#22c55e" stroke-width="3" opacity="0.9" />
+
+              <!-- 4. 北美洲 (粉紫色 #fbcfe8, 邊線 #db2777) -->
+              <path d="M 720,110 L 870,100 L 890,180 L 840,270 L 780,300 L 750,230 L 710,170 Z" fill="#fbcfe8" stroke="#db2777" stroke-width="3" opacity="0.9" />
+
+              <!-- 5. 南美洲 (橘黃色 #fed7aa, 邊線 #ea580c) -->
+              <path d="M 780,310 L 840,330 L 860,400 L 810,500 L 780,480 L 770,370 Z" fill="#fed7aa" stroke="#ea580c" stroke-width="3" opacity="0.9" />
+
+              <!-- 6. 大洋洲 / 澳洲 (淡青綠 #cffafe, 邊線 #06b6d4) -->
+              <path d="M 540,390 L 630,380 L 640,460 L 550,470 Z" fill="#cffafe" stroke="#06b6d4" stroke-width="3" opacity="0.9" />
+
+              <!-- 7. 南極洲 (冰白色 #f8fafc, 邊線 #94a3b8) -->
+              <path d="M 180,540 L 820,540 L 850,570 L 150,570 Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="3" opacity="0.95" />
+
+              <!-- 重要地峽海峽運河分界標線 -->
+              <!-- 白令海峽 (亞美分界) -->
+              <line x1="640" y1="120" x2="710" y2="120" class="canal-line" />
+              <!-- 巴拿馬運河 (南北美分界) -->
+              <line x1="775" y1="305" x2="785" y2="315" class="canal-line" stroke="#dc2626" stroke-width="4" />
+              <!-- 蘇伊士運河 (亞非分界) -->
+              <line x1="365" y1="225" x2="375" y2="235" class="canal-line" stroke="#dc2626" stroke-width="4" />
+              <!-- 烏拉山脈 (歐亞分界) -->
+              <path d="M 365,115 Q 370,160 365,200" fill="none" stroke="#dc2626" stroke-width="4" />
+            </svg>
+
+            <!-- 三大洋七大洲專屬立體藥丸 Pin 標籤群 (世界模式時展示) -->
+            <div id="world-pins-container" style="display:none;">
+              <!-- 亞洲 -->
+              <div class="diorama-pin pin-gold float-slow" style="top: 26%; left: 49%;" onclick="openWorldGeoDrawer('asia')">
+                <div class="pin-pill"><span class="pin-icon">🌏</span><span>亞 洲 (全球最大洲)</span></div>
+              </div>
+              <!-- 歐洲 -->
+              <div class="diorama-pin pin-blue float-slow float-delay-1" style="top: 22%; left: 31%;" onclick="openWorldGeoDrawer('europe')">
+                <div class="pin-pill"><span class="pin-icon">🏰</span><span>歐 洲 (歐亞大陸)</span></div>
+              </div>
+              <!-- 非洲 -->
+              <div class="diorama-pin pin-green float-slow float-delay-2" style="top: 48%; left: 31%;" onclick="openWorldGeoDrawer('africa')">
+                <div class="pin-pill"><span class="pin-icon">🦁</span><span>非 洲 (蘇伊士運河)</span></div>
+              </div>
+              <!-- 北美洲 -->
+              <div class="diorama-pin pin-red float-slow" style="top: 28%; left: 78%;" onclick="openWorldGeoDrawer('namerica')">
+                <div class="pin-pill"><span class="pin-icon">🗽</span><span>北美洲 (巴拿馬以北)</span></div>
+              </div>
+              <!-- 南美洲 -->
+              <div class="diorama-pin pin-orange float-slow float-delay-3" style="top: 64%; left: 81%;" onclick="openWorldGeoDrawer('samerica')">
+                <div class="pin-pill"><span class="pin-icon">🦜</span><span>南美洲 (安地斯山)</span></div>
+              </div>
+              <!-- 大洋洲 -->
+              <div class="diorama-pin pin-blue float-slow float-delay-1" style="top: 68%; left: 58%;" onclick="openWorldGeoDrawer('oceania')">
+                <div class="pin-pill"><span class="pin-icon">🦘</span><span>大洋洲 (澳洲群島)</span></div>
+              </div>
+              <!-- 南極洲 -->
+              <div class="diorama-pin pin-blue float-slow" style="top: 92%; left: 50%;" onclick="openWorldGeoDrawer('antarctica')">
+                <div class="pin-pill"><span class="pin-icon">🐧</span><span>南極洲 (冰雪極地)</span></div>
+              </div>
+
+              <!-- 三大洋 Pin -->
+              <div class="diorama-pin pin-blue float-slow float-delay-2" style="top: 42%; left: 70%;" onclick="openWorldGeoDrawer('pacific')">
+                <div class="pin-pill" style="border-color:#38bdf8; background:#e0f2fe;"><span class="pin-icon">🌊</span><span>太 平 洋 (面積最大)</span></div>
+              </div>
+              <div class="diorama-pin pin-blue float-slow" style="top: 36%; left: 20%;" onclick="openWorldGeoDrawer('atlantic')">
+                <div class="pin-pill" style="border-color:#38bdf8; background:#e0f2fe;"><span class="pin-icon">🌊</span><span>大 西 洋 (S型大洋)</span></div>
+              </div>
+              <div class="diorama-pin pin-blue float-slow float-delay-3" style="top: 72%; left: 45%;" onclick="openWorldGeoDrawer('indian')">
+                <div class="pin-pill" style="border-color:#38bdf8; background:#e0f2fe;"><span class="pin-icon">🌊</span><span>印 度 洋 (季風航道)</span></div>
               </div>
             </div>
 
@@ -2277,6 +2381,12 @@
           </div>
 
           <!-- 投影片主要舞台 -->
+          
+          <!-- 解題說明影片動態進度條 (Video Progress Bar) -->
+          <div id="video-progress-bar-container" style="display:none; height:6px; background:#e2e8f0; width:100%;">
+            <div id="video-progress-fill" style="height:100%; width:0%; background:linear-gradient(90deg, #e11d48, #f59e0b); transition:width 0.3s linear;"></div>
+          </div>
+
           <div class="slide-stage-body">
             <div class="slide-screen" id="slide-screen-content">
               <!-- 動態渲染各投影片頁面 -->
@@ -2288,6 +2398,7 @@
             <div style="display:flex; gap:8px;">
               <button class="slide-btn secondary" onclick="prevSlideStep()">⏪ 上一步驟</button>
               <button class="slide-btn" onclick="nextSlideStep()">下一步驟 ⏩</button>
+              <button class="slide-btn" style="background:#e11d48;" id="btn-play-video-mode" onclick="toggleAnimatedVideoMode()">▶️ 播放解題動態影片</button>
               <button class="slide-btn" style="background:#10b981;" onclick="playVoiceover()">🔊 語音導讀</button>
               <button class="slide-btn" style="background:#6366f1;" onclick="copyCurrentSlideLink()">🔗 複製動畫簡報分享連結</button>
             </div>
@@ -4536,6 +4647,165 @@
         switchDiagramUnit(unit);
         selectDiagramQuestion(q - 1);
         gotoSlideStep(step);
+      }
+    }
+
+    
+    /* =====================================================================
+       三大洋七大洲地理資料庫 (World Oceans & Continents Database)
+       ===================================================================== */
+    const WORLD_GEO_DATA = {
+      'asia': {
+        title: '🌏 亞 洲 (Asia)・全球最大洲',
+        desc: '世界面積最大、人口最多的大洲！與歐洲相連形成「歐亞大陸」（全球最大陸塊）。分界線為烏拉山、烏拉河、高加索山、黑海及土耳其海峽！與非洲以蘇伊士運河為界。'
+      },
+      'europe': {
+        title: '🏰 歐 洲 (Europe)・歐亞大陸西側',
+        desc: '海岸線曲折，多島嶼半島。南隔地中海、直布羅陀海峽與非洲相望，東以烏拉山與亞洲接壤。'
+      },
+      'africa': {
+        title: '🦁 非 洲 (Africa)・高原大陸與蘇伊士運河',
+        desc: '赤道橫貫中央，熱帶氣候最廣。東北隅以「蘇伊士運河」與紅海和亞洲為界，隔地中海與歐洲相望。'
+      },
+      'namerica': {
+        title: '🗽 北美洲 (North America)・白令海峽與巴拿馬運河',
+        desc: '西北隔白令海峽與亞洲相望；南端以「巴拿馬運河」與南美洲為界，東臨大西洋，西瀕太平洋。'
+      },
+      'samerica': {
+        title: '🦜 南美洲 (South America)・安地斯山脈與亞馬遜河',
+        desc: '全洲大部分位於南半球，西側有綿長的安地斯山脈。北部以巴拿馬運河與北美洲相連。'
+      },
+      'oceania': {
+        title: '🦘 大洋洲 (Oceania)・全球面積最小洲',
+        desc: '由澳大利亞大陸、紐西蘭及太平洋上成千上萬個島嶼組成，四面環海，生態獨特孤立演化。'
+      },
+      'antarctica': {
+        title: '🐧 南極洲 (Antarctica)・白色極地大陸',
+        desc: '全境為厚重冰原覆蓋，氣候極端酷寒、乾燥、烈風，無永久居民，受國際南極條約保護。'
+      },
+      'pacific': {
+        title: '🌊 太 平 洋 (Pacific Ocean)・全球最大洋',
+        desc: '面積佔全球海洋近一半！環太平洋火山地震帶環繞，西臨亞洲與大洋洲，東連南北美洲。'
+      },
+      'atlantic': {
+        title: '🌊 大 西 洋 (Atlantic Ocean)・S型大洋',
+        desc: '呈巨大 S 型南北延伸，介於歐洲、非洲與南北美洲之間，航運與貿易歷史極度繁忙。'
+      },
+      'indian': {
+        title: '🌊 印 度 洋 (Indian Ocean)・熱帶季風大洋',
+        desc: '位於亞洲、非洲、大洋洲與南極洲之間，是往來歐亞非三大洲的海上能源與貿易生命線。'
+      }
+    };
+
+    function openWorldGeoDrawer(key) {
+      const data = WORLD_GEO_DATA[key];
+      if (!data) return;
+
+      document.getElementById('drawer-title').textContent = data.title;
+      document.getElementById('drawer-desc').textContent = data.desc;
+      currentPinTargetView = 'view-diagram-island';
+
+      const drawer = document.getElementById('pin-popup-drawer');
+      drawer.classList.add('show');
+    }
+
+    // 地圖模式切換（3D台灣、三大洋七大洲、單元卡片）
+    function switchMapMode(mode) {
+      const sandbox = document.getElementById('diorama-sandbox-container');
+      const cards = document.getElementById('archipelago-cards');
+      const taiwanSvg = sandbox.querySelector('svg:not(#world-map-svg)');
+      const worldSvg = document.getElementById('world-map-svg');
+      const worldPins = document.getElementById('world-pins-container');
+
+      // 台灣原生 pins
+      const taiwanPins = sandbox.querySelectorAll('.diorama-pin:not(#world-pins-container .diorama-pin)');
+
+      const btn3d = document.getElementById('btn-mode-3d');
+      const btnWorld = document.getElementById('btn-mode-world');
+      const btnCards = document.getElementById('btn-mode-cards');
+
+      btn3d.classList.remove('active');
+      if (btnWorld) btnWorld.classList.remove('active');
+      btnCards.classList.remove('active');
+
+      if (mode === '3d') {
+        sandbox.style.display = 'block';
+        cards.style.display = 'none';
+        btn3d.classList.add('active');
+        taiwanSvg.style.display = 'block';
+        worldSvg.style.display = 'none';
+        worldPins.style.display = 'none';
+        taiwanPins.forEach(p => p.style.display = 'block');
+      } else if (mode === 'world') {
+        sandbox.style.display = 'block';
+        cards.style.display = 'none';
+        if (btnWorld) btnWorld.classList.add('active');
+        taiwanSvg.style.display = 'none';
+        worldSvg.style.display = 'block';
+        worldPins.style.display = 'block';
+        taiwanPins.forEach(p => p.style.display = 'none');
+      } else {
+        sandbox.style.display = 'none';
+        cards.style.display = 'grid';
+        btnCards.classList.add('active');
+      }
+    }
+
+    /* =====================================================================
+       會考解題動態影片播放機模式 (Animated Video Player Engine)
+       ===================================================================== */
+    let isVideoModePlaying = false;
+    let videoModeTimer = null;
+    let videoStep = 0;
+
+    function toggleAnimatedVideoMode() {
+      const btn = document.getElementById('btn-play-video-mode');
+      const barContainer = document.getElementById('video-progress-bar-container');
+      const barFill = document.getElementById('video-progress-fill');
+
+      if (isVideoModePlaying) {
+        // 暫停影片
+        clearInterval(videoModeTimer);
+        isVideoModePlaying = false;
+        btn.innerHTML = '▶️ 播放解題動態影片';
+        btn.style.background = '#e11d48';
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      } else {
+        // 開始播放影片模式
+        isVideoModePlaying = true;
+        btn.innerHTML = '⏸️ 暫停解題影片';
+        btn.style.background = '#d97706';
+        barContainer.style.display = 'block';
+
+        videoStep = 0;
+        gotoSlideStep(videoStep);
+        playVoiceover();
+
+        let progress = 0;
+        barFill.style.width = '0%';
+
+        videoModeTimer = setInterval(() => {
+          progress += 2;
+          barFill.style.width = `${progress}%`;
+
+          // 每 25% 前進一步投影片
+          if (progress === 25) {
+            gotoSlideStep(1);
+            playVoiceover();
+          } else if (progress === 50) {
+            gotoSlideStep(2);
+            playVoiceover();
+          } else if (progress === 75) {
+            gotoSlideStep(3);
+            playVoiceover();
+          } else if (progress >= 100) {
+            clearInterval(videoModeTimer);
+            isVideoModePlaying = false;
+            btn.innerHTML = '🔄 重播解題影片';
+            btn.style.background = '#10b981';
+            showModal('🎬 影片放映完畢！', '本題 4 大步驟核心思維與名師避坑已全數演繹完畢！歡迎點擊下一題或即時選答檢驗！', '🎉');
+          }
+        }, 300); // 總時長約 15 秒精華動態演繹
       }
     }
 
