@@ -1211,6 +1211,172 @@
       box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
     }
 
+  
+    /* =====================================================================
+       會考圖解動畫島專用樣式 (Interactive Diagram Slide Deck Styles)
+       ===================================================================== */
+    .diagram-nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: #f1f5f9;
+      padding: 10px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .btn-q-select {
+      background: white;
+      border: 2px solid #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-q-select:hover {
+      background: #f8fafc;
+      border-color: #0284c7;
+      color: #0284c7;
+    }
+
+    .btn-q-select.active {
+      background: #0284c7;
+      color: white;
+      border-color: #0284c7;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+    }
+
+    .slide-deck-player {
+      background: #ffffff;
+      border: 3px solid #e2e8f0;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+    }
+
+    .slide-player-header {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #334155;
+    }
+
+    .slide-title-group h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-source-tag {
+      background: #dc2626;
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 800;
+    }
+
+    .slide-stepper {
+      display: flex;
+      gap: 8px;
+    }
+
+    .step-pill {
+      background: #334155;
+      color: #94a3b8;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .step-pill.active {
+      background: #0284c7;
+      color: white;
+      box-shadow: 0 0 10px rgba(2, 132, 199, 0.6);
+    }
+
+    .slide-stage-body {
+      padding: 28px;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #f8fafc;
+    }
+
+    .slide-screen {
+      animation: fadeIn 0.35s ease-out;
+    }
+
+    .visual-canvas-card {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 20px;
+      margin: 16px 0;
+      text-align: center;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .slide-controls-footer {
+      background: white;
+      border-top: 2px solid #f1f5f9;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .slide-btn {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .slide-btn:hover {
+      background: #0369a1;
+      transform: translateY(-1px);
+    }
+
+    .slide-btn.secondary {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .slide-btn.secondary:hover {
+      background: #cbd5e1;
+    }
+
   </style>
 </head>
 <body>
@@ -1251,6 +1417,7 @@
     <button class="tab-btn" onclick="showView('view-island-3')">3️⃣ 質數神廟島</button>
     <button class="tab-btn" onclick="showView('view-lab-sieve')">🔬 質數篩法實驗島</button>
     <button class="tab-btn" onclick="showView('view-lab-factor')">⚖️ 彩虹短除實驗島</button>
+    <button class="tab-btn" onclick="showView('view-diagram-island')">🎬 會考圖解動畫島 (8大題)</button>
     <button class="tab-btn" onclick="showView('view-boat')">⛵ 會考小船 (45題)</button>
     <button class="tab-btn" onclick="showView('view-match')">🧩 名詞配對挑戰</button>
     <button class="tab-btn" onclick="showView('view-mistakes')">🎒 錯題複習島 (<span id="mistake-count">0</span>)</button>
@@ -1473,6 +1640,14 @@
               <div class="pin-pill">
                 <span class="pin-icon">🚢</span>
                 <span>高雄・質數神殿與標準式</span>
+              </div>
+            </div>
+
+            <!-- 11. 會考圖解動畫島 (中央黃金高地) -->
+            <div class="diorama-pin pin-gold float-slow" style="top: 29%; left: 74%;" onclick="openPinDrawer('diagram')">
+              <div class="pin-pill" style="border-color:#f59e0b; background:#fffbeb; box-shadow:0 0 12px rgba(245, 158, 11, 0.5);">
+                <span class="pin-icon" style="background:#d97706;">🎬</span>
+                <span style="color:#b45309;">經典圖解島・8大題動畫簡報</span>
               </div>
             </div>
 
@@ -2047,6 +2222,73 @@
       </div>
     </section>
 
+  
+    <!-- 視圖 9: 會考經典圖解島 (8大魔王題動畫剖析館) -->
+    <section id="view-diagram-island" class="view-container">
+      <div class="content-box">
+        <div class="box-header">
+          <div class="box-title">
+            <span class="badge" style="background:#d97706;">🎬 圖解島</span>
+            <h2>會考基測 8 大經典魔王題：逐題動畫剖析館</h2>
+          </div>
+          <button class="btn-header" onclick="showView('view-map')">🔙 返回地圖</button>
+        </div>
+
+        <p style="color:#64748b; font-size:0.95rem; line-height:1.6; margin-bottom:16px;">
+          精選歷屆會考（107、109、112）與基測經典 8 道高鑑別度試題！提供<strong>「審題線索 ➔ 動態視覺圖解 ➔ 算式展開 ➔ 名師避坑」</strong>四段步進式動畫簡報與即時語音講解，徹底攻破因倍數與質數的魔鬼細節！
+        </p>
+
+        <!-- 題號切換選單列 -->
+        <div class="diagram-nav-bar" id="diagram-q-navbar">
+          <!-- 8 題動態按鈕由 JS 注入 -->
+        </div>
+
+        <!-- 動畫簡報放映機 -->
+        <div class="slide-deck-player">
+          <div class="slide-player-header">
+            <div class="slide-title-group">
+              <h3 id="current-slide-qtitle">
+                <span>第 1 題：筆記本單價與花費</span>
+                <span class="slide-source-tag" id="current-slide-source">會考 107</span>
+              </h3>
+            </div>
+            <!-- 步驟指示器 -->
+            <div class="slide-stepper" id="slide-step-pills">
+              <span class="step-pill active" onclick="gotoSlideStep(0)">1. 審題線索</span>
+              <span class="step-pill" onclick="gotoSlideStep(1)">2. 動畫圖解</span>
+              <span class="step-pill" onclick="gotoSlideStep(2)">3. 算式推導</span>
+              <span class="step-pill" onclick="gotoSlideStep(3)">4. 避坑秘笈</span>
+            </div>
+          </div>
+
+          <!-- 投影片主要舞台 -->
+          <div class="slide-stage-body">
+            <div class="slide-screen" id="slide-screen-content">
+              <!-- 動態渲染各投影片頁面 -->
+            </div>
+          </div>
+
+          <!-- 簡報控制列 -->
+          <div class="slide-controls-footer">
+            <div style="display:flex; gap:8px;">
+              <button class="slide-btn secondary" onclick="prevSlideStep()">⏪ 上一步驟</button>
+              <button class="slide-btn" onclick="nextSlideStep()">下一步驟 ⏩</button>
+              <button class="slide-btn" style="background:#10b981;" onclick="playVoiceover()">🔊 語音導讀</button>
+            </div>
+            <div>
+              <span style="font-size:0.9rem; font-weight:700; color:#64748b;" id="slide-progress-text">步驟 1 / 4</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 學生自我診斷即時選答區 -->
+        <div class="quiz-card" id="diagram-instant-quiz" style="margin-top:20px;">
+          <!-- 題目即時互動選答 -->
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- 彈出視窗 Modal -->
@@ -2473,6 +2715,7 @@
         STATE.mistakes = [];
         for (let k in STATE.islandStars) STATE.islandStars[k] = 0;
         updateStatsUI();
+      initDiagramIsland();
         initMatchGame();
         renderBoatQuestion();
         renderMistakesUI();
@@ -2529,6 +2772,7 @@
         STATE.stars += 1;
         STATE.islandStars[islandKey] += 1;
         updateStatsUI();
+      initDiagramIsland();
       } else {
         buttons[selectedIdx].classList.add('wrong');
         buttons[correctIdx].classList.add('correct');
@@ -2609,6 +2853,7 @@
         STATE.stars += 2;
         STATE.islandStars['lab-sieve'] += 2;
         updateStatsUI();
+      initDiagramIsland();
         showModal('🌟 質數篩法解鎖成功！', '因為 √100 = 10，檢查完 2, 3, 5, 7 之後，剩餘未被劃掉的數全都是質數！你太棒了！', '🏛️');
       }
     }
@@ -2743,6 +2988,7 @@
         STATE.stars += 2;
         STATE.islandStars['lab-factor'] += 2;
         updateStatsUI();
+      initDiagramIsland();
       }
     }
 
@@ -2842,11 +3088,13 @@
         STATE.stars += 1;
         STATE.islandStars['boat'] += 1;
         updateStatsUI();
+      initDiagramIsland();
       } else {
         buttons[selectedIdx].classList.add('wrong');
         buttons[correctIdx].classList.add('correct');
         STATE.hearts = Math.max(0, STATE.hearts - 1);
         updateStatsUI();
+      initDiagramIsland();
 
         // 收集至錯題本
         if (!STATE.mistakes.find(m => m.id === `boat_${STATE.boatIndex}`)) {
@@ -2949,6 +3197,7 @@
           if (remaining === 0) {
             STATE.stars += 3;
             updateStatsUI();
+      initDiagramIsland();
             showModal('🎉 名詞配對全數通關！', '核心觀念已經牢牢鎖定在你的大腦中！獲得 3 顆榮耀之星！', '🧩');
           }
         } else {
@@ -2998,6 +3247,7 @@
       STATE.mistakes = STATE.mistakes.filter(m => m.id !== id);
       renderMistakesUI();
       updateStatsUI();
+      initDiagramIsland();
     }
 
     // 點擊檢視金旗
@@ -3062,6 +3312,11 @@
         desc: '大於 1 且只有 1 與本身的數為質數；2 是唯一偶數質數。學習短除法與質因數標準指數形式。',
         viewId: 'view-island-3'
       },
+      'diagram': {
+        title: '🎬 經典圖解島・8大會考魔王題動畫剖析館',
+        desc: '逐題拆解會考107~112與基測經典8題！步進式動畫簡報、動態圖解演繹、語音導讀與名師避坑指南！',
+        viewId: 'view-diagram-island'
+      },
       'boat': {
         title: '⛵ 東部海域・會考小船碼頭 (45 題)',
         desc: '航向歷屆會考基測變形題庫！擁有 3 顆愛心護盾，答錯扣血，即時顯示名師解析。',
@@ -3115,6 +3370,695 @@
       }
     }
 
+    
+    /* =====================================================================
+       會考經典 8 大題圖解島資料庫與簡報播放機 (Diagram Island Engine)
+       ===================================================================== */
+    const DIAGRAM_QUESTIONS_DATA = [
+      {
+        id: 1,
+        title: '筆記本每本售價超過 10 元，小錦花費 36 元，小勳花費可能為何？',
+        source: '會考 107',
+        options: ['(A) 16 元', '(B) 27 元', '(C) 30 元', '(D) 48 元'],
+        ans: 3,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 抓住兩大核心關鍵字：</div>
+                <p>1. <strong>「每本售價相等」且「小錦花 36 元」</strong> 👉 筆記本單價必定是 <strong>36 的因數</strong>！</p>
+                <p>2. <strong>「售價超過 10 元」</strong> 👉 單價因數必須 <strong>> 10</strong>！</p>
+                <p>3. <strong>「小勳的花費」</strong> 👉 必定是筆記本單價的整數倍數！</p>
+              </div>
+            `,
+            speech: '第一步審題：筆記本每本價格一樣，小錦花了36元，所以每本單價一定是36的因數；而且單價超過10元，因此單價只能從36大於10的因數裡面找！'
+          },
+          {
+            badge: '📊 步驟 2：彩虹因數圖解過濾',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px;">36 的所有正因數彩虹篩選檢驗</div>
+                <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; font-size:1.1rem; font-weight:800;">
+                  <span style="opacity:0.35; text-decoration:line-through; padding:6px 10px; background:#f1f5f9; border-radius:8px;">1</span>
+                  <span style="opacity:0.35; text-decoration:line-through; padding:6px 10px; background:#f1f5f9; border-radius:8px;">2</span>
+                  <span style="opacity:0.35; text-decoration:line-through; padding:6px 10px; background:#f1f5f9; border-radius:8px;">3</span>
+                  <span style="opacity:0.35; text-decoration:line-through; padding:6px 10px; background:#f1f5f9; border-radius:8px;">4</span>
+                  <span style="opacity:0.35; text-decoration:line-through; padding:6px 10px; background:#f1f5f9; border-radius:8px;">6</span>
+                  <span style="opacity:0.35; text-decoration:line-through; padding:6px 10px; background:#f1f5f9; border-radius:8px;">9</span>
+                  <span style="border:2px solid #22c55e; background:#dcfce7; color:#15803d; padding:6px 12px; border-radius:8px; transform:scale(1.1);">⭐ 12</span>
+                  <span style="border:2px solid #22c55e; background:#dcfce7; color:#15803d; padding:6px 12px; border-radius:8px; transform:scale(1.1);">⭐ 18</span>
+                  <span style="border:2px solid #22c55e; background:#dcfce7; color:#15803d; padding:6px 12px; border-radius:8px; transform:scale(1.1);">⭐ 36</span>
+                </div>
+                <div style="margin-top:14px; font-weight:700; color:#dc2626;">
+                  👉 符合「大於 10 元」的單價只有三種可能：<strong>12 元、18 元 或 36 元</strong>！
+                </div>
+              </div>
+            `,
+            speech: '第二步視覺圖解：把36的所有因數排出來，1到9都不超過10元全部剔除！只剩下12元、18元、36元三種可能！'
+          },
+          {
+            badge: '🧮 步驟 3：選項倍數逐一驗算',
+            html: `
+              <div class="rule-box">
+                <p>小勳的花費必定是 <strong>12、18 或 36 的倍數</strong>：</p>
+                <ul>
+                  <li>(A) 16 元：16 ÷ 12 = 1...4（不整除 ❌）</li>
+                  <li>(B) 27 元：27 ÷ 12 = 2...3，27 ÷ 18 = 1...9（不整除 ❌）</li>
+                  <li>(C) 30 元：30 ÷ 12 = 2...6，30 ÷ 18 = 1...12（不整除 ❌）</li>
+                  <li>(D) 48 元：<strong>48 ÷ 12 = 4（整除！即單價 12 元時買了 4 本）</strong> ✅</li>
+                </ul>
+                <p style="font-size:1.1rem; font-weight:800; color:#15803d; margin-top:8px;">結論：小勳的花費可能為 48 元，選 (D)！</p>
+              </div>
+            `,
+            speech: '第三步算式驗算：小勳的花費必須是12、18或36的整數倍。檢驗四個選項，只有48是12的4倍，代表單價12元時小勳買了4本！故選D！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑與會考秘笈',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考常客警示：</div>
+                <p>1. <strong>漏看「超過 10 元」</strong>：很多同學看到 36 就以為單價是 1、2、3、4、6、9 元，導致選到錯誤選項！</p>
+                <p>2. <strong>生活情境結合</strong>：因倍數在會考中最常偽裝成「買東西整數本」、「分裝糖果不剩餘」的生活題，只要牢記<strong>「總額 = 單價 × 數量」</strong>，即為因倍數標準型！</p>
+              </div>
+            `,
+            speech: '名師避坑提醒：本題最容易失分的地方就是粗心漏看超過10元。記住，總花費等於單價乘以數量，就是標準的因倍數題目！'
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: '有多少個正整數是 18 的倍數，同時也是 216 的因數？',
+        source: '會考 112',
+        options: ['(A) 2', '(B) 6', '(C) 10', '(D) 12'],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：代數假設與條件定義',
+            html: `
+              <div class="rule-box important">
+                <p>設此正整數為 <span class="math-formula">k</span>：</p>
+                <p>1. <span class="math-formula">k</span> 是 18 的倍數 👉 可以令 <strong>k = 18 × m</strong>（其中 m 為正整數 1, 2, 3...）</p>
+                <p>2. <span class="math-formula">k</span> 是 216 的因數 👉 代表 <strong>216 ÷ k 必須是整數</strong>！</p>
+              </div>
+            `,
+            speech: '第一步代數假設：設這個數為k。因為k是18的倍數，可以寫成18乘以m；同時k又是216的因數，代表216除以k必須能整除！'
+          },
+          {
+            badge: '📊 步驟 2：縮小目標至商數 m 的因數',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-size:1.1rem; font-weight:800; color:#0369a1; margin-bottom:12px;">將 k = 18 × m 代入整除式：</div>
+                <div style="background:#e0f2fe; padding:12px 20px; border-radius:12px; font-size:1.3rem; font-weight:800; color:#0f172a;">
+                  216 ÷ (18 × m) = (216 ÷ 18) ÷ m = <span style="color:#dc2626;">12 ÷ m</span>
+                </div>
+                <div style="margin-top:14px; font-weight:700; color:#334155;">
+                  因為必須整除，所以 <strong>m 必定是 12 的正因數</strong>！
+                </div>
+              </div>
+            `,
+            speech: '第二步巧妙化簡：把18乘m代入，216除以18等於12，算式化簡為12除以m！這說明m必須是12的正因數！'
+          },
+          {
+            badge: '🧮 步驟 3：列舉 12 的因數與對應正整數',
+            html: `
+              <div class="rule-box">
+                <p>正整數 12 的正因數共有 <strong>6 個</strong>：<strong>1、2、3、4、6、12</strong></p>
+                <p>對應符合條件的 k = 18 × m 分別為：</p>
+                <ul>
+                  <li>m = 1 👉 k = 18 × 1 = <strong>18</strong></li>
+                  <li>m = 2 👉 k = 18 × 2 = <strong>36</strong></li>
+                  <li>m = 3 👉 k = 18 × 3 = <strong>54</strong></li>
+                  <li>m = 4 👉 k = 18 × 4 = <strong>72</strong></li>
+                  <li>m = 6 👉 k = 18 × 6 = <strong>108</strong></li>
+                  <li>m = 12 👉 k = 18 × 12 = <strong>216</strong></li>
+                </ul>
+                <p style="font-size:1.1rem; font-weight:800; color:#15803d;">共計 6 個！選 (B)！</p>
+              </div>
+            `,
+            speech: '第三步展開：12的正因數有1、2、3、4、6、12共6個，對應出來符合條件的正整數就是18、36、54、72、108、216，剛好6個！選B！'
+          },
+          {
+            badge: '💡 步驟 4：名師秒殺公式',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">⚡ 會考秒殺金鑰：</div>
+                <p>當題目問「同時是 A 的倍數、又是 B 的因數之個數」時（其中 B 是 A 的倍數）：</p>
+                <p style="font-size:1.15rem; font-weight:800; color:#0369a1; text-align:center;">
+                  答案個數 ＝ <span style="color:#dc2626;">(B ÷ A) 的正因數個數</span>！
+                </p>
+                <p>本題直接算：216 ÷ 18 = 12。求 12 的正因數個數：12 = 2² × 3¹ 👉 (2+1) × (1+1) = 3 × 2 = <strong>6 個</strong>！5 秒秒殺！</p>
+              </div>
+            `,
+            speech: '名師秒殺絕招：同時是A的倍數又是B的因數，個數直接等於B除以A的正因數個數！216除以18等於12，12的正因數有6個，5秒鐘就能秒殺出答案！'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: '1～30號紙牌，先拿掉3的倍數，再拿掉2的倍數，剩下的第5張為何？',
+        source: '基Ⅰ 96',
+        options: ['(A) 7', '(B) 11', '(C) 13', '(D) 17'],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：提煉排除條件',
+            html: `
+              <div class="rule-box important">
+                <p>1. 拿掉 3 的倍數 ➔ 排除 3, 6, 9, 12, 15, 18, 21, 24, 27, 30</p>
+                <p>2. 拿掉 2 的倍數 ➔ 排除所有偶數 2, 4, 6, 8, 10...</p>
+                <p>👉 <strong>最後剩下的紙牌特徵：既不是 2 的倍數（必須是奇數），也不是 3 的倍數！</strong></p>
+              </div>
+            `,
+            speech: '第一步審題：拿掉3的倍數，再拿掉2的倍數，代表剩下的紙牌必須同時不是2的倍數、也不是3的倍數，也就是不能被2整除也不能被3整除的奇數！'
+          },
+          {
+            badge: '📊 步驟 2：骨牌式逐步過濾圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:10px;">由小到大檢驗奇數：</div>
+                <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:8px; max-width:400px; margin:0 auto; font-weight:800;">
+                  <div style="background:#dcfce7; border:2px solid #22c55e; padding:8px; border-radius:8px;">第 1 張: 1</div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px; border-radius:8px; text-decoration:line-through;">3 (3倍)</div>
+                  <div style="background:#dcfce7; border:2px solid #22c55e; padding:8px; border-radius:8px;">第 2 張: 5</div>
+                  <div style="background:#dcfce7; border:2px solid #22c55e; padding:8px; border-radius:8px;">第 3 張: 7</div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px; border-radius:8px; text-decoration:line-through;">9 (3倍)</div>
+                  <div style="background:#dcfce7; border:2px solid #22c55e; padding:8px; border-radius:8px;">第 4 張: 11</div>
+                  <div style="background:#fef08a; border:3px solid #eab308; padding:8px; border-radius:8px; transform:scale(1.08); color:#854d0e;">⭐ 第 5 張: 13</div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px; border-radius:8px; text-decoration:line-through;">15 (3倍)</div>
+                  <div style="background:#f1f5f9; padding:8px; border-radius:8px;">第 6 張: 17</div>
+                  <div style="background:#f1f5f9; padding:8px; border-radius:8px;">第 7 張: 19</div>
+                </div>
+              </div>
+            `,
+            speech: '第二步逐步檢驗：偶數全部去掉，只看奇數。1是第一張；3是3的倍數拿掉；5是第二張；7是第三張；9是3的倍數拿掉；11是第四張；13就是我們要找的第五張！'
+          },
+          {
+            badge: '🧮 步驟 3：鎖定第 5 張答案',
+            html: `
+              <div class="rule-box">
+                <p>前 5 張合格的紙牌號碼依次為：</p>
+                <p style="font-size:1.2rem; font-weight:800; color:#0369a1;">
+                  1 ➔ 5 ➔ 7 ➔ 11 ➔ <span style="color:#dc2626;">13</span>
+                </p>
+                <p>因此第 5 張紙牌的號碼為 <strong>13</strong>！正確答案選 (C)！</p>
+              </div>
+            `,
+            speech: '第三步列出結果：前五張號碼分別是1、5、7、11、13，所以第5張紙牌號碼就是13，選C！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑指南',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 最常犯的粗心錯誤：把「1」漏掉了！</div>
+                <p>很多同學誤以為「拿掉倍數」是從質數開始，誤把 1 當作不存在，從 5 開始算起，就會算成第 5 張是 17 而選到 (D)！</p>
+                <p>請務必記住：<strong>1 是正整數，1 不是 2 的倍數，也不是 3 的倍數，所以 1 絕對保留在牌堆中！</strong></p>
+              </div>
+            `,
+            speech: '名師避坑警示：這題最容易粗心的人，就是把1給漏掉了！1既不是2的倍數也不是3的倍數，所以1一定在裡面！千萬不要從5開始算喔！'
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: '若 45 可分解為 a × b，其中 a、b 均為正整數，則 a + b 不可能是何者？',
+        source: '基Ⅱ 92',
+        options: ['(A) 46', '(B) 42', '(C) 18', '(D) 14'],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：題意轉化為因數配對',
+            html: `
+              <div class="rule-box important">
+                <p>題目說：<span class="math-formula">45 = a × b</span>（a, b 均為正整數）</p>
+                <p>這正是標準的<strong>「找出 45 的所有乘積因數對」</strong>！</p>
+                <p>我們只要將 45 寫成兩個正整數相乘的所有可能組合列出，再分別計算 <span class="math-formula">a + b</span> 即可！</p>
+              </div>
+            `,
+            speech: '第一步審題：45等於a乘b，代表a和b就是45的因數配對！我們把所有乘法組合列出來，再把它們加起來看總和！'
+          },
+          {
+            badge: '📊 步驟 2：彩虹乘積對全列舉',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px;">45 的所有正因數乘積對與總和：</div>
+                <div style="display:flex; flex-direction:column; gap:10px; max-width:360px; margin:0 auto; font-size:1.1rem; font-weight:800;">
+                  <div style="background:#e0f2fe; padding:10px; border-radius:10px;">
+                    組合 1：1 × 45 ➔ a + b = 1 + 45 = <span style="color:#0369a1;">46</span> (選項A)
+                  </div>
+                  <div style="background:#e0f2fe; padding:10px; border-radius:10px;">
+                    組合 2：3 × 15 ➔ a + b = 3 + 15 = <span style="color:#0369a1;">18</span> (選項C)
+                  </div>
+                  <div style="background:#e0f2fe; padding:10px; border-radius:10px;">
+                    組合 3：5 × 9 ➔ a + b = 5 + 9 = <span style="color:#0369a1;">14</span> (選項D)
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '第二步列舉組合：45等於1乘45，和是46；等於3乘15，和是18；等於5乘9，和是14。只有這三種可能！'
+          },
+          {
+            badge: '🧮 步驟 3：比對選項找出不可能的值',
+            html: `
+              <div class="rule-box">
+                <p>由上述展開，a + b 的所有可能值只有：<strong>46、18、14</strong></p>
+                <p>檢視選項：</p>
+                <ul>
+                  <li>(A) 46（可能：1 + 45）</li>
+                  <li>(B) 42（<strong>不可能！沒有任何一組乘積為 45 的因數和為 42</strong>）❌</li>
+                  <li>(C) 18（可能：3 + 15）</li>
+                  <li>(D) 14（可能：5 + 9）</li>
+                </ul>
+                <p style="font-weight:800; color:#dc2626; font-size:1.1rem;">故選 (B) 42！</p>
+              </div>
+            `,
+            speech: '第三步比對選項：可行的總和只有46、18和14，選項B的42完全湊不出來，所以不可能的值就是42，選B！'
+          },
+          {
+            badge: '💡 步驟 4：名師幾何意義延伸',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">📐 幾何幾何視角（長方形面積與周長）：</div>
+                <p>這題在幾何應用題中，常包裝成：<strong>「面積為 45 平方公分的長方形，長寬均為整數，則其周長不可能是多少？」</strong></p>
+                <p>周長 = 2 × (長 + 寬) = 2 × (a + b)。</p>
+                <p>所以周長可能為：2×46=92、2×18=36、2×14=28。如果問周長不可能是多少，也是同樣的解題思維！</p>
+              </div>
+            `,
+            speech: '名師幾何延伸：這題常常改編成幾何題，例如面積45的長方形周長不可能是多少。只要掌握因數分解，任何變形題都能輕鬆搞定！'
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: '下列選項中表示的數，哪一個是質數？',
+        source: '基Ⅱ 99',
+        options: ['(A) 2 × 13', '(B) 1 × 12', '(C) 1 × 79', '(D) 7 × 13'],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：回歸質數核心定義',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">質數定義（Prime）：</div>
+                <p>在<strong>大於 1 的正整數</strong>中，正因數<strong>只有 1 和本身兩個數</strong>，沒有其他因數者稱為質數！</p>
+                <p>若可以寫成「兩個都大於 1 的整數相乘」，那它必定是<strong>合數</strong>！</p>
+              </div>
+            `,
+            speech: '第一步質數定義：質數大於1且因數只有1和本身。如果能寫成兩個大於1的整數相乘，它就一定是有其他因數的合數！'
+          },
+          {
+            badge: '📊 步驟 2：四大選項逐一解構',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="display:flex; flex-direction:column; gap:8px; width:100%; max-width:440px; font-weight:800;">
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px 12px; border-radius:8px; text-align:left;">
+                    (A) 2 × 13 = 26 ➔ 因數有 1, 2, 13, 26（4個因數，合數 ❌）
+                  </div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px 12px; border-radius:8px; text-align:left;">
+                    (B) 1 × 12 = 12 ➔ 因數有 1, 2, 3, 4, 6, 12（6個因數，合數 ❌）
+                  </div>
+                  <div style="background:#dcfce7; color:#15803d; border:2px solid #22c55e; padding:8px 12px; border-radius:8px; text-align:left; transform:scale(1.03);">
+                    (C) 1 × 79 = 79 ➔ 79 是質數，因數只有 1 和 79（質數 ✅）
+                  </div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px 12px; border-radius:8px; text-align:left;">
+                    (D) 7 × 13 = 91 ➔ 因數有 1, 7, 13, 91（4個因數，合數 ❌）
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '第二步解構選項：A選項2乘13是26，有因數2和13；B選項12是合數；C選項79除了1和79沒有其他因數，是質數；D選項7乘13等於91，也是合數！'
+          },
+          {
+            badge: '🧮 步驟 3：鎖定正確答案',
+            html: `
+              <div class="rule-box">
+                <p>只有 (C) 選項的 <strong>79</strong> 是大於 1 且沒有其他因數的數。</p>
+                <p style="font-size:1.15rem; font-weight:800; color:#15803d;">正確解答：選 (C) 1 × 79！</p>
+              </div>
+            `,
+            speech: '第三步總結：四個選項中只有79是真正的質數，答案選C！'
+          },
+          {
+            badge: '💡 步驟 4：名師揭露魔王陷阱數「91」',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">🚨 魔王級偽質數：91！</div>
+                <p>會考歷史上最常騙倒全台灣考生的數字就是 <strong>91</strong>！</p>
+                <p>因為 91 不是 2、不是 3（9+1=10）、不是 5 的倍數，看起來極度像質數！</p>
+                <p>但請永遠背牢：<strong>91 = 7 × 13</strong>！它絕對是合數！本題 (D) 選項就是故意放 7 × 13 來混淆同學！</p>
+              </div>
+            `,
+            speech: '名師特別提醒：本題D選項7乘13等於91，91是會考第一名的大魔王陷阱！看起來超像質數，但它其實是7和13的倍數，一定要牢牢背下來！'
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: '設『a*b』代表大於a且小於b的質數個數。若 30*c = 2，則 c 可能為多少？',
+        source: '基Ⅰ 94',
+        options: ['(A) 38', '(B) 42', '(C) 46', '(D) 50'],
+        ans: 0,
+        steps: [
+          {
+            badge: '🔍 步驟 1：新定義運算符轉化',
+            html: `
+              <div class="rule-box important">
+                <p>題目定義符號：『<span class="math-formula">a * b</span>』＝ <strong>大於 a 且小於 b 的「質數個數」</strong>！</p>
+                <p>給定條件：<span class="math-formula">30 * c = 2</span></p>
+                <p>👉 代表：<strong>在 30 到 c 之間，質數「恰好只有 2 個」</strong>！</p>
+              </div>
+            `,
+            speech: '第一步理解符號：a星號b代表大於a小於b的質數個數。題目說30星號c等於2，代表大於30小於c的質數剛好只有2個！'
+          },
+          {
+            badge: '📊 步驟 2：數線尺規質數順序列舉',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px;">列出大於 30 的連續質數數線：</div>
+                <div style="display:flex; align-items:center; justify-content:center; gap:10px; font-size:1.1rem; font-weight:800; flex-wrap:wrap;">
+                  <span style="color:#64748b;">(30)</span>
+                  <span>➔</span>
+                  <span style="background:#fef08a; border:2px solid #facc15; padding:6px 12px; border-radius:8px; color:#854d0e;">第 1 個: 31</span>
+                  <span>➔</span>
+                  <span style="background:#fef08a; border:2px solid #facc15; padding:6px 12px; border-radius:8px; color:#854d0e;">第 2 個: 37</span>
+                  <span>➔</span>
+                  <span style="background:#fee2e2; border:2px solid #f87171; padding:6px 12px; border-radius:8px; color:#991b1b;">第 3 個: 41</span>
+                  <span>➔</span>
+                  <span style="color:#94a3b8;">43</span>
+                </div>
+                <div style="margin-top:16px; font-weight:700; color:#dc2626;">
+                  若只要「2 個質數」，則邊界 c 必須<strong>大於 37</strong>，且<strong>小於或等於 41</strong>！（37 < c ≤ 41）
+                </div>
+              </div>
+            `,
+            speech: '第二步畫數線：大於30的第一個質數是31，第二個是37，第三個是41。要剛好只有2個質數，c必須比37大，而且不能超過41！也就是c要在38到41之間！'
+          },
+          {
+            badge: '🧮 步驟 3：比對四個選項範圍',
+            html: `
+              <div class="rule-box">
+                <p>c 的合法範圍為：<span class="math-formula">37 < c ≤ 41</span></p>
+                <ul>
+                  <li>(A) 38：<strong>37 < 38 ≤ 41</strong>（完全在範圍內！此時質數只有 31, 37 共 2 個）✅</li>
+                  <li>(B) 42：質數有 31, 37, 41 共 3 個（30 * 42 = 3 ❌）</li>
+                  <li>(C) 46：質數有 31, 37, 41, 43 共 4 個 ❌</li>
+                  <li>(D) 50：質數有 31, 37, 41, 43, 47 共 5 個 ❌</li>
+                </ul>
+                <p style="font-weight:800; color:#15803d; font-size:1.15rem;">故選 (A) 38！</p>
+              </div>
+            `,
+            speech: '第三步比對選項：選項A的38介於37和41之間，質數只有31和37兩個，完全正確！若選B的42，就會把41包進去變成3個質數了。所以選A！'
+          },
+          {
+            badge: '💡 步驟 4：名師端點不等式細節',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考頂標關鍵：端點 41 能不能等於？</div>
+                <p>如果 c = 41，那麼「大於 30 且小於 41」的質數有幾個？</p>
+                <p>答案是：<strong>小於 41 不包含 41！</strong>所以當 c = 41 時，裡面的質數依然只有 31 與 37 兩個！</p>
+                <p>因此 c 的完整整數解有：<strong>38、39、40、41</strong> 都可以！題目選項給出 38，精準命中！</p>
+              </div>
+            `,
+            speech: '名師端點提醒：請特別注意，題目說小於c，所以如果c等於41，是不包含41本身的，因此c等於41也成立喔！完整答案是38到41都可以！'
+          }
+        ]
+      },
+      {
+        id: 7,
+        title: '下列何者可表示成兩個質數的乘積？',
+        source: '會考 109',
+        options: ['(A) 81', '(B) 82', '(C) 83', '(D) 84'],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：題意分析（質數乘積形式）',
+            html: `
+              <div class="rule-box important">
+                <p>目標：尋找可以寫成 <span class="math-formula">p × q</span> 的數，其中 <strong>p、q 必須都是質數</strong>！</p>
+                <p>解題策略：對四個選項進行<strong>「質因數分解」</strong>，觀察分解後的質因數個數！</p>
+              </div>
+            `,
+            speech: '第一步審題：題目要找可以寫成兩個質數相乘的數。我們對每個選項做質因數分解，看看哪一個剛好是兩個質數連乘！'
+          },
+          {
+            badge: '📊 步驟 2：四選項質因數分解全展開',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="display:flex; flex-direction:column; gap:10px; width:100%; max-width:440px; font-weight:800;">
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px 12px; border-radius:8px; text-align:left;">
+                    (A) 81 = 3 × 3 × 3 × 3 = 3⁴ ➔ 是 4 個質數的乘積 ❌
+                  </div>
+                  <div style="background:#dcfce7; color:#15803d; border:2px solid #22c55e; padding:8px 12px; border-radius:8px; text-align:left; transform:scale(1.03);">
+                    (B) 82 = 2 × 41 ➔ 2 是質數、41 也是質數！恰好 2 個質數相乘 ✅
+                  </div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px 12px; border-radius:8px; text-align:left;">
+                    (C) 83 本身就是質數（只有 1 個質數，或寫成 1×83，但 1 不是質數 ❌）
+                  </div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px 12px; border-radius:8px; text-align:left;">
+                    (D) 84 = 2² × 3 × 7 = 2 × 2 × 3 × 7 ➔ 是 4 個質數的乘積 ❌
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '第二步質因數分解：81是4個3相乘；82等於2乘41，2和41都是質數，剛好兩個質數相乘；83本身是質數；84是4個質數相乘。'
+          },
+          {
+            badge: '🧮 步驟 3：結論定錨',
+            html: `
+              <div class="rule-box">
+                <p>82 分解為 <strong>2 × 41</strong>：</p>
+                <ul>
+                  <li>2 是偶數質數。</li>
+                  <li>41 是 100 以內的 25 個質數之一。</li>
+                </ul>
+                <p style="font-weight:800; color:#15803d; font-size:1.15rem;">完全符合題意！答案選 (B)！</p>
+              </div>
+            `,
+            speech: '第三步總結：82等於2乘41，完美符合兩個質數相乘的要求，正確答案選B！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑指南（81 與 83 迷思）',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 兩大高頻迷思：</div>
+                <p>1. <strong>誤把 81 = 9 × 9 當作答案</strong>：9 是合數（9 = 3 × 3），不是質數！不能當作兩個質數相乘！</p>
+                <p>2. <strong>誤把 83 = 1 × 83 當作答案</strong>：<strong>數字「1」既不是質數也不是合數</strong>！所以 1 × 83 絕對不是兩個質數的乘積！</p>
+              </div>
+            `,
+            speech: '名師避坑警示：很多人會誤選81，以為9乘9是兩個數；但9不是質數！還有人誤選83，以為1乘83；但1根本不是質數！這兩個陷阱千萬不要踩！'
+          }
+        ]
+      },
+      {
+        id: 8,
+        title: '小華生日月份與日期分別寫成兩質數和，四質數乘積密碼為 2030，求出生月份？',
+        source: '基Ⅱ 94',
+        options: ['(A) 5 月', '(B) 7 月', '(C) 9 月', '(D) 12 月'],
+        ans: 3,
+        steps: [
+          {
+            badge: '🔍 步驟 1：逆向工程拆解 2030',
+            html: `
+              <div class="rule-box important">
+                <p>密碼是<strong>「四個質數的連乘積」</strong>，且密碼等於 2030！</p>
+                <p>解密第一步：先將 2030 進行短除法質因數分解！</p>
+                <ul>
+                  <li>2030 ÷ 2 = 1015</li>
+                  <li>1015 ÷ 5 = 203</li>
+                  <li>203 ÷ 7 = 29（29 為質數，分解完畢！）</li>
+                </ul>
+                <p style="font-weight:800; color:#0369a1; font-size:1.1rem;">
+                  👉 2030 的質因數分解：<span class="math-formula">2 × 5 × 7 × 29</span>！這四個質數必定是 <strong>2, 5, 7, 29</strong>！
+                </p>
+              </div>
+            `,
+            speech: '第一步質因數分解：密碼2030是四個質數相乘，我們先對2030做質因數分解，得到2乘以5乘以7乘以29！這四個質數就是2、5、7、29！'
+          },
+          {
+            badge: '📊 步驟 2：生活常識配對（月份 ≤ 12，日期 ≤ 31）',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px;">四質數分組配對檢驗（兩數和為月份，另兩數和為日期）：</div>
+                <div style="display:flex; flex-direction:column; gap:8px; width:100%; max-width:460px; font-weight:800; font-size:0.95rem;">
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px; border-radius:8px;">
+                    試探 1：若月份為 2 + 5 = 7 月 ➔ 日期為 7 + 29 = 36 日（一年沒有 36 日！❌）
+                  </div>
+                  <div style="background:#fee2e2; color:#991b1b; padding:8px; border-radius:8px;">
+                    試探 2：若月份為 2 + 7 = 9 月 ➔ 日期為 5 + 29 = 34 日（一年沒有 34 日！❌）
+                  </div>
+                  <div style="background:#dcfce7; color:#15803d; border:2px solid #22c55e; padding:10px; border-radius:8px; transform:scale(1.03);">
+                    ⭐ 試探 3：若月份為 5 + 7 = 12 月 ➔ 日期為 2 + 29 = 31 日！（12 月 31 日跨年夜，真實存在！✅）
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '第二步常識分組：一年最多12個月，一個月最多31天。29那麼大，一定要配最小的2，變成2加29等於31日！剩下的5和7相加等於12月！正好是12月31日！'
+          },
+          {
+            badge: '🧮 步驟 3：鎖定出生月份',
+            html: `
+              <div class="rule-box">
+                <p>驗證：</p>
+                <ul>
+                  <li>出生月份：<strong>5 + 7 = 12 月</strong>（5 與 7 均為質數）</li>
+                  <li>出生日期：<strong>2 + 29 = 31 日</strong>（2 與 29 均為質數）</li>
+                  <li>四數相乘：5 × 7 × 2 × 29 = 2030（完全符合密碼！）</li>
+                </ul>
+                <p>題目問小華出生在「幾月份」？答：<strong>12 月份</strong>！選 (D)！</p>
+              </div>
+            `,
+            speech: '第三步鎖定答案：月份是5加7等於12月，日期是2加29等於31日，所以小華出生在12月份，選D！'
+          },
+          {
+            badge: '💡 步驟 4：名師密碼學邏輯推演技巧',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">🔐 會考情境素養題破解核心：</div>
+                <p>這類題型屬於典型的<strong>「條件約束問題」</strong>：</p>
+                <p>1. 看到 29 這個大質數，如果放到月份，29 + 任何質數都遠大於 12，所以 29 絕對是<strong>日期的成分</strong>！</p>
+                <p>2. 一個月最多 31 天，29 只能加上 2 才能得到 31，加其他質數（如 5 或 7）都會超過 31 天！</p>
+                <p>因此只要抓住「29 只能加 2」這個突破口，10 秒鐘就能完全破解！</p>
+              </div>
+            `,
+            speech: '名師素養破解秘訣：解這題的關鍵是29！29太大了不能當月份，只能當日期；而且一個月最多31天，29只能配最小的2！剩下5加7就一定是12月，思路清晰就能快速破解！'
+          }
+        ]
+      }
+    ];
+
+    let currentDiagramQIndex = 0;
+    let currentDiagramSlideStep = 0;
+
+    function initDiagramIsland() {
+      const navbar = document.getElementById('diagram-q-navbar');
+      navbar.innerHTML = '';
+      DIAGRAM_QUESTIONS_DATA.forEach((q, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `btn-q-select ${idx === 0 ? 'active' : ''}`;
+        btn.id = `btn-dq-${idx}`;
+        btn.innerHTML = `<span>題 ${idx + 1}</span> <span style="font-size:0.75rem; opacity:0.8;">${q.source}</span>`;
+        btn.onclick = () => selectDiagramQuestion(idx);
+        navbar.appendChild(btn);
+      });
+
+      renderCurrentDiagramSlide();
+      renderDiagramInstantQuiz();
+    }
+
+    function selectDiagramQuestion(idx) {
+      currentDiagramQIndex = idx;
+      currentDiagramSlideStep = 0;
+      document.querySelectorAll('.btn-q-select').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-dq-${idx}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      renderCurrentDiagramSlide();
+      renderDiagramInstantQuiz();
+    }
+
+    function renderCurrentDiagramSlide() {
+      const q = DIAGRAM_QUESTIONS_DATA[currentDiagramQIndex];
+      const stepData = q.steps[currentDiagramSlideStep];
+
+      document.getElementById('current-slide-qtitle').innerHTML = `
+        <span>第 ${q.id} 題：${q.title}</span>
+        <span class="slide-source-tag">${q.source}</span>
+      `;
+
+      // 更新指示器藥丸
+      document.querySelectorAll('.step-pill').forEach((pill, idx) => {
+        pill.classList.toggle('active', idx === currentDiagramSlideStep);
+      });
+
+      document.getElementById('slide-progress-text').textContent = `步驟 ${currentDiagramSlideStep + 1} / 4`;
+
+      // 渲染主畫面
+      const screen = document.getElementById('slide-screen-content');
+      screen.innerHTML = `
+        <div style="font-size:1.1rem; font-weight:800; color:#0369a1; margin-bottom:12px;">
+          ${stepData.badge}
+        </div>
+        ${stepData.html}
+      `;
+    }
+
+    function nextSlideStep() {
+      if (currentDiagramSlideStep < 3) {
+        currentDiagramSlideStep++;
+        renderCurrentDiagramSlide();
+      } else {
+        if (currentDiagramQIndex < DIAGRAM_QUESTIONS_DATA.length - 1) {
+          selectDiagramQuestion(currentDiagramQIndex + 1);
+        } else {
+          showModal('🎉 8 大魔王題全數剖析完畢！', '你已經掌握了 107~112 會考與基測所有核心命題陷阱與解題絕招！', '🏆');
+        }
+      }
+    }
+
+    function prevSlideStep() {
+      if (currentDiagramSlideStep > 0) {
+        currentDiagramSlideStep--;
+        renderCurrentDiagramSlide();
+      }
+    }
+
+    function gotoSlideStep(step) {
+      currentDiagramSlideStep = step;
+      renderCurrentDiagramSlide();
+    }
+
+    function playVoiceover() {
+      const q = DIAGRAM_QUESTIONS_DATA[currentDiagramQIndex];
+      const text = q.steps[currentDiagramSlideStep].speech;
+      speakText(text);
+    }
+
+    function renderDiagramInstantQuiz() {
+      const q = DIAGRAM_QUESTIONS_DATA[currentDiagramQIndex];
+      const container = document.getElementById('diagram-instant-quiz');
+
+      let optionsHtml = '';
+      q.options.forEach((opt, idx) => {
+        optionsHtml += `
+          <button class="option-btn" onclick="checkDiagramAnswer(${idx}, ${q.ans})">
+            <span class="option-key">${['A','B','C','D'][idx]}</span>
+            <span>${opt.substring(4)}</span>
+          </button>
+        `;
+      });
+
+      container.innerHTML = `
+        <div class="quiz-meta">
+          <span class="quiz-number">即時自我挑戰：第 ${q.id} 題</span>
+          <span style="font-weight:700; color:#64748b;">先動腦選選看，再看上方動畫簡報驗證！</span>
+        </div>
+        <div class="quiz-question">${q.title}</div>
+        <div class="quiz-options grid-2">${optionsHtml}</div>
+        <div class="quiz-explanation" id="diagram-instant-exp"></div>
+      `;
+    }
+
+    function checkDiagramAnswer(selectedIdx, correctIdx) {
+      const container = document.getElementById('diagram-instant-quiz');
+      const buttons = container.querySelectorAll('.option-btn');
+      const exp = document.getElementById('diagram-instant-exp');
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (selectedIdx === correctIdx) {
+        buttons[selectedIdx].classList.add('correct');
+        exp.innerHTML = `🎉 恭喜答對！正確答案是 (${['A','B','C','D'][correctIdx]})！請觀看上方簡報步驟 2~4 查看名師深度圖解與避坑秘笈！`;
+        STATE.stars += 1;
+        updateStatsUI();
+      initDiagramIsland();
+      } else {
+        buttons[selectedIdx].classList.add('wrong');
+        buttons[correctIdx].classList.add('correct');
+        exp.innerHTML = `❌ 答錯了喔！正確答案是 (${['A','B','C','D'][correctIdx]})。別灰心，立刻看上方簡報逐步動畫找出思考盲點！`;
+      }
+      exp.classList.add('show');
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       renderQuizList(QUIZ_ISLAND_1, 'quiz-container-island-1', 'island-1');
       renderQuizList(QUIZ_ISLAND_2, 'quiz-container-island-2', 'island-2');
@@ -3126,6 +4070,7 @@
       renderBoatQuestion();
       initMatchGame();
       updateStatsUI();
+      initDiagramIsland();
     });
   </script>
 </body>
