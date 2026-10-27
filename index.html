@@ -1416,6 +1416,12 @@
       box-shadow: 0 8px 24px rgba(16, 185, 129, 0.18);
     }
 
+    .pavilion-tab-btn#btn-pavilion-exam22.active {
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      border-color: #ef4444;
+      box-shadow: 0 8px 24px rgba(239, 68, 68, 0.18);
+    }
+
     .pavilion-tab-btn#btn-pavilion-lcm.active {
       background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
       border-color: #f97316;
@@ -1619,6 +1625,7 @@
     <button class="tab-btn" onclick="showView('view-world-map')">🌍 三大洋七大洲島</button>
     <button class="tab-btn" id="nav-btn-gcd" onclick="showPavilionDirect('gcd')">🧩 最大公因數館</button>
     <button class="tab-btn" id="nav-btn-lcm" onclick="showPavilionDirect('lcm')">⚡ 最小公倍數館</button>
+    <button class="tab-btn" id="nav-btn-exam22" onclick="showPavilionDirect('exam22')">🏆 2-2會考真題館</button>
     <button class="tab-btn" onclick="showView('view-diagram-island')">🎬 會考圖解島</button>
     <button class="tab-btn" onclick="showView('view-boat')">⛵ 會考小船 (精選42題)</button>
     <button class="tab-btn" onclick="showView('view-match')">🧩 名詞配對挑戰</button>
@@ -2566,6 +2573,14 @@
               <small>6 大經典題・倍數雷達・三數短除・乘積陷阱</small>
             </span>
             <span class="pavilion-badge gold">2-2 經典</span>
+          </button>
+          <button class="pavilion-tab-btn" id="btn-pavilion-exam22" onclick="switchDiagramPavilion('exam22')">
+            <span class="pavilion-icon">🏆</span>
+            <span class="pavilion-text">
+              <strong>2-2會考基測經典真題館</strong>
+              <small>10 大會考真題・100~110真題・水利署非選</small>
+            </span>
+            <span class="pavilion-badge" style="background:#fee2e2; color:#b91c1c; border-color:#fca5a5;">會考精選</span>
           </button>
           <button class="pavilion-tab-btn" id="btn-pavilion-ch2" onclick="switchDiagramPavilion('ch2')">
             <span class="pavilion-icon">🌟</span>
@@ -4008,6 +4023,49 @@
         unit: 'lcm',
         q: 6
       },
+            // 國中 2-2 歷屆會考真題地標
+      'chiayi_exam22': {
+        title: '🎯 嘉義・106會考252指數標竿 (會考 1)',
+        desc: '106會考真題！(x, 252)=42，指數逆推矩陣對照，找出共同質因數最小次方命中正解！',
+        viewId: 'view-diagram-island',
+        unit: 'exam22',
+        q: 1
+      },
+      'changhua_exam22': {
+        title: '🔬 彰化・108會考420因數篩檢站 (會考 2)',
+        desc: '108會考真題！(a, 420)=35，擋箭牌邏輯大考驗！20絕不可能、25完全可能！',
+        viewId: 'view-diagram-island',
+        unit: 'exam22',
+        q: 2
+      },
+      'yunlin_exam22': {
+        title: '⚖️ 雲林・110會考平方整除魔王 (會考 4)',
+        desc: '110會考真題！a×b=2⁵×3²×5，兩數乘積必被最大公因數平方整除，8的平方破表不可行！',
+        viewId: 'view-diagram-island',
+        unit: 'exam22',
+        q: 4
+      },
+      'pingtung_exam22': {
+        title: '🚢 屏東・105會考公倍偵測港 (會考 5)',
+        desc: '105會考真題！(a,b)=12、(a,c)=18、50<a<100，鎖定a=72，反證8絕不能是b的因數！',
+        viewId: 'view-diagram-island',
+        unit: 'exam22',
+        q: 5
+      },
+      'kinmen_exam22': {
+        title: '🍞 金門・109會考525麵包同額島 (會考 7)',
+        desc: '109會考補考真題！15、25、35麵包收入相等，最小公倍數525元鎖定501~750區間！',
+        viewId: 'view-diagram-island',
+        unit: 'exam22',
+        q: 7
+      },
+      'matsu_exam22': {
+        title: '📦 馬祖・50箱投球素養旗艦島 (會考 8-9)',
+        desc: '119頁素養題！同時投球看[2,3]=6公倍數；奇數顆球看完全平方數因數奇數個！',
+        viewId: 'view-diagram-island',
+        unit: 'exam22',
+        q: 8
+      },
       'boat': {
         title: '⛵ 東部海域・會考小船碼頭 (27 題)',
         desc: '航向歷屆會考基測變形題庫！擁有 3 顆愛心護盾，答錯扣血，即時顯示名師解析。',
@@ -4077,6 +4135,726 @@
         // =====================================================================
     // 國中一年級 2-2 經典展館題庫：最大公因數 (GCD) & 最小公倍數 (LCM)
     // =====================================================================
+        // =====================================================================
+    // 國中 2-2 歷屆會考/基測經典真題特訓館題庫 (EXAM 2-2) - 10 大魔王題
+    // =====================================================================
+    const DIAGRAM_QUESTIONS_EXAM22 = [
+      {
+        id: 1,
+        title: '【106 會考】下列選項中所表示的數，哪一個與 252 的最大公因數為 42？',
+        source: '106 會考真題',
+        options: [
+          '(A) 2 × 3 × 5² × 7²',
+          '(B) 2 × 3² × 5 × 7²',
+          '(C) 2² × 3 × 5² × 7',
+          '(D) 2² × 3² × 5 × 7'
+        ],
+        ans: 0,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 會考核心破題點：</div>
+                <p>1. 已知兩數為 x 與 252，且 (x, 252) = 42。</p>
+                <p>2. 第一時間將已知數字化為<strong>標準分解式</strong>：</p>
+                <p>• 252 = 2² × 3² × 7</p>
+                <p>• 42 = 2¹ × 3¹ × 7¹</p>
+                <p>3. 求最大公因數法則：「找共同質因數，取<strong>最小次方</strong>」！</p>
+              </div>
+            `,
+            speech: '各位同學好！我是你們的資深解說員小玟～今天帶大家來看 106 年會考這道超經典標準分解式題！題目問誰跟 252 的最大公因數是 42。第一步不用懷疑，先把 252 跟 42 拆成標準分解式！252 是 2 平方乘 3 平方乘 7，42 是 2 乘 3 乘 7。記住最大公因數是拿最小次方喔！'
+          },
+          {
+            badge: '📊 步驟 2：質因數指數對照矩陣圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">🔬 指數逆推矩陣：誰決定了最小次方？</div>
+                <div style="text-align:left; background:#f8fafc; padding:12px 16px; border-radius:12px; border:2px solid #bae6fd; font-family:monospace; line-height:1.8;">
+                  252 具有：<span style="background:#fef08a; padding:2px 6px; border-radius:4px;">2²</span> 、 <span style="background:#fed7aa; padding:2px 6px; border-radius:4px;">3²</span> 、 <span style="background:#bbf7d0; padding:2px 6px; border-radius:4px;">7¹</span><br>
+                  公因數 42 需要：<span style="background:#fef08a; padding:2px 6px; border-radius:4px;">2¹</span> 、 <span style="background:#fed7aa; padding:2px 6px; border-radius:4px;">3¹</span> 、 <span style="background:#bbf7d0; padding:2px 6px; border-radius:4px;">7¹</span><br>
+                  ──────────────────────────────────<br>
+                  👉 <strong>質因數 2 的對決</strong>：252 有 2²，但結果只要 2¹ ➔ <strong>選項中的數其 2 的次方「必定是 1」！</strong>（排除 C、D）<br>
+                  👉 <strong>質因數 3 的對決</strong>：252 有 3²，但結果只要 3¹ ➔ <strong>選項中的數其 3 的次方「必定是 1」！</strong>（排除 B）
+                </div>
+                <div style="margin-top:12px; font-weight:800; color:#16a34a;">
+                  雙重篩選後，只有選項 (A) 同時滿足 2¹ 與 3¹！
+                </div>
+              </div>
+            `,
+            speech: '來看第二步的指數對照：252 的 2 是 2 次方，但最大公因數只要 1 次方，代表另一個數的 2 必須是 1 次方，比他小才會被選中！同理，252 的 3 是 2 次方，但結果只要 1 次方，所以另一個數的 3 也必須是 1 次方！光是這兩個條件，選項 B、C、D 通通被淘汰，只剩下 (A)！'
+          },
+          {
+            badge: '🧮 步驟 3：算式步驟逐一驗算',
+            html: `
+              <div class="rule-box">
+                <p><strong>驗算選項 (A)：</strong></p>
+                <p>x = 2¹ × 3¹ × 5² × 7²</p>
+                <p>(x, 252) = (2¹ × 3¹ × 5² × 7², 2² × 3² × 7¹)</p>
+                <p>• 質因數 2：取 min(1, 2) = 1 ➔ 2¹</p>
+                <p>• 質因數 3：取 min(1, 2) = 1 ➔ 3¹</p>
+                <p>• 質因數 5：252 沒有，不取</p>
+                <p>• 質因數 7：取 min(2, 1) = 1 ➔ 7¹</p>
+                <p>相乘：2¹ × 3¹ × 7¹ = 42，完全符合！正解為 (A)。</p>
+              </div>
+            `,
+            speech: '第三步代入驗算：選項 (A) 的 2 是一次方，3 是一次方，7 是二次方，跟 252 抓共同的最小次方，就是 2 的一次方乘 3 的一次方乘 7 的一次方，剛好等於 42！驗算百分之百正確！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑與會考秘笈',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考逆推指數口訣：</div>
+                <p>如果公因數的次方比已知數「小」，則另一個數<strong>「必須剛好等於該較小次方」</strong>！</p>
+                <p>如果公因數的次方「等於」已知數，則另一個數的次方只要「大於或等於」該次方即可！</p>
+              </div>
+            `,
+            speech: '名師避坑口訣請記好：結果比原本小，代表是另一個數拖累了次方，所以另一個數的次方一定要剛好等於那個較小的數！掌握這個思維，會考逆推指數題秒拿分！'
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: '【108 會考】若正整數 a 和 420 的最大公因數為 35，則下列何者正確？',
+        source: '108 會考真題',
+        options: [
+          '(A) 20 可能是 a 的因數，25 可能是 a 的因數',
+          '(B) 20 可能是 a 的因數，25 不可能是 a 的因數',
+          '(C) 20 不可能是 a 的因數，25 可能是 a 的因數',
+          '(D) 20 不可能是 a 的因數，25 不可能是 a 的因數'
+        ],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 抓住條件約束：</div>
+                <p>1. 已知 (a, 420) = 35。</p>
+                <p>2. 標準分解式：</p>
+                <p>• 420 = 2² × 3 × 5 × 7</p>
+                <p>• 35 = 5 × 7</p>
+                <p>3. <strong>核心限制</strong>：a 與 420 共同的質因數「只有 5 與 7」！因此 a 的因數<strong>絕對不能有 2 或 3</strong>（否則最大公因數會多出 2 或 3）！</p>
+              </div>
+            `,
+            speech: '這題是 108 年會考的邏輯推理名題！a 跟 420 的最大公因數是 35，也就是 5 乘 7。大家想想看，420 肚子裡面有 2 跟 3，如果 a 裡面也有 2 或 3，那最大公因數怎麼可能只有 35？所以 a 絕對嚴禁含有 2 跟 3！'
+          },
+          {
+            badge: '📊 步驟 2：20 與 25 的質因數解剖圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">🔬 因數成立可能性對決</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; text-align:left;">
+                  <div style="background:#fee2e2; border:2px solid #ef4444; padding:12px; border-radius:10px;">
+                    <div style="font-weight:800; color:#b91c1c;">檢驗 20 是否可能為因數？</div>
+                    <div style="margin-top:6px; font-size:0.95rem; line-height:1.6;">
+                      20 = 2² × 5<br>
+                      若 20 是 a 的因數，則 a 必定含有 2²！<br>
+                      但 420 也有 2²，這樣 (a, 420) 就會多出 2² = 4，最大公因數變成 35 × 4 = 140 ❌！<br>
+                      👉 <strong>20 絕對不可能！</strong>
+                    </div>
+                  </div>
+                  <div style="background:#dcfce7; border:2px solid #22c55e; padding:12px; border-radius:10px;">
+                    <div style="font-weight:800; color:#15803d;">檢驗 25 是否可能為因數？</div>
+                    <div style="margin-top:6px; font-size:0.95rem; line-height:1.6;">
+                      25 = 5²<br>
+                      若 25 是 a 的因數，a 可以有 5²。<br>
+                      而 420 只有 5¹！<br>
+                      取最小次方 min(2, 1) = 1，公因數依然是 5¹，完全符合 35 ✅！<br>
+                      👉 <strong>25 完全有可能！</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '看清楚這張對照表：20 是 2 的平方乘 5，含有質因數 2。如果 a 含有 20，那最大公因數就會把 2 抓進來，就不是 35 了，所以 20 絕對不可能！但 25 是 5 的平方，420 只有一個 5，取小次方還是只有一個 5，完全不影響公因數是 35，所以 25 是有可能的！'
+          },
+          {
+            badge: '🧮 步驟 3：邏輯結論與選項判定',
+            html: `
+              <div class="rule-box">
+                <p>綜合以上推論：</p>
+                <p>• <strong>20 不可能是 a 的因數</strong></p>
+                <p>• <strong>25 可能是 a 的因數</strong>（例如 a = 5² × 7 = 175，此時 (175, 420) = 35 成立！）</p>
+                <p style="margin-top:10px; font-weight:800; color:#0369a1;">對照選項：正解為 (C)！</p>
+              </div>
+            `,
+            speech: '第三步下結論：20 不可能是因數，25 可能是因數。比如我們取 a 等於 175，也就是 25 乘 7，跟 420 的最大公因數剛好就是 35！所以選項 (C) 完全正確！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑與素養提醒',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考素養常客心法：</div>
+                <p>遇到「某數與已知數之最大公因數」：</p>
+                <p>1. 已知數裡面有、但公因數裡面沒有的質因數（如 2 與 3），<strong>未知數「一顆都不能碰」</strong>！</p>
+                <p>2. 公因數裡面已有的質因數（如 5），未知數的次方<strong>「可以比公因數更大」</strong>，因為會被已知數較小的次方擋下來！</p>
+              </div>
+            `,
+            speech: '名師心法：這題是考「誰被擋下來」！沒在公因數裡面的質因數，未知數碰都不能碰；而在公因數裡面的質因數，未知數就算有再多次方，也會被已知數擋下來！記住這個擋箭牌原理，解題超神速！'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: '【107 會考補考】若 a 為 315 和 588 的最小公倍數，則下列何者正確？',
+        source: '107 會考補考',
+        options: [
+          '(A) a 為 315 的 21 倍',
+          '(B) a 為 588 的 21 倍',
+          '(C) a 為 315 的 28 倍',
+          '(D) a 為 588 的 28 倍'
+        ],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 題目已知條件：</div>
+                <p>• 315 = 3² × 5 × 7</p>
+                <p>• 588 = 2² × 3 × 7²</p>
+                <p>• a = [315, 588]（最小公倍數）</p>
+                <p>求 a 分別是 315 與 588 的幾倍？</p>
+              </div>
+            `,
+            speech: '107 年會考補考這題考倍數關係！題目已經把 315 跟 588 的標準分解式給我們了，a 是他們的最小公倍數，問 a 分別是這兩個數字的幾倍。千萬不要真的把大數字乘開，直接用指數相除！'
+          },
+          {
+            badge: '📊 步驟 2：求最小公倍數標準分解式',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#ea580c; margin-bottom:12px; font-size:1.1rem;">⚡ [315, 588] 全部質因數取最大次方</div>
+                <div style="text-align:left; background:#fff7ed; padding:12px 16px; border-radius:12px; border:2px solid #fed7aa; font-family:monospace; line-height:1.8;">
+                  315 = &nbsp; &nbsp; &nbsp; <span style="background:#fef08a; padding:2px 4px;">3²</span> × <span style="background:#bbf7d0; padding:2px 4px;">5¹</span> × 7¹<br>
+                  588 = <span style="background:#fed7aa; padding:2px 4px;">2²</span> × 3¹ × &nbsp; &nbsp; &nbsp;<span style="background:#bae6fd; padding:2px 4px;">7²</span><br>
+                  ─────────────────────────────<br>
+                  <strong>a = [315, 588] = 2² × 3² × 5¹ × 7²</strong>
+                </div>
+              </div>
+            `,
+            speech: '第二步求最小公倍數：找全部質因數 2、3、5、7，挑最大次方！2 的最大次方是 2 平方，3 是 3 平方，5 是一次方，7 是 7 平方。所以 a 就等於 2 平方乘 3 平方乘 5 乘 7 平方！'
+          },
+          {
+            badge: '🧮 步驟 3：倍數相除秒消計算',
+            html: `
+              <div class="rule-box">
+                <p><strong>1. a 除以 315：</strong></p>
+                <p>a ÷ 315 = (2² × 3² × 5 × 7²) ÷ (3² × 5 × 7) = 2² × 7 = 4 × 7 = <strong>28</strong>（倍）✅</p>
+                <p><strong>2. a 除以 588：</strong></p>
+                <p>a ÷ 588 = (2² × 3² × 5 × 7²) ÷ (2² × 3 × 7²) = 3 × 5 = <strong>15</strong>（倍）</p>
+                <p style="margin-top:10px; font-weight:800; color:#ea580c;">對照選項：只有 (C) a 為 315 的 28 倍完全相符！</p>
+              </div>
+            `,
+            speech: '第三步相除看倍數：a 除以 315，3 平方跟 5 消掉，7 平方消掉一個 7，剩下 2 平方乘 7，等於 4 乘 7 是 28 倍！所以 a 是 315 的 28 倍，答案選 (C) 秒殺！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：誰沒出現就乘誰！',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚡ 5 秒速解心法：</div>
+                <p>要算公倍數是某數的幾倍，只要看<strong>「該數比公倍數缺少了哪些質因數」</strong>！</p>
+                <p>315 裡面缺少了 2² 與一個 7，所以倍數直接就是 2² × 7 = 28 倍！不用寫長算式，心算即出答案！</p>
+              </div>
+            `,
+            speech: '名師心算神技：問 a 是 315 的幾倍，你就看 315 身上缺了什麼！315 沒有 2 的平方，而且 7 比公倍數少了一個，直接把缺的 4 乘 7 乘起來就是 28 倍！5 秒鐘解決！'
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: '【110 會考】若 a×b = 2⁵ × 3² × 5，則下列何者「不可能」為 a、b 的最大公因數？',
+        source: '110 會考真題',
+        options: [
+          '(A) 1',
+          '(B) 6',
+          '(C) 8',
+          '(D) 12'
+        ],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 乘積定理與公因數平方關係：</div>
+                <p>1. 任意兩數公式：a × b = (a, b) × [a, b]。</p>
+                <p>2. 因為最小公倍數 [a, b] 一定是最大公因數 (a, b) 的倍數，設 [a, b] = k × (a, b)。</p>
+                <p>3. 則 a × b = k × (a, b)²！</p>
+                <p>4. <strong>鐵律：a × b 必須能被 (a, b)² 整除！即 (a, b) 任何質因數的次方乘 2，不能超過 a × b 的次方！</strong></p>
+              </div>
+            `,
+            speech: '110 年會考這題超級精彩！很多同學看到 a 乘 b 等於 2 的五次方乘 3 平方乘 5 就慌了。記住這個公式定理：兩數乘積等於最大公因數乘最小公倍數，而最小公倍數又是最大公因數的倍數，所以 a 乘 b 一定要能被「最大公因數的平方」整除！'
+          },
+          {
+            badge: '📊 步驟 2：四選項平方整除對照圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">⚖️ 各選項平方 vs a×b 質因數容量檢驗</div>
+                <div style="text-align:left; font-size:0.95rem; line-height:1.7;">
+                  已知 a × b = 2⁵ × 3² × 5<br><br>
+                  • (A) (a, b) = 1 ➔ 1² = 1，整除 ✅<br>
+                  • (B) (a, b) = 6 = 2 × 3 ➔ 6² = 2² × 3²，質因數 2² ≤ 2⁵ 且 3² ≤ 3²，整除 ✅<br>
+                  • (C) (a, b) = 8 = 2³ ➔ 8² = (2³)² = <strong>2⁶</strong>！<br>
+                  &nbsp; &nbsp;但 a × b 裡面的 2 <strong>只有 5 次方（2⁵ < 2⁶）</strong>，根本不夠除 ❌！<br>
+                  • (D) (a, b) = 12 = 2² × 3 ➔ 12² = 2⁴ × 3²，整除 ✅
+                </div>
+              </div>
+            `,
+            speech: '看各選項的平方：(B) 6 的平方是 2 平方乘 3 平方，次數都在範圍內；(D) 12 的平方是 2 的四次方乘 3 平方，也在 5 次方跟 2 次方以內；可是看 (C)！8 是 2 的三次方，平方之後變成 2 的六次方！可是 a 乘 b 裡面只有 5 個 2，怎麼可能除得盡？所以 8 絕對不可能！'
+          },
+          {
+            badge: '🧮 步驟 3：算式步驟結論',
+            html: `
+              <div class="rule-box">
+                <p>若 (a, b) = 8，則 a 至少有 2³，b 也至少有 2³。</p>
+                <p>兩數相乘 a × b 至少要有 2³ × 2³ = 2⁶！</p>
+                <p>但題目已知 a × b 只有 2⁵，矛盾！故 (a, b) 不可能為 8，選 (C)！</p>
+              </div>
+            `,
+            speech: '第三步算式再講白一點：如果最大公因數是 8，代表 a 至少有三個 2，b 也至少有三個 2，那他們乘起來至少要有六個 2 呀！題目明明只有五個 2，所以 8 根本不可能，選 (C)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑大歸納',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考秒殺陷阱：</div>
+                <p>看到題目問「何者不可能為兩數的最大公因數」：</p>
+                <p>直接把選項<strong>「質因數分解後次方乘以 2」</strong>，只要有任何質因數次方超過題目的總次方，該選項就是正解！</p>
+              </div>
+            `,
+            speech: '避坑秒殺訣竅：直接把選項平方，看看次方有沒有爆掉！8 的平方需要六個 2，題目的 2 爆掉了，立刻抓出兇手選 (C)！'
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: '【105 會考】已知 (a, b)=12，(a, c)=18，且 50 < a < 100，則下列何者正確？',
+        source: '105 會考真題',
+        options: [
+          '(A) 8 是 a 的因數，8 是 b 的因數',
+          '(B) 8 是 a 的因數，8 不是 b 的因數',
+          '(C) 8 不是 a 的因數，8 是 c 的因數',
+          '(D) 8 不是 a 的因數，8 不是 c 的因數'
+        ],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 連續公因數突破口：</div>
+                <p>1. (a, b) = 12 ➔ a 是 12 的倍數。</p>
+                <p>2. (a, c) = 18 ➔ a 是 18 的倍數。</p>
+                <p>3. 因此 a 必定是 12 與 18 的「公倍數」！</p>
+                <p>4. 題目限制 50 < a < 100！</p>
+              </div>
+            `,
+            speech: '105 年會考這題是邏輯鏈條題！a 跟 b 的最大公因數是 12，代表 a 是 12 的倍數；a 跟 c 的最大公因數是 18，代表 a 也是 18 的倍數。所以 a 就是 12 跟 18 的公倍數，而且介在 50 到 100 之間！'
+          },
+          {
+            badge: '📊 步驟 2：求出 a 的精確數值',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">🔢 鎖定 a 的唯一數值</div>
+                <div style="text-align:left; background:#f8fafc; padding:12px; border-radius:10px; line-height:1.7;">
+                  • [12, 18] = 36<br>
+                  • 36 的倍數有：36, <strong>72</strong>, 108 ...<br>
+                  • 落在 50 與 100 之間的只有：<strong>a = 72</strong>！<br>
+                  ──────────────────────────────────<br>
+                  檢驗 8 是否為 a 的因數：72 ÷ 8 = 9（整除！）<br>
+                  👉 <strong>8 是 a 的因數！</strong>（排除選項 C、D）
+                </div>
+              </div>
+            `,
+            speech: '第二步把 a 抓出來：12 跟 18 的最小公倍數是 36。在 50 到 100 之間的公倍數只有 36 乘 2 等於 72！所以 a 就是 72！72 除以 8 等於 9 整除，所以 8 確實是 a 的因數！選項 C 跟 D 馬上淘汰！'
+          },
+          {
+            badge: '🧮 步驟 3：深入檢驗 8 是否能為 b 的因數？',
+            html: `
+              <div class="rule-box">
+                <p>已知 a = 72 且 (72, b) = 12。</p>
+                <p>若 8 是 b 的因數，則 b 是 8 的倍數（b 含有質因數 2³）。</p>
+                <p>又 a = 72 = 2³ × 3²，本身也含有 2³！</p>
+                <p>若兩者都含有 2³，則 (72, b) 的公因數至少會有 2³ × 3 = 24，這與題目已知的 (72, b) = 12（只有 2²）<strong>產生嚴重矛盾！</strong></p>
+                <p>因此，<strong>8 絕對不能是 b 的因數！</strong> 故選 (B)！</p>
+              </div>
+            `,
+            speech: '最關鍵的第三步：那 8 會不會是 b 的因數呢？看好了，72 裡面有 2 的三次方也就是 8，如果 b 裡面也有 8，那他們的最大公因數就會有 8，甚至變成 24，但題目說最大公因數只有 12，只有兩個 2 呀！所以 b 絕對不能含有 8！因此選 (B) 正確！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑反證法',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考高鑑別度防線：</div>
+                <p>若公因數只有 12 = 2² × 3，代表兩數共同的質因數 2 只能取到 2 次方。</p>
+                <p>既然已知 a = 72 已經擁有 3 次方（2³），那麼 b 的 2 次方就<strong>「嚴格被鎖死在 2 次方」</strong>，絕對不可能達到 3 次方（即 8）！</p>
+              </div>
+            `,
+            speech: '這題是會考鑑別 A++ 的頂級題目！公因數的 2 只有兩次方，而 72 已經有三次方了，代表一定是 b 只有兩次方拖累了大家！所以 b 絕對不可能有 8，這就是邏輯的鎖死效應！'
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: '【100 基測】介於 210~240 且為 2、3 公倍數，除以 5 餘 3，求除以 7 之餘數',
+        source: '100 基測真題',
+        options: [
+          '(A) 0',
+          '(B) 1',
+          '(C) 3',
+          '(D) 4'
+        ],
+        ans: 3,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 條件交集篩選：</div>
+                <p>1. 數值範圍：210 < x < 240。</p>
+                <p>2. 為 2、3 的公倍數 ➔ 為 [2, 3] = 6 的倍數！</p>
+                <p>3. 除以 5 餘 3 ➔ <strong>個位數字只能是 3 或 8</strong>！</p>
+              </div>
+            `,
+            speech: '100 年基測這題是數字偵探題！一個正整數介在 210 跟 240 之間，它是 2 跟 3 的公倍數，也就是 6 的倍數；而且除以 5 餘 3。問這個數字除以 7 餘數是多少？'
+          },
+          {
+            badge: '📊 步驟 2：列出 6 的倍數並檢驗尾數',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">🔍 範圍內 6 的倍數篩選清單</div>
+                <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; font-size:1.05rem;">
+                  <span style="background:#f1f5f9; padding:6px 12px; border-radius:8px;">210</span>
+                  <span style="background:#f1f5f9; padding:6px 12px; border-radius:8px;">216</span>
+                  <span style="background:#f1f5f9; padding:6px 12px; border-radius:8px;">222</span>
+                  <span style="background:#dcfce7; border:2px solid #22c55e; color:#15803d; font-weight:900; padding:6px 14px; border-radius:8px; transform:scale(1.1);">⭐ 228</span>
+                  <span style="background:#f1f5f9; padding:6px 12px; border-radius:8px;">234</span>
+                  <span style="background:#f1f5f9; padding:6px 12px; border-radius:8px;">240</span>
+                </div>
+                <div style="margin-top:14px; font-weight:700; color:#ea580c;">
+                  因為它是偶數（2的倍數），尾數不可能為 3，所以尾數必定為 8 ➔ <strong>唯一命中 228！</strong>
+                </div>
+              </div>
+            `,
+            speech: '來看第二步：210 到 240 之間 6 的倍數有 210、216、222、228、234、240。因為除以 5 餘 3，尾數只能是 3 或 8，但它又是 2 的倍數必須是偶數，所以尾數只能是 8！對照清單，唯一的可能就是 228！'
+          },
+          {
+            badge: '🧮 步驟 3：直式除法求除以 7 餘數',
+            html: `
+              <div class="rule-box">
+                <p>計算 228 ÷ 7：</p>
+                <p style="font-family:monospace; font-size:1.2rem; margin:10px 0; padding-left:20px;">
+                  228 ÷ 7 = 32 ... <strong>4</strong>
+                </p>
+                <p>驗算：7 × 32 + 4 = 224 + 4 = 228 正確！</p>
+                <p style="font-weight:800; color:#15803d; margin-top:8px;">餘數為 4，對照選項選 (D)！</p>
+              </div>
+            `,
+            speech: '第三步直接除以 7：228 除以 7，商是 32，餘數是 4！驗算 7 乘 32 等於 224，加上 4 剛好 228，所以答案選 (D)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：餘數特性秒判尾數',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚡ 餘數速判密碼：</div>
+                <p>• 除以 2 的餘數看「奇偶性」</p>
+                <p>• 除以 5 餘 3 ➔ 個位數必為 <strong>3 或 8</strong>（0+3=3 或 5+3=8）</p>
+                <p>結合兩者：偶數 + 尾數為 3 或 8 ➔ <strong>個位數直接鎖定為 8</strong>！省去把每個數字除以 5 的時間！</p>
+              </div>
+            `,
+            speech: '名師速判訣竅：除以 5 餘 3，個位數一定是 3 或 8；既然是偶數就一定是 8！看到尾數是 8 的 228 直接抓出來除以 7，乾淨俐落！'
+          }
+        ]
+      },
+      {
+        id: 7,
+        title: '【109 會考補考】春日麵包店三款麵包收入相等，此金額可能在下列哪一個範圍？',
+        source: '109 會考補考',
+        options: [
+          '(A) 1 ~ 250 元',
+          '(B) 251 ~ 500 元',
+          '(C) 501 ~ 750 元',
+          '(D) 751 ~ 1000 元'
+        ],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 應用題數學建模：</div>
+                <p>1. 紅豆麵包單價 15 元、奶油麵包 25 元、巧克力麵包 35 元。</p>
+                <p>2. 各種麵包賣出的「收入金額均相等」。</p>
+                <p>3. <strong>核心關係</strong>：此收入金額必定能被 15、25、35 分別整除，因此<strong>此金額必定是 15、25、35 的「公倍數」</strong>！</p>
+              </div>
+            `,
+            speech: '109 年會考補考這道生活素養題很接地氣！麵包店三種麵包單價分別是 15、25、35 元，當天的收入金額全部一樣多。既然收入一樣多，這個金額一定可以被 15、25、35 整除，所以它就是這三個數字的公倍數！'
+          },
+          {
+            badge: '📊 步驟 2：短除法求最小公倍數 [15, 25, 35]',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#ea580c; margin-bottom:12px; font-size:1.1rem;">🪜 三數短除法求最小金額</div>
+                <div style="font-family:monospace; font-size:1.15rem; line-height:1.6; background:#ffffff; padding:10px; border-radius:8px; border:2px solid #fdba74; display:inline-block;">
+                  <span style="color:#ea580c; font-weight:800;">5</span> | 15 &nbsp; 25 &nbsp; 35<br>
+                  &nbsp; ───────────<br>
+                  &nbsp; &nbsp; <span style="color:#2563eb; font-weight:800;">3 &nbsp; &nbsp;5 &nbsp; &nbsp;7</span> &nbsp;👉 3, 5, 7 兩兩互質，直接完成！
+                </div>
+                <div style="margin-top:12px; font-weight:800; color:#ea580c;">
+                  [15, 25, 35] = 5 × 3 × 5 × 7 = 3 × 5² × 7 = <strong>525（元）</strong>！
+                </div>
+              </div>
+            `,
+            speech: '第二步求最小公倍數：15、25、35 同時除以 5，底下剩下 3、5、7，三個都是質數兩兩互質，太棒了！直接 L 型連乘：5 乘 3 乘 5 乘 7，算出來就是 525 元！'
+          },
+          {
+            badge: '🧮 步驟 3：範圍比對與選項鎖定',
+            html: `
+              <div class="rule-box">
+                <p>公倍數數列為：525, 1050, 1575 ...</p>
+                <p>觀察四個選項的區間：</p>
+                <ul>
+                  <li>(A) 1 ~ 250 元 ❌</li>
+                  <li>(B) 251 ~ 500 元 ❌</li>
+                  <li>(C) <strong>501 ~ 750 元（525 元正好座落在這個區間！）</strong> ✅</li>
+                  <li>(D) 751 ~ 1000 元 ❌</li>
+                </ul>
+                <p style="margin-top:8px; font-weight:800; color:#15803d;">故選 (C)！</p>
+              </div>
+            `,
+            speech: '第三步對照區間：最小公倍數是 525 元，下一個是 1050 元。四個選項裡面，只有 (C) 選項的 501 到 750 元包含了 525 元，所以答案毫不猶豫選 (C)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：倍數區間陷阱',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考情境題考法警示：</div>
+                <p>會考現在非常喜歡出「區間估計題」，不直接問你數字是多少，而是給範圍！</p>
+                <p>算出最小公倍數 525 後，如果選項沒有 525，記得檢驗「2 倍（1050）」或「3 倍」是否落在其他範圍，千萬別以為自己算錯了！</p>
+              </div>
+            `,
+            speech: '名師提醒：現在會考超愛出這種範圍選項，算出 525 之後對照區間就好。如果以後題目出到一千多元，記得乘以 2 倍、3 倍去檢查，思路靈活才能拿 A++！'
+          }
+        ]
+      },
+      {
+        id: 8,
+        title: '【會考素養題】1~50 號箱投球規則：第 2 位與第 3 位同學都有投球的箱子共有幾個？',
+        source: '會考模擬素養題 (第 119 頁)',
+        options: [
+          '(A) 5 個',
+          '(B) 6 個',
+          '(C) 7 個',
+          '(D) 8 個'
+        ],
+        ans: 3,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 投球規則解構：</div>
+                <p>• 共有 1 到 50 號箱子。</p>
+                <p>• 第 k 位同學在「k 的倍數」箱子各投 1 球。</p>
+                <p>• 第 2 位同學投「2 的倍數」箱（2, 4, 6...50）。</p>
+                <p>• 第 3 位同學投「3 的倍數」箱（3, 6, 9...48）。</p>
+                <p>• <strong>兩位都有投球的箱子 ➔ 同時為 2 和 3 的倍數 ➔ [2, 3] = 6 的倍數！</strong></p>
+              </div>
+            `,
+            speech: '來看講義 119 頁這道超火紅的會考素養題！50 個箱子，第 2 個人投 2 的倍數箱，第 3 個人投 3 的倍數箱。兩個人都有投球的箱子，當然就是 2 跟 3 的公倍數，也就是 6 的倍數箱囉！'
+          },
+          {
+            badge: '📊 步驟 2：倍數計數直式演算',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">📦 1 到 50 號箱中 6 的倍數清點</div>
+                <div style="font-family:monospace; font-size:1.25rem; font-weight:800; color:#0284c7; margin:10px 0;">
+                  50 ÷ 6 = 8 ... 2
+                </div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin-top:10px;">
+                  <span style="background:#e0f2fe; padding:4px 8px; border-radius:6px; font-weight:700;">6號</span>
+                  <span style="background:#e0f2fe; padding:4px 8px; border-radius:6px; font-weight:700;">12號</span>
+                  <span style="background:#e0f2fe; padding:4px 8px; border-radius:6px; font-weight:700;">18號</span>
+                  <span style="background:#e0f2fe; padding:4px 8px; border-radius:6px; font-weight:700;">24號</span>
+                  <span style="background:#e0f2fe; padding:4px 8px; border-radius:6px; font-weight:700;">30號</span>
+                  <span style="background:#e0f2fe; padding:4px 8px; border-radius:6px; font-weight:700;">36號</span>
+                  <span style="background:#e0f2fe; padding:4px 8px; border-radius:6px; font-weight:700;">42號</span>
+                  <span style="background:#e0f2fe; padding:4px 8px; border-radius:6px; font-weight:700;">48號</span>
+                </div>
+                <div style="margin-top:12px; font-weight:800; color:#15803d;">
+                  商為 8，表示整整有 8 個箱子！
+                </div>
+              </div>
+            `,
+            speech: '第二步計算數量：總共有 50 個箱子，拿 50 除以 6 等於 8 餘 2。商數是 8，代表從 6 號、12 號一路到 48 號，整整齊齊剛好有 8 個箱子！'
+          },
+          {
+            badge: '🧮 步驟 3：算式步驟結論',
+            html: `
+              <div class="rule-box">
+                <p>公倍數 [2, 3] = 6</p>
+                <p>數量計算：50 ÷ 6 = 8 ... 2</p>
+                <p>因此共有 8 個箱子兩位同學均有投球，選 (D)！</p>
+              </div>
+            `,
+            speech: '第三步核對選項：50 除以 6 商數等於 8，代表有 8 個箱子，答案選 (D)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：是看商不是看餘數！',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 粗心警報：</div>
+                <p>求「1 到 N 中某數的倍數個數」時，直接以 N ÷ 該數，<strong>答案就是「商數」！</strong></p>
+                <p>餘數 2 代表最後的 49、50 號箱不滿足條件，千萬不要被餘數干擾喔！</p>
+              </div>
+            `,
+            speech: '名師提醒：算個數的時候永遠看商數！餘數代表剩下的最後兩個箱子不符合條件，把商數 8 填上去就對了！'
+          }
+        ]
+      },
+      {
+        id: 9,
+        title: '【會考素養題】1~50 號箱投球規則：最後箱內裝有「奇數顆球」的箱子共有幾個？',
+        source: '會考模擬素養題 (第 119 頁)',
+        options: [
+          '(A) 5 個',
+          '(B) 7 個',
+          '(C) 8 個',
+          '(D) 10 個'
+        ],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 神奇的因數個數轉換：</div>
+                <p>1. 第 k 位同學在 k 的倍數箱投球 ➔ 反過來說，<strong>編號 x 號箱內會被投球，若且唯若 k 是 x 的因數！</strong></p>
+                <p>2. 因此，<strong>編號 x 號箱內的「總球數」，恰好等於 x 的「正因數個數」！</strong></p>
+                <p>3. 題目問「球數為奇數顆」 ➔ <strong>求 1 到 50 之中「正因數個數為奇數個」的數字！</strong></p>
+              </div>
+            `,
+            speech: '這題是全份講義最精妙的神仙題目！大家想一想，幾號同學會在 x 號箱投球？只要他的號碼能整除 x 就會投球，所以 x 號箱最後有幾顆球，根本就是 x 有幾個因數！題目問球數是奇數顆，就是問誰的因數個數是奇數個！'
+          },
+          {
+            badge: '📊 步驟 2：因數成對 vs 完全平方數圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">🎭 為什麼只有「完全平方數」因數是奇數個？</div>
+                <div style="text-align:left; font-size:0.95rem; line-height:1.7;">
+                  • 一般數字的因數必定<strong>成雙成對</strong>出現：<br>
+                  &nbsp; 如 12 的因數：(1, 12)、(2, 6)、(3, 4) ➔ 3 對共 6 個（偶數個！）。<br><br>
+                  • <strong>完全平方數</strong>因為有自身相乘 m × m = x：<br>
+                  &nbsp; 如 36 的因數：(1, 36)、(2, 18)、(3, 12)、(4, 9)、(6, 6) ➔ 6 重複只算一次，總共 9 個（奇數個！）。<br>
+                  👉 <strong>結論：只有「完全平方數」因數個數才是奇數個！</strong>
+                </div>
+              </div>
+            `,
+            speech: '第二步破解因數秘密：一般數字因數都是成雙成對的，比如 1 乘 12、2 乘 6，所以因數個數一定是偶數個！唯一例外的就是「完全平方數」，像 36 等於 6 乘 6，中間那個 6 重複了只算一次，所以只有完全平方數的因數個數才會是奇數個！'
+          },
+          {
+            badge: '🧮 步驟 3：清點 1 到 50 的完全平方數',
+            html: `
+              <div class="rule-box">
+                <p>列出 1 到 50 之間所有的完全平方數：</p>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; font-weight:800; font-size:1.1rem;">
+                  <span style="background:#dcfce7; padding:4px 10px; border-radius:6px; color:#15803d;">1² = 1</span>
+                  <span style="background:#dcfce7; padding:4px 10px; border-radius:6px; color:#15803d;">2² = 4</span>
+                  <span style="background:#dcfce7; padding:4px 10px; border-radius:6px; color:#15803d;">3² = 9</span>
+                  <span style="background:#dcfce7; padding:4px 10px; border-radius:6px; color:#15803d;">4² = 16</span>
+                  <span style="background:#dcfce7; padding:4px 10px; border-radius:6px; color:#15803d;">5² = 25</span>
+                  <span style="background:#dcfce7; padding:4px 10px; border-radius:6px; color:#15803d;">6² = 36</span>
+                  <span style="background:#dcfce7; padding:4px 10px; border-radius:6px; color:#15803d;">7² = 49</span>
+                </div>
+                <p>下一個 8² = 64 > 50 超出範圍。</p>
+                <p style="font-weight:800; color:#15803d; margin-top:8px;">總共恰好有 7 個箱子！故選 (B)！</p>
+              </div>
+            `,
+            speech: '第三步數格子：1 到 50 之間的完全平方數有哪些？1 的平方是 1、2 平方是 4、3 平方是 9，一直到 7 的平方是 49！8 平方是 64 超出 50 了。所以剛好就是從 1 到 7 平方，總共有 7 個箱子！選 (B) 正解！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：百大名校段考王牌！',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 必背數學定理：</div>
+                <p>「正整數的因數個數為奇數」 ⟺ 「該數必為完全平方數」！</p>
+                <p>這條定理在國中會考、資優試題、高中數學都會不斷出現，看懂它的本質，直接把複雜的投球題目秒化為「數完全平方數」！</p>
+              </div>
+            `,
+            speech: '名師私房秘笈：只要看到「因數個數是奇數」，腦中立刻反射「完全平方數」！這題如果一個箱子一個箱子去算球數，算到交卷都算不完；掌握完全平方數，十秒鐘寫出 7 個搞定收工！'
+          }
+        ]
+      },
+      {
+        id: 10,
+        title: '【會考非選素養題】水利署三區限水措施，9 月份甲、乙、丙三區「同時停水」有哪幾天？',
+        source: '會考非選評量題 (第 119 頁)',
+        options: [
+          '(A) 只有 9/1 一天',
+          '(B) 9/1、9/29 兩天',
+          '(C) 9/1、9/9、9/29 三天',
+          '(D) 9/1、9/15、9/29 三天'
+        ],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 停水規則完整翻譯：</div>
+                <p>9 月 1 日起同時開始限水，9 月共有 30 天：</p>
+                <p>• <strong>甲區「停 2 供 5」</strong>：週期 7 天，每次連停 2 天。</p>
+                <p>• <strong>乙區「停 1 供 3」</strong>：週期 4 天，每次停 1 天。</p>
+                <p>• <strong>丙區「停 1 供 1」</strong>：週期 2 天，每次停 1 天（即 9 月所有奇數日停水）。</p>
+              </div>
+            `,
+            speech: '最後壓軸題是 119 頁水利署限水非選大題！甲區停 2 天供 5 天、乙區停 1 天供 3 天、丙區停 1 天供 1 天，都是從 9 月 1 號開始。問 9 月份三區同時停水到底有哪幾天？'
+          },
+          {
+            badge: '📊 步驟 2：三區 9 月停水日曆完整展開圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">📅 9 月 30 天三區停水交集對照表</div>
+                <div style="text-align:left; font-size:0.9rem; line-height:1.8;">
+                  • <strong>甲區停水日</strong>（週期7）：<span style="background:#fef08a; font-weight:800;">9/1</span>、9/2、9/8、<span style="background:#fef08a; font-weight:800;">9/9</span>、9/15、9/16、9/22、9/23、<span style="background:#fef08a; font-weight:800;">9/29</span>、9/30<br>
+                  • <strong>乙區停水日</strong>（週期4）：<span style="background:#fef08a; font-weight:800;">9/1</span>、9/5、<span style="background:#fef08a; font-weight:800;">9/9</span>、9/13、9/17、9/21、9/25、<span style="background:#fef08a; font-weight:800;">9/29</span><br>
+                  • <strong>丙區停水日</strong>（週期2）：<span style="background:#fef08a; font-weight:800;">9/1</span>、9/3、9/5、9/7、<span style="background:#fef08a; font-weight:800;">9/9</span> ... 9/27、<span style="background:#fef08a; font-weight:800;">9/29</span>（所有奇數日）<br>
+                  ──────────────────────────────────<br>
+                  👉 <strong>三區同時重疊的交集日期為：9/1、9/9、9/29 共三天！</strong>
+                </div>
+              </div>
+            `,
+            speech: '看清楚這張日曆對照：甲區是停 2 天供 5 天，所以停 1 號、2 號，再來是 8 號、9 號，一路到 29、30 號；乙區每 4 天停一次，停 1、5、9、13、17、21、25、29 號；丙區則是所有奇數日都停。三個一對照，三邊同時都有停水的日子，剛好是 9 月 1 號、9 月 9 號、跟 9 月 29 號，總共三天！'
+          },
+          {
+            badge: '🧮 步驟 3：算式步驟結論',
+            html: `
+              <div class="rule-box">
+                <p>三區同時停水日必須同時出現在三者的停水清單中：</p>
+                <p style="font-size:1.15rem; font-weight:800; color:#0369a1; margin:8px 0;">
+                  交集集合 = { 9/1, 9/9, 9/29 }
+                </p>
+                <p>對照選項：(C) 9/1、9/9、9/29 三天完全命中！</p>
+              </div>
+            `,
+            speech: '第三步核對選項：三區同時停水日就是 9 月 1 號、9 月 9 號、9 月 29 號三天，正解選 (C)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：為什麼直接求 [7,4,2]=28 會漏算？',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 非選題最高扣分陷阱（評分指引明訂）：</div>
+                <p>許多同學自作聰明直接算週期 [7, 4, 2] = 28 天，因此只寫 9/1 與 9/1 + 28 = 9/29，<strong>直接漏掉 9/9！在會考評分指引中只能拿到 2 分（被扣 1 分）！</strong></p>
+                <p><strong>原因</strong>：甲區每次是「連續停 2 天」！9/9 雖然是甲區週期的第 2 天停水，但恰好迎合了乙區與丙區的停水日！所以生活週期問題務必具體展開列出！</p>
+              </div>
+            `,
+            speech: '最後的名師終極避坑！會考評分指引特別寫出來：如果你只用最小公倍數 28 去加，只會算出 9 月 1 號跟 29 號，漏掉 9 月 9 號會被扣分！因為甲區是連續停兩天，9 號剛好撞上乙丙的停水日！生活素養題千萬不要死套公式，老老實實列出來才是滿分保證！'
+          }
+        ]
+      }
+    ];
+
     const DIAGRAM_QUESTIONS_GCD = [
       {
         id: 1,
@@ -5590,6 +6368,7 @@ const DIAGRAM_QUESTIONS_DATA = [
     function getActiveDiagramDataset() {
       if (currentDiagramUnit === 'gcd') return DIAGRAM_QUESTIONS_GCD;
       if (currentDiagramUnit === 'lcm') return DIAGRAM_QUESTIONS_LCM;
+      if (currentDiagramUnit === 'exam22') return DIAGRAM_QUESTIONS_EXAM22;
       return DIAGRAM_QUESTIONS_DATA;
     }
 
@@ -5602,16 +6381,20 @@ const DIAGRAM_QUESTIONS_DATA = [
       // 更新展館按鈕狀態
       const btnGcd = document.getElementById('btn-pavilion-gcd');
       const btnLcm = document.getElementById('btn-pavilion-lcm');
+      const btnExam22 = document.getElementById('btn-pavilion-exam22');
       const btnCh2 = document.getElementById('btn-pavilion-ch2');
       if (btnGcd) btnGcd.classList.toggle('active', unitKey === 'gcd');
       if (btnLcm) btnLcm.classList.toggle('active', unitKey === 'lcm');
+      if (btnExam22) btnExam22.classList.toggle('active', unitKey === 'exam22');
       if (btnCh2) btnCh2.classList.toggle('active', unitKey === 'ch2');
 
       // 更新頂部導航鈕狀態
       const navGcd = document.getElementById('nav-btn-gcd');
       const navLcm = document.getElementById('nav-btn-lcm');
+      const navExam22 = document.getElementById('nav-btn-exam22');
       if (navGcd) navGcd.classList.toggle('active', unitKey === 'gcd');
       if (navLcm) navLcm.classList.toggle('active', unitKey === 'lcm');
+      if (navExam22) navExam22.classList.toggle('active', unitKey === 'exam22');
 
       // 更新展館視覺 Banner (NONOBALANA Style)
       updatePavilionHero(unitKey);
@@ -5660,6 +6443,17 @@ const DIAGRAM_QUESTIONS_DATA = [
           <span class="hero-pill gold">倍數雷達波</span>
           <span class="hero-pill accent">兩數乘積定理</span>
           <span class="hero-pill" style="background:#fee2e2; color:#b91c1c; border-color:#fca5a5;">三數乘積大陷阱</span>
+        `;
+      } else if (unitKey === 'exam22') {
+        img.src = 'images/exam22_pavilion_hero.png';
+        img.alt = '2-2 會考經典真題特訓館 3D 浮島';
+        title.textContent = '🏆 2-2 會考基測經典真題特訓館 (Exam Master)';
+        desc.textContent = '完整收錄 2-2 歷屆會考與基測 10 大核心魔王題：106會考252因數、108會考420限制、107補考倍數、110會考平方整除、105會考公倍偵測、100基測餘數、109補考麵包收入、50箱投球素養與水利署三區限水非選大題！';
+        tags.innerHTML = `
+          <span class="hero-pill" style="background:#fef3c7; color:#b45309; border-color:#fde68a;">🏆 歷屆會考/基測 10 題</span>
+          <span class="hero-pill accent">會考素養題型</span>
+          <span class="hero-pill" style="background:#fee2e2; color:#b91c1c; border-color:#fca5a5;">水利署非選大題</span>
+          <span class="hero-pill gold">NONOBALANA 浮島</span>
         `;
       } else {
         img.src = 'images/gcd_pavilion_hero.png';
@@ -5725,6 +6519,9 @@ const DIAGRAM_QUESTIONS_DATA = [
         return;
       } else if (hash === 'lcm') {
         showPavilionDirect('lcm');
+        return;
+      } else if (hash === 'exam22') {
+        showPavilionDirect('exam22');
         return;
       }
 
