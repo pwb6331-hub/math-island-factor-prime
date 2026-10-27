@@ -1405,6 +1405,7 @@
 
     <div class="header-btns">
       <button class="btn-header" onclick="toggleTimerMode()" id="timer-toggle-btn">⏱️ 限時: 關</button>
+      <button class="btn-header" style="background:#0284c7; color:white; border-color:#0284c7;" onclick="openLinksDirectoryModal()">🌐 網路全站連結中心</button>
       <button class="btn-header" onclick="resetAllProgress()">🔄 重置進度</button>
     </div>
   </header>
@@ -2417,6 +2418,136 @@
     </section>
 
   </main>
+
+  
+  <!-- 全站網路連結中心彈窗 (All Network Links Portal Modal) -->
+  <div class="modal-overlay" id="links-directory-modal" style="display:none; align-items:center; justify-content:center;">
+    <div class="modal-content" style="max-width:760px; max-height:85vh; overflow-y:auto; text-align:left; padding:26px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:2px solid #e2e8f0; padding-bottom:12px;">
+        <h3 style="font-size:1.3rem; color:#0369a1; display:flex; align-items:center; gap:8px;">
+          🌐 全站功能與解題影片網路直達連結中心
+        </h3>
+        <button style="background:none; border:none; font-size:1.4rem; cursor:pointer;" onclick="closeLinksDirectoryModal()">✖</button>
+      </div>
+
+      <p style="color:#64748b; font-size:0.9rem; margin-bottom:16px;">
+        點擊即可在瀏覽器開啟，或點擊「📋 複製」直接發派給學生與家長！
+      </p>
+
+      <!-- 區塊 1：四大核心學習島與世界地圖 -->
+      <div style="margin-bottom:20px;">
+        <h4 style="color:#0f172a; margin-bottom:8px; font-size:1.05rem;">🏝️ 核心學習島嶼與地圖模組</h4>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:10px;">
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:10px;">
+            <div style="font-weight:800; color:#0369a1;">🌍 三大洋七大洲地圖</div>
+            <a href="https://pwb6331-hub.github.io/math-island-factor-prime/#world" target="_blank" style="font-size:0.8rem; color:#0284c7; word-break:break-all;">開啟三大洋七大洲</a>
+          </div>
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:10px;">
+            <div style="font-weight:800; color:#0369a1;">1️⃣ 因數與倍數探索島</div>
+            <a href="https://pwb6331-hub.github.io/math-island-factor-prime/#island1" target="_blank" style="font-size:0.8rem; color:#0284c7; word-break:break-all;">開啟主題 1</a>
+          </div>
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:10px;">
+            <div style="font-weight:800; color:#0369a1;">2️⃣ 倍數雷達哨站</div>
+            <a href="https://pwb6331-hub.github.io/math-island-factor-prime/#island2" target="_blank" style="font-size:0.8rem; color:#0284c7; word-break:break-all;">開啟主題 2</a>
+          </div>
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:10px;">
+            <div style="font-weight:800; color:#0369a1;">3️⃣ 質數神廟島</div>
+            <a href="https://pwb6331-hub.github.io/math-island-factor-prime/#island3" target="_blank" style="font-size:0.8rem; color:#0284c7; word-break:break-all;">開啟主題 3</a>
+          </div>
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:10px;">
+            <div style="font-weight:800; color:#0369a1;">🔬 埃氏質數篩法實驗島</div>
+            <a href="https://pwb6331-hub.github.io/math-island-factor-prime/#sieve" target="_blank" style="font-size:0.8rem; color:#0284c7; word-break:break-all;">開啟篩法實驗</a>
+          </div>
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:10px;">
+            <div style="font-weight:800; color:#0369a1;">⚖️ 彩虹短除拆解機</div>
+            <a href="https://pwb6331-hub.github.io/math-island-factor-prime/#factor" target="_blank" style="font-size:0.8rem; color:#0284c7; word-break:break-all;">開啟短除實驗</a>
+          </div>
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; padding:10px; border-radius:10px;">
+            <div style="font-weight:800; color:#0369a1;">⛵ 會考小船 (康軒27題)</div>
+            <a href="https://pwb6331-hub.github.io/math-island-factor-prime/#boat" target="_blank" style="font-size:0.8rem; color:#0284c7; word-break:break-all;">開啟小船題庫</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 區塊 2：會考解題動態影片專屬深層直達連結 (16 題) -->
+      <div>
+        <h4 style="color:#0f172a; margin-bottom:8px; font-size:1.05rem;">🎬 會考解題動態說明影片直達連結 (16 題)</h4>
+        
+        <div style="font-size:0.85rem; font-weight:800; color:#ea580c; margin-bottom:6px;">⚡ 單元一：整數四則運算與分配律 (8大題影片)</div>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#fff7ed; padding:6px 12px; border-radius:8px; border:1px solid #fed7aa; font-size:0.85rem;">
+            <span>題 1 (會考110)：(-8)+(-2)×(-3) 運算順序與負負得正</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch1&q=1')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#fff7ed; padding:6px 12px; border-radius:8px; border:1px solid #fed7aa; font-size:0.85rem;">
+            <span>題 2 (會考106)：(-2)×|-5|-|-3| 絕對值幾何距離</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch1&q=2')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#fff7ed; padding:6px 12px; border-radius:8px; border:1px solid #fed7aa; font-size:0.85rem;">
+            <span>題 3 (基Ⅰ98)：12-7×(-32)+16÷(-4) 區塊四則運算</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch1&q=3')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#fff7ed; padding:6px 12px; border-radius:8px; border:1px solid #fed7aa; font-size:0.85rem;">
+            <span>題 4 (會考103)：743×369-741×370 乘法分配律拆解秒殺</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch1&q=4')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#fff7ed; padding:6px 12px; border-radius:8px; border:1px solid #fed7aa; font-size:0.85rem;">
+            <span>題 5 (基Ⅰ93)：536×0.52-364×0.48... 分組提公因式</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch1&q=5')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#fff7ed; padding:6px 12px; border-radius:8px; border:1px solid #fed7aa; font-size:0.85rem;">
+            <span>題 6 (基Ⅰ99)：數線 c<-1<0<a<1<b 正負號與特值法</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch1&q=6')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#fff7ed; padding:6px 12px; border-radius:8px; border:1px solid #fed7aa; font-size:0.85rem;">
+            <span>題 7 (會考107)：微波爐促銷前20臺折800元分段計價</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch1&q=7')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#fff7ed; padding:6px 12px; border-radius:8px; border:1px solid #fed7aa; font-size:0.85rem;">
+            <span>題 8 (基Ⅰ98)：5人羽球雙打8:55到11:15平均上場</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch1&q=8')">📋 複製</button>
+          </div>
+        </div>
+
+        <div style="font-size:0.85rem; font-weight:800; color:#0284c7; margin-bottom:6px;">🧩 單元二：因數倍數與質數 (8大題影片)</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f0f9ff; padding:6px 12px; border-radius:8px; border:1px solid #bae6fd; font-size:0.85rem;">
+            <span>題 1 (會考107)：筆記本售價超過10元花費因倍篩選</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch2&q=1')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f0f9ff; padding:6px 12px; border-radius:8px; border:1px solid #bae6fd; font-size:0.85rem;">
+            <span>題 2 (會考112)：18的倍數同時為216的因數公式</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch2&q=2')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f0f9ff; padding:6px 12px; border-radius:8px; border:1px solid #bae6fd; font-size:0.85rem;">
+            <span>題 3 (基Ⅰ96)：1～30號紙牌骨牌式倍數排除法</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch2&q=3')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f0f9ff; padding:6px 12px; border-radius:8px; border:1px solid #bae6fd; font-size:0.85rem;">
+            <span>題 4 (基Ⅱ92)：45=a×b 乘積對與長寬和</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch2&q=4')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f0f9ff; padding:6px 12px; border-radius:8px; border:1px solid #bae6fd; font-size:0.85rem;">
+            <span>題 5 (基Ⅱ99)：質數偵探與四大偽質數魔王 (91)</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch2&q=5')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f0f9ff; padding:6px 12px; border-radius:8px; border:1px solid #bae6fd; font-size:0.85rem;">
+            <span>題 6 (基Ⅰ94)：區間質數運算符 30*c=2 數線尺規</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch2&q=6')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f0f9ff; padding:6px 12px; border-radius:8px; border:1px solid #bae6fd; font-size:0.85rem;">
+            <span>題 7 (會考109)：82=2×41 兩個質數之乘積</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch2&q=7')">📋 複製</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#f0f9ff; padding:6px 12px; border-radius:8px; border:1px solid #bae6fd; font-size:0.85rem;">
+            <span>題 8 (基Ⅱ94)：生日四質數密碼 2030 解密12月31日</span>
+            <button class="btn-step" style="padding:2px 8px; font-size:0.75rem;" onclick="copyDirectLink('https://pwb6331-hub.github.io/math-island-factor-prime/#unit=ch2&q=8')">📋 複製</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <!-- 彈出視窗 Modal -->
   <div class="modal-overlay" id="custom-modal">
@@ -4637,6 +4768,30 @@
       const hash = window.location.hash.substring(1);
       if (!hash) return;
 
+      if (hash === 'world') {
+        showView('view-map');
+        switchMapMode('world');
+        return;
+      } else if (hash === 'island1') {
+        showView('view-island-1');
+        return;
+      } else if (hash === 'island2') {
+        showView('view-island-2');
+        return;
+      } else if (hash === 'island3') {
+        showView('view-island-3');
+        return;
+      } else if (hash === 'sieve') {
+        showView('view-lab-sieve');
+        return;
+      } else if (hash === 'factor') {
+        showView('view-lab-factor');
+        return;
+      } else if (hash === 'boat') {
+        showView('view-boat');
+        return;
+      }
+
       const params = new URLSearchParams(hash);
       const unit = params.get('unit');
       const q = parseInt(params.get('q'));
@@ -4806,6 +4961,25 @@
             showModal('🎬 影片放映完畢！', '本題 4 大步驟核心思維與名師避坑已全數演繹完畢！歡迎點擊下一題或即時選答檢驗！', '🎉');
           }
         }, 300); // 總時長約 15 秒精華動態演繹
+      }
+    }
+
+    
+    function openLinksDirectoryModal() {
+      document.getElementById('links-directory-modal').style.display = 'flex';
+    }
+
+    function closeLinksDirectoryModal() {
+      document.getElementById('links-directory-modal').style.display = 'none';
+    }
+
+    function copyDirectLink(url) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showModal('📋 複製成功！', `已複製連結至剪貼簿：\n${url}`, '🔗');
+        });
+      } else {
+        prompt('請複製以下連結：', url);
       }
     }
 
