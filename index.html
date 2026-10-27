@@ -1643,11 +1643,19 @@
               </div>
             </div>
 
-            <!-- 11. 會考圖解動畫島 (中央黃金高地) -->
-            <div class="diorama-pin pin-gold float-slow" style="top: 29%; left: 74%;" onclick="openPinDrawer('diagram')">
+            <!-- 11. 經典圖解島 A：整數四則運算 (北部黃金高地) -->
+            <div class="diorama-pin pin-gold float-slow" style="top: 24%; left: 70%;" onclick="openPinDrawer('diagram_ch1')">
               <div class="pin-pill" style="border-color:#f59e0b; background:#fffbeb; box-shadow:0 0 12px rgba(245, 158, 11, 0.5);">
-                <span class="pin-icon" style="background:#d97706;">🎬</span>
-                <span style="color:#b45309;">經典圖解島・8大題動畫簡報</span>
+                <span class="pin-icon" style="background:#d97706;">⚡</span>
+                <span style="color:#b45309;">圖解館 1・整數四則 8 題動畫</span>
+              </div>
+            </div>
+
+            <!-- 12. 經典圖解島 B：因數倍數質數 (中央黃金高地) -->
+            <div class="diorama-pin pin-gold float-slow float-delay-1" style="top: 36%; left: 68%;" onclick="openPinDrawer('diagram_ch2')">
+              <div class="pin-pill" style="border-color:#f59e0b; background:#fffbeb; box-shadow:0 0 12px rgba(245, 158, 11, 0.5);">
+                <span class="pin-icon" style="background:#0284c7;">🧩</span>
+                <span style="color:#0369a1;">圖解館 2・因倍質數 8 題動畫</span>
               </div>
             </div>
 
@@ -2281,6 +2289,7 @@
               <button class="slide-btn secondary" onclick="prevSlideStep()">⏪ 上一步驟</button>
               <button class="slide-btn" onclick="nextSlideStep()">下一步驟 ⏩</button>
               <button class="slide-btn" style="background:#10b981;" onclick="playVoiceover()">🔊 語音導讀</button>
+              <button class="slide-btn" style="background:#6366f1;" onclick="copyCurrentSlideLink()">🔗 複製動畫簡報分享連結</button>
             </div>
             <div>
               <span style="font-size:0.9rem; font-weight:700; color:#64748b;" id="slide-progress-text">步驟 1 / 4</span>
@@ -2723,6 +2732,8 @@
         for (let k in STATE.islandStars) STATE.islandStars[k] = 0;
         updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
         initMatchGame();
         renderBoatQuestion();
         renderMistakesUI();
@@ -2780,6 +2791,8 @@
         STATE.islandStars[islandKey] += 1;
         updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
       } else {
         buttons[selectedIdx].classList.add('wrong');
         buttons[correctIdx].classList.add('correct');
@@ -2861,6 +2874,8 @@
         STATE.islandStars['lab-sieve'] += 2;
         updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
         showModal('🌟 質數篩法解鎖成功！', '因為 √100 = 10，檢查完 2, 3, 5, 7 之後，剩餘未被劃掉的數全都是質數！你太棒了！', '🏛️');
       }
     }
@@ -2996,6 +3011,8 @@
         STATE.islandStars['lab-factor'] += 2;
         updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
       }
     }
 
@@ -3096,12 +3113,16 @@
         STATE.islandStars['boat'] += 1;
         updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
       } else {
         buttons[selectedIdx].classList.add('wrong');
         buttons[correctIdx].classList.add('correct');
         STATE.hearts = Math.max(0, STATE.hearts - 1);
         updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
 
         // 收集至錯題本
         if (!STATE.mistakes.find(m => m.id === `boat_${STATE.boatIndex}`)) {
@@ -3205,6 +3226,8 @@
             STATE.stars += 3;
             updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
             showModal('🎉 名詞配對全數通關！', '核心觀念已經牢牢鎖定在你的大腦中！獲得 3 顆榮耀之星！', '🧩');
           }
         } else {
@@ -3255,6 +3278,8 @@
       renderMistakesUI();
       updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
     }
 
     // 點擊檢視金旗
@@ -3319,10 +3344,17 @@
         desc: '大於 1 且只有 1 與本身的數為質數；2 是唯一偶數質數。學習短除法與質因數標準指數形式。',
         viewId: 'view-island-3'
       },
-      'diagram': {
-        title: '🎬 經典圖解島・8大會考魔王題動畫剖析館',
-        desc: '逐題拆解會考107~112與基測經典8題！步進式動畫簡報、動態圖解演繹、語音導讀與名師避坑指南！',
-        viewId: 'view-diagram-island'
+      'diagram_ch1': {
+        title: '⚡ 經典圖解館 1・整數四則與分配律 (8大題動畫簡報)',
+        desc: '四則運算先乘除後加減、絕對值幾何距離、大數分配律秒殺、數線乘法正負號、微波爐促銷分段計價與羽球雙打平均！',
+        viewId: 'view-diagram-island',
+        unit: 'ch1'
+      },
+      'diagram_ch2': {
+        title: '🧩 經典圖解館 2・因數倍數與質數 (8大題動畫簡報)',
+        desc: '筆記本花費因倍篩選、216與18倍因數交集、30張紙牌骨牌篩除法、45矩形長寬和、79質數與91偽質數、30*c質數數線尺規！',
+        viewId: 'view-diagram-island',
+        unit: 'ch2'
       },
       'boat': {
         title: '⛵ 東部海域・會考小船碼頭 (45 題)',
@@ -3332,6 +3364,7 @@
     };
 
     let currentPinTargetView = 'view-island-1';
+    let currentPinTargetUnit = null;
 
     function openPinDrawer(pinKey) {
       const data = PIN_INFO_DATA[pinKey];
@@ -3343,6 +3376,7 @@
       document.getElementById('drawer-title').textContent = data.title;
       document.getElementById('drawer-desc').textContent = data.desc;
       currentPinTargetView = data.viewId;
+      currentPinTargetUnit = data.unit || null;
 
       const drawer = document.getElementById('pin-popup-drawer');
       drawer.classList.add('show');
@@ -3356,6 +3390,9 @@
     function goToIslandFromPin() {
       closePinDrawer();
       showView(currentPinTargetView);
+      if (currentPinTargetUnit) {
+        switchDiagramUnit(currentPinTargetUnit);
+      }
     }
 
     function switchMapMode(mode) {
@@ -4413,6 +4450,43 @@
       return currentDiagramUnit === 'ch1' ? INTEGER_QUESTIONS_DATA : DIAGRAM_QUESTIONS_DATA;
     }
 
+    
+    /* =====================================================================
+       深層網址分享與連結跳轉機制 (Deep Link Engine)
+       ===================================================================== */
+    function copyCurrentSlideLink() {
+      const q = getActiveDiagramDataset()[currentDiagramQIndex];
+      const baseUrl = window.location.origin + window.location.pathname;
+      const shareUrl = `${baseUrl}#unit=${currentDiagramUnit}&q=${q.id}&step=${currentDiagramSlideStep}`;
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          showModal('🔗 簡報分享連結已複製！', `題目專屬動畫簡報連結已複製到剪貼簿：\n\n${shareUrl}\n\n可直接傳給學生或老師，點擊即直接開啟第 ${q.id} 題第 ${currentDiagramSlideStep + 1} 步解題簡報！`, '📋');
+        }).catch(() => {
+          prompt('請複製以下專屬題解動畫連結：', shareUrl);
+        });
+      } else {
+        prompt('請複製以下專屬題解動畫連結：', shareUrl);
+      }
+    }
+
+    function handleUrlDeepLink() {
+      const hash = window.location.hash.substring(1);
+      if (!hash) return;
+
+      const params = new URLSearchParams(hash);
+      const unit = params.get('unit');
+      const q = parseInt(params.get('q'));
+      const step = parseInt(params.get('step')) || 0;
+
+      if (unit && !isNaN(q)) {
+        showView('view-diagram-island');
+        switchDiagramUnit(unit);
+        selectDiagramQuestion(q - 1);
+        gotoSlideStep(step);
+      }
+    }
+
     function switchDiagramUnit(unitKey) {
       currentDiagramUnit = unitKey;
       currentDiagramQIndex = 0;
@@ -4422,6 +4496,8 @@
       document.getElementById('btn-unit-ch2').classList.toggle('active', unitKey === 'ch2');
 
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
     }
 
     function initDiagramIsland() {
@@ -4547,6 +4623,8 @@
         STATE.stars += 1;
         updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
       } else {
         buttons[selectedIdx].classList.add('wrong');
         buttons[correctIdx].classList.add('correct');
@@ -4567,6 +4645,8 @@
       initMatchGame();
       updateStatsUI();
       initDiagramIsland();
+      handleUrlDeepLink();
+      window.addEventListener('hashchange', handleUrlDeepLink);
     });
   </script>
 </body>
