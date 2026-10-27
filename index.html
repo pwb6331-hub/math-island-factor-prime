@@ -1377,7 +1377,205 @@
       background: #cbd5e1;
     }
 
-  </style>
+  
+    /* =====================================================================
+       NONOBALANA 現代極簡奢華展館切換器與視覺卡片 (Pavilion Styles)
+       ===================================================================== */
+    .pavilion-switch-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .pavilion-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pavilion-tab-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      border-color: #93c5fd;
+    }
+
+    .pavilion-tab-btn.active {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+      border-color: #10b981;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.18);
+    }
+
+    .pavilion-tab-btn#btn-pavilion-lcm.active {
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+      border-color: #f97316;
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.18);
+    }
+
+    .pavilion-tab-btn#btn-pavilion-ch2.active {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-color: #3b82f6;
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.18);
+    }
+
+    .pavilion-icon {
+      font-size: 2.2rem;
+      flex-shrink: 0;
+      background: #f8fafc;
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .pavilion-text {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .pavilion-text strong {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+    }
+
+    .pavilion-text small {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    .pavilion-badge {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+
+    .pavilion-badge.gold {
+      background: #fef3c7;
+      color: #b45309;
+      border-color: #fde68a;
+    }
+
+    .pavilion-badge.purple {
+      background: #f3e8ff;
+      color: #7e22ce;
+      border-color: #d8b4fe;
+    }
+
+    /* 展館專屬 NONOBALANA 時尚視覺橫幅 */
+    .pavilion-hero-banner {
+      display: flex;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .pavilion-hero-banner {
+        flex-direction: column;
+      }
+    }
+
+    .hero-image-wrap {
+      flex: 0 0 280px;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    @media (max-width: 768px) {
+      .hero-image-wrap {
+        flex: auto;
+        height: 150px;
+      }
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .pavilion-hero-banner:hover .hero-image-wrap img {
+      transform: scale(1.05);
+    }
+
+    .hero-content {
+      padding: 18px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+    }
+
+    .hero-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .hero-pill {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    .hero-pill.accent {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+    }
+
+    .hero-pill.gold {
+      background: #fef3c7;
+      color: #b45309;
+      border-color: #fde68a;
+    }
+
+    .hero-content h3 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .hero-content p {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+</style>
 </head>
 <body>
 
@@ -1419,7 +1617,9 @@
     <button class="tab-btn" onclick="showView('view-lab-sieve')">🔬 質數篩法實驗島</button>
     <button class="tab-btn" onclick="showView('view-lab-factor')">⚖️ 彩虹短除實驗島</button>
     <button class="tab-btn" onclick="showView('view-world-map')">🌍 三大洋七大洲島</button>
-    <button class="tab-btn" onclick="showView('view-diagram-island')">🎬 會考圖解動畫島 (8大題)</button>
+    <button class="tab-btn" id="nav-btn-gcd" onclick="showPavilionDirect('gcd')">🧩 最大公因數館</button>
+    <button class="tab-btn" id="nav-btn-lcm" onclick="showPavilionDirect('lcm')">⚡ 最小公倍數館</button>
+    <button class="tab-btn" onclick="showView('view-diagram-island')">🎬 會考圖解島</button>
     <button class="tab-btn" onclick="showView('view-boat')">⛵ 會考小船 (精選42題)</button>
     <button class="tab-btn" onclick="showView('view-match')">🧩 名詞配對挑戰</button>
     <button class="tab-btn" onclick="showView('view-mistakes')">🎒 錯題複習島 (<span id="mistake-count">0</span>)</button>
@@ -2349,6 +2549,50 @@
         
         
 
+        <!-- 經典展館一鍵切換列 (NONOBALANA High-Fashion Style) -->
+        <div class="pavilion-switch-container">
+          <button class="pavilion-tab-btn active" id="btn-pavilion-gcd" onclick="switchDiagramPavilion('gcd')">
+            <span class="pavilion-icon">🧩</span>
+            <span class="pavilion-text">
+              <strong>最大公因數經典展館</strong>
+              <small>5 大經典題・短除階梯・互質反例・切割幾何</small>
+            </span>
+            <span class="pavilion-badge">2-2 經典</span>
+          </button>
+          <button class="pavilion-tab-btn" id="btn-pavilion-lcm" onclick="switchDiagramPavilion('lcm')">
+            <span class="pavilion-icon">⚡</span>
+            <span class="pavilion-text">
+              <strong>最小公倍數經典展館</strong>
+              <small>6 大經典題・倍數雷達・三數短除・乘積陷阱</small>
+            </span>
+            <span class="pavilion-badge gold">2-2 經典</span>
+          </button>
+          <button class="pavilion-tab-btn" id="btn-pavilion-ch2" onclick="switchDiagramPavilion('ch2')">
+            <span class="pavilion-icon">🌟</span>
+            <span class="pavilion-text">
+              <strong>2-1 因倍質數會考全錦囊</strong>
+              <small>8 大會考魔王題・彩虹因數・質數密碼</small>
+            </span>
+            <span class="pavilion-badge purple">2-1 經典</span>
+          </button>
+        </div>
+
+        <!-- 展館專屬時尚視覺 Banner (NONOBALANA Aesthetic Hero) -->
+        <div class="pavilion-hero-banner" id="pavilion-hero-banner">
+          <div class="hero-image-wrap">
+            <img id="pavilion-hero-img" src="images/gcd_pavilion_hero.png" alt="展館主題圖" />
+          </div>
+          <div class="hero-content">
+            <div class="hero-tags" id="pavilion-hero-tags">
+              <span class="hero-pill">國中一年級 2-2</span>
+              <span class="hero-pill accent">短除階梯演繹</span>
+              <span class="hero-pill gold">NONOBALANA 3D 浮島</span>
+            </div>
+            <h3 id="pavilion-hero-title">🧩 最大公因數經典展館</h3>
+            <p id="pavilion-hero-desc">掌握公因數彩虹篩選、相異質數必互質、標準分解式取共同質因數最小次方、長方形切割正方形幾何模型！</p>
+          </div>
+        </div>
+
         <div class="diagram-nav-bar" id="diagram-q-navbar">
           <!-- 8 題動態按鈕由 JS 注入 -->
         </div>
@@ -3048,7 +3292,14 @@
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'zh-TW';
-        utterance.rate = 1.0;
+        utterance.rate = 1.02; // 自然親切 YouTuber 口吻速度
+        utterance.pitch = 1.08; // 台北年輕女性清脆甜美語調
+
+        // 優先挑選台灣繁體中文女聲
+        const voices = window.speechSynthesis.getVoices();
+        const twVoice = voices.find(v => v.lang.includes('TW') || v.lang.includes('zh-TW') || v.name.includes('HsiaoChen') || v.name.includes('Hanhan') || v.name.includes('Yating') || v.name.includes('Mei-Jia'));
+        if (twVoice) utterance.voice = twVoice;
+
         window.speechSynthesis.speak(utterance);
       } else {
         alert('您的瀏覽器不支援 Web 語音合成。');
@@ -3693,6 +3944,70 @@
         viewId: 'view-diagram-island',
         unit: 'ch2'
       },
+            // 國中 2-2 最大公因數與最小公倍數全新地標
+      'taipei_gcd': {
+        title: '🏛️ 台北・公因數彩虹門 (GCD 經典 1)',
+        desc: '18 與 30 的所有正因數彩虹對照與交集圈選！掌握所有公因數皆為最大公因數之因數重要概念！',
+        viewId: 'view-diagram-island',
+        unit: 'gcd',
+        q: 1
+      },
+      'newtaipei_gcd': {
+        title: '🪜 新北・180與135短除階梯 (GCD 經典 3)',
+        desc: '短除法階梯與標準分解式共同質因數最小次方對決！求得 (180, 135) = 3² × 5 = 45！',
+        viewId: 'view-diagram-island',
+        unit: 'gcd',
+        q: 3
+      },
+      'taoyuan_gcd': {
+        title: '⚡ 桃園・互質雙子星反例塔 (GCD 經典 2)',
+        desc: '擊破會考致命迷思！(4, 9)=1 互質但兩數皆為合數！相異質數必互質，互質不一定都是質數！',
+        viewId: 'view-diagram-island',
+        unit: 'gcd',
+        q: 2
+      },
+      'taichung_gcd': {
+        title: '📐 台中・正方形切割工坊 (GCD 經典 4)',
+        desc: '180×135 長方形切割成大小相同之最大正方形，邊長為最大公因數 45 公分，共切出 4×3=12 個正方形！',
+        viewId: 'view-diagram-island',
+        unit: 'gcd',
+        q: 4
+      },
+      'tainan_lcm': {
+        title: '📡 台南・12與18倍數雷達站 (LCM 經典 1)',
+        desc: '12 與 18 倍數雷達波首次交會於 36！所有公倍數皆為最小公倍數 [12, 18]=36 之正整數倍！',
+        viewId: 'view-diagram-island',
+        unit: 'lcm',
+        q: 1
+      },
+      'kaohsiung_lcm': {
+        title: '🚢 高雄・三數短除轉運站 (LCM 經典 3)',
+        desc: '15、18、30 三數短除法雙階過濾！先除三數公因數，再除任意兩數公因數，除不盡照抄，算得 [15,18,30]=90！',
+        viewId: 'view-diagram-island',
+        unit: 'lcm',
+        q: 3
+      },
+      'hualien_lcm': {
+        title: '⚖️ 花蓮・兩數乘積天秤峽谷 (LCM 經典 4)',
+        desc: '兩正整數乘積公式 (a, b) × [a, b] = a × b！質因數最小次方與最大次方相加等於原數總次方之精妙驗證！',
+        viewId: 'view-diagram-island',
+        unit: 'lcm',
+        q: 4
+      },
+      'taitung_lcm': {
+        title: '🕳️ 台東・三數乘積迷思黑洞 (LCM 經典 5)',
+        desc: '會考殺手級陷阱！任意三數 (a, b, c) × [a, b, c]「不一定等於」三數乘積！以 a=3, b=5, c=6 實測 30 ≠ 90！',
+        viewId: 'view-diagram-island',
+        unit: 'lcm',
+        q: 5
+      },
+      'yilan_lcm': {
+        title: '🧱 宜蘭・長方形拼磚幾何島 (LCM 經典 6)',
+        desc: '12×18 卡片拼成最小大正方形，邊長為最小公倍數 [12, 18]=36 公分，橫排 3 張縱排 2 張共需 6 張卡片！',
+        viewId: 'view-diagram-island',
+        unit: 'lcm',
+        q: 6
+      },
       'boat': {
         title: '⛵ 東部海域・會考小船碼頭 (27 題)',
         desc: '航向歷屆會考基測變形題庫！擁有 3 顆愛心護盾，答錯扣血，即時顯示名師解析。',
@@ -3703,7 +4018,7 @@
     let currentPinTargetView = 'view-island-1';
     let currentPinTargetUnit = null;
 
-    function openPinDrawer(pinKey) {
+        function openPinDrawer(pinKey) {
       const data = PIN_INFO_DATA[pinKey];
       if (!data) return;
 
@@ -3714,6 +4029,7 @@
       document.getElementById('drawer-desc').textContent = data.desc;
       currentPinTargetView = data.viewId;
       currentPinTargetUnit = data.unit || null;
+      currentPinTargetQ = (data.q ? data.q - 1 : 0);
 
       const drawer = document.getElementById('pin-popup-drawer');
       drawer.classList.add('show');
@@ -3724,11 +4040,11 @@
       document.querySelectorAll('.diorama-pin').forEach(p => p.classList.remove('active'));
     }
 
-    function goToIslandFromPin() {
+        function goToIslandFromPin() {
       closePinDrawer();
       showView(currentPinTargetView);
       if (currentPinTargetUnit) {
-        switchDiagramUnit(currentPinTargetUnit);
+        switchDiagramPavilion(currentPinTargetUnit, currentPinTargetQ || 0);
       }
     }
 
@@ -3758,7 +4074,964 @@
     
     
 
-    const DIAGRAM_QUESTIONS_DATA = [
+        // =====================================================================
+    // 國中一年級 2-2 經典展館題庫：最大公因數 (GCD) & 最小公倍數 (LCM)
+    // =====================================================================
+    const DIAGRAM_QUESTIONS_GCD = [
+      {
+        id: 1,
+        title: '找出 18 與 30 的所有公因數與最大公因數 (18, 30)',
+        source: '2-2 主題 1 重點例題',
+        options: [
+          '(A) 公因數只有 1、2、3，最大公因數是 3',
+          '(B) 公因數有 1、2、3、6，最大公因數是 6',
+          '(C) 公因數有 1、2、3、5、6，最大公因數是 6',
+          '(D) 公因數有無限多個，最大公因數為 90'
+        ],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 公因數核心定義：</div>
+                <p>1. <strong>公因數</strong>：對於兩個或兩個以上的正整數，它們「共同的因數」就稱為公因數（未特別指明時，因數皆指正因數）。</p>
+                <p>2. <strong>最大公因數</strong>：所有公因數中數值「最大」的數，以小括號 <strong>(a, b)</strong> 表示！</p>
+                <p>3. <strong>最小公因數必定為 1</strong>，在數學上無太大討論意義，因此考試一律探討「最大公因數」！</p>
+              </div>
+            `,
+            speech: '嗨大家！我是你們的資深解說員～今天帶大家來看 18 與 30 的公因數。題目要找共同的因數，記住公因數是有限個，而且最小公因數永遠是 1 沒有討論價值，所以我們最在意的就是找出那顆最大的公因數！'
+          },
+          {
+            badge: '📊 步驟 2：彩虹因數集合對照圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">🌈 18 與 30 正因數彩虹對照與交集圈選</div>
+                <div style="margin-bottom:14px; text-align:left; background:#f8fafc; padding:12px 16px; border-radius:12px; border:1px solid #e2e8f0;">
+                  <div style="font-weight:700; color:#1e293b; margin-bottom:6px;">🔹 18 的正因數（共 6 個）：</div>
+                  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <span style="background:#e0f2fe; color:#0284c7; padding:4px 10px; border-radius:8px; font-weight:800;">⭐ 1</span>
+                    <span style="background:#e0f2fe; color:#0284c7; padding:4px 10px; border-radius:8px; font-weight:800;">⭐ 2</span>
+                    <span style="background:#e0f2fe; color:#0284c7; padding:4px 10px; border-radius:8px; font-weight:800;">⭐ 3</span>
+                    <span style="background:#dcfce7; color:#15803d; padding:4px 12px; border-radius:8px; font-weight:800; border:2px solid #22c55e;">👑 6</span>
+                    <span style="background:#f1f5f9; color:#64748b; padding:4px 10px; border-radius:8px;">9</span>
+                    <span style="background:#f1f5f9; color:#64748b; padding:4px 10px; border-radius:8px;">18</span>
+                  </div>
+                </div>
+                <div style="text-align:left; background:#f8fafc; padding:12px 16px; border-radius:12px; border:1px solid #e2e8f0;">
+                  <div style="font-weight:700; color:#1e293b; margin-bottom:6px;">🔹 30 的正因數（共 8 個）：</div>
+                  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <span style="background:#e0f2fe; color:#0284c7; padding:4px 10px; border-radius:8px; font-weight:800;">⭐ 1</span>
+                    <span style="background:#e0f2fe; color:#0284c7; padding:4px 10px; border-radius:8px; font-weight:800;">⭐ 2</span>
+                    <span style="background:#e0f2fe; color:#0284c7; padding:4px 10px; border-radius:8px; font-weight:800;">⭐ 3</span>
+                    <span style="background:#f1f5f9; color:#64748b; padding:4px 10px; border-radius:8px;">5</span>
+                    <span style="background:#dcfce7; color:#15803d; padding:4px 12px; border-radius:8px; font-weight:800; border:2px solid #22c55e;">👑 6</span>
+                    <span style="background:#f1f5f9; color:#64748b; padding:4px 10px; border-radius:8px;">10</span>
+                    <span style="background:#f1f5f9; color:#64748b; padding:4px 10px; border-radius:8px;">15</span>
+                    <span style="background:#f1f5f9; color:#64748b; padding:4px 10px; border-radius:8px;">30</span>
+                  </div>
+                </div>
+                <div style="margin-top:14px; font-weight:800; color:#16a34a; font-size:1.05rem; background:#ecfdf5; padding:10px; border-radius:10px;">
+                  👉 共同交集（公因數）為：{ 1, 2, 3, 6 }；其中最大者為 6，記為 (18, 30) = 6！
+                </div>
+              </div>
+            `,
+            speech: '第二步視覺圖解：我們把 18 的所有因數排開，再把 30 的所有因數排開，兩邊同時出現的數字有 1、2、3、6！其中數值最大的就是 6，這就是最大公因數囉！'
+          },
+          {
+            badge: '🧮 步驟 3：算式推導與選項逐一檢驗',
+            html: `
+              <div class="rule-box">
+                <p><strong>檢視選項：</strong></p>
+                <ul>
+                  <li>(A) 漏掉 6，最大公因數不是 3 ❌</li>
+                  <li>(B) <strong>公因數為 1、2、3、6，最大公因數為 6</strong> ✅ 正確！</li>
+                  <li>(C) 5 不是 18 的因數，故 5 不是公因數 ❌</li>
+                  <li>(D) 因數個數是有限的，倍數才有無限多個 ❌</li>
+                </ul>
+                <p style="margin-top:10px; font-weight:800; color:#0369a1;">結論：正解為 (B)！</p>
+              </div>
+            `,
+            speech: '第三步算式檢驗：四個選項一對照，(A) 選項漏掉了 6；(C) 選項的 5 不是 18 的因數；(D) 選項把公倍數跟公因數搞混了。只有 (B) 選項完全符合，選 (B)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑與會考重要概念',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考必背黃金鐵則：</div>
+                <p>1. <strong>重要概念：所有的公因數皆為最大公因數的因數！</strong></p>
+                <p>例如：(18, 30) = 6，而 6 的正因數恰為 1、2、3、6，這四個數就全數是 18 與 30 的公因數！</p>
+                <p>2. <strong>解題超能力</strong>：未來遇到「求某兩數的所有公因數」，只要先求出它們的「最大公因數」，再把最大公因數的因數列出來即可，不必列出兩大串！</p>
+              </div>
+            `,
+            speech: '名師避坑秘笈：請同學一定要把這句話背起來——「所有的公因數，都是最大公因數的因數」！算出最大公因數是 6 之後，6 的因數 1、2、3、6 就是全部的公因數，考試省下超多時間！'
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: '關於「互質」的定義與性質，下列何者敘述完全正確？',
+        source: '2-2 主題 1 互質概念與關鍵辨析',
+        options: [
+          '(A) 兩個數互質，則這兩個數一定都是質數',
+          '(B) 4 與 9 都是合數，所以 (4, 9) ≠ 1',
+          '(C) 兩個相異質數必互質，但互質的兩數不一定都是質數',
+          '(D) 三個整數如果互質，則任兩個整數也必定互質'
+        ],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 互質的嚴格數學定義：</div>
+                <p>1. <strong>互質</strong>：對於兩個以上的整數，如果它們的<strong>最大公因數為 1</strong>，我們就稱這些整數「互質」！符號表示為 <strong>(a, b) = 1</strong>。</p>
+                <p>2. 例：兩數互質 (1, 6) = 1、(6, 7) = 1；三數互質 (3, 4, 5) = 1、(4, 6, 31) = 1。</p>
+                <p>3. <strong>特別注意</strong>：「互質」是一種「最大公因數為 1」的關係，不是指數字本身的種類！</p>
+              </div>
+            `,
+            speech: '很多同學常把「互質」跟「質數」搞混！互質是指兩個數字的最大公因數等於 1，這是一種關係，跟數字本身是不是質數沒有直接關係喔！'
+          },
+          {
+            badge: '📊 步驟 2：經典反例 (4, 9) = 1 動態解剖',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">🥊 擊破迷思：合數與合數也能互質！</div>
+                <div style="display:flex; justify-content:space-around; align-items:center; flex-wrap:wrap; gap:16px;">
+                  <div style="background:#fff1f2; border:2px solid #f43f5e; padding:12px 18px; border-radius:12px; text-align:center;">
+                    <div style="font-weight:800; font-size:1.2rem; color:#e11d48;">數字 4</div>
+                    <div style="font-size:0.85rem; color:#be123c; font-weight:700;">（4 = 2²，是合數！）</div>
+                    <div style="margin-top:6px; font-weight:700;">因數：1, 2, 4</div>
+                  </div>
+                  <div style="font-size:2rem; font-weight:900; color:#0284c7;">∩</div>
+                  <div style="background:#eff6ff; border:2px solid #3b82f6; padding:12px 18px; border-radius:12px; text-align:center;">
+                    <div style="font-weight:800; font-size:1.2rem; color:#1d4ed8;">數字 9</div>
+                    <div style="font-size:0.85rem; color:#1e40af; font-weight:700;">（9 = 3²，是合數！）</div>
+                    <div style="margin-top:6px; font-weight:700;">因數：1, 3, 9</div>
+                  </div>
+                  <div style="font-size:2rem; font-weight:900; color:#16a34a;">=</div>
+                  <div style="background:#ecfdf5; border:2px solid #10b981; padding:12px 18px; border-radius:12px; text-align:center;">
+                    <div style="font-weight:800; font-size:1.2rem; color:#059669;">公因數只有 { 1 }</div>
+                    <div style="font-size:0.85rem; color:#047857; font-weight:700;">最大公因數 (4, 9) = 1</div>
+                    <div style="margin-top:6px; font-weight:800; color:#15803d;">🎉 彼此互質！</div>
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '來看這個全台灣國一生最常錯的經典反例：4 是合數，9 也是合數，但 4 的因數只有 1、2、4，9 的因數只有 1、3、9，他們共同的因數只有 1，所以 (4, 9) = 1，兩個合數照樣互質！'
+          },
+          {
+            badge: '🧮 步驟 3：邏輯真偽逐條審查',
+            html: `
+              <div class="rule-box">
+                <ul>
+                  <li>(A) 錯誤！反例：4 與 9 互質，但兩者都不是質數。</li>
+                  <li>(B) 錯誤！4 與 9 的最大公因數就是 1，即 (4, 9) = 1。</li>
+                  <li>(C) <strong>正確！相異質數因數只有 1 與自身，故必互質；但互質兩數不一定是質數（如 4 與 9）！</strong> ✅</li>
+                  <li>(D) 錯誤！反例：(4, 6, 31) = 1 三數互質，但 (4, 6) = 2，任兩數不一定互質！</li>
+                </ul>
+              </div>
+            `,
+            speech: '第三步邏輯審查：兩個相異質數因為只有自己跟 1 兩個因數，所以一定互質；但互質的兩數不一定要是質數，4 跟 9 就是最好的鐵證！所以 (C) 完全正確！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑與考點歸納',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 會考選擇題陷阱手冊：</div>
+                <p>1. 看到「互質的兩數一定是質數」👉 <strong>錯！</strong>（請搬出 4 與 9 痛擊）</p>
+                <p>2. 看到「兩個相異質數一定互質」👉 <strong>對！</strong>（例如 3 與 5，公因數只有 1）</p>
+                <p>3. 看到「相鄰的兩個正整數必定互質」👉 <strong>對！</strong>（如 (6, 7) = 1、(100, 101) = 1）</p>
+              </div>
+            `,
+            speech: '避坑總整理：口訣請記好「相異質數必互質，互質不一定皆質數；連續整數必互質，合數互質找四九」！記住這四句話，互質考題保證全對！'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: '利用短除法與標準分解式求 (180, 135) 的最大公因數',
+        source: '2-2 主題 1 求最大公因數雙向方法',
+        options: [
+          '(A) 3² × 5 = 45',
+          '(B) 2² × 3³ × 5 = 540',
+          '(C) 3 × 5 = 15',
+          '(D) 2² × 3² × 5 = 180'
+        ],
+        ans: 0,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 兩大主流解法法則：</div>
+                <p>1. <strong>短除法法則</strong>：持續除以兩數的共同質因數，直到最後兩數「互質」，將「左側所有除數相乘」即為最大公因數！</p>
+                <p>2. <strong>標準分解式法則</strong>：<strong>「先找出共同的質因數，再取最小的次方」</strong>！</p>
+              </div>
+            `,
+            speech: '求最大公因數有兩大絕招：短除法跟標準分解式！標準分解式的核心口訣超級重要：「先找出共同質因數，再取最小次方」！'
+          },
+          {
+            badge: '📊 步驟 2：短除法階梯與標準分解式對照',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; text-align:left;">
+                  <div style="background:#f8fafc; padding:14px; border-radius:12px; border:2px solid #bae6fd;">
+                    <div style="font-weight:800; color:#0369a1; margin-bottom:8px;">🪜 短除法階梯演算：</div>
+                    <div style="font-family:monospace; font-size:1.15rem; line-height:1.6; background:#ffffff; padding:10px; border-radius:8px;">
+                      <span style="color:#e11d48; font-weight:800;">3</span> | 180 &nbsp; 135<br>
+                      &nbsp; ───────<br>
+                      <span style="color:#e11d48; font-weight:800;">3</span> | &nbsp;60 &nbsp; &nbsp;45<br>
+                      &nbsp; ───────<br>
+                      <span style="color:#e11d48; font-weight:800;">5</span> | &nbsp;20 &nbsp; &nbsp;15<br>
+                      &nbsp; ───────<br>
+                      &nbsp; &nbsp; &nbsp; 4 &nbsp; &nbsp; 3 &nbsp;👉 (4, 3)=1 互質停止！
+                    </div>
+                    <div style="margin-top:8px; font-weight:700; color:#0369a1;">
+                      左側除數相乘：3 × 3 × 5 = 3² × 5 = <strong>45</strong>
+                    </div>
+                  </div>
+                  <div style="background:#f8fafc; padding:14px; border-radius:12px; border:2px solid #fed7aa;">
+                    <div style="font-weight:800; color:#c2410c; margin-bottom:8px;">🔬 標準分解式對決：</div>
+                    <div style="font-family:monospace; font-size:1.05rem; line-height:1.8; background:#ffffff; padding:10px; border-radius:8px;">
+                      180 = 2² × <span style="background:#fef08a; padding:2px 4px; border-radius:4px;">3²</span> × <span style="background:#bbf7d0; padding:2px 4px; border-radius:4px;">5¹</span><br>
+                      135 = &nbsp; &nbsp; &nbsp;<span style="background:#fef08a; padding:2px 4px; border-radius:4px;">3³</span> × <span style="background:#bbf7d0; padding:2px 4px; border-radius:4px;">5¹</span>
+                    </div>
+                    <div style="margin-top:8px; font-size:0.9rem; line-height:1.5;">
+                      • 質因數 2：135 沒有，非共同不取！<br>
+                      • 質因數 3：共同質因數，取最小次方 <strong>3²</strong><br>
+                      • 質因數 5：共同質因數，取最小次方 <strong>5¹</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '來看短除法：180 跟 135 一起除以 3 得 60 和 45，再除以 3 得 20 和 15，再除以 5 得 4 和 3。4 跟 3 互質了停筆！把左邊的 3 乘 3 乘 5 乘起來就是 45！右邊用標準分解式也是一樣，共同質因數 3 跟 5 取最小次方 3 平方乘 5，算出來也是 45！'
+          },
+          {
+            badge: '🧮 步驟 3：算式結果歸納',
+            html: `
+              <div class="rule-box">
+                <p>由此兩種方法一致得出：</p>
+                <p style="font-size:1.25rem; font-weight:900; color:#0369a1; text-align:center; margin:12px 0;">
+                  (180, 135) = 3² × 5 = 45
+                </p>
+                <p>對照選項：(A) 3² × 5 = 45 完全正確！</p>
+                <p>注意：(B) 2² × 3³ × 5 = 540 為最小公倍數 [180, 135]，切勿選錯！</p>
+              </div>
+            `,
+            speech: '第三步核對選項：(A) 答案 3 平方乘 5 等於 45 完全命中！注意看 (B) 選項，那是最小公倍數，很多粗心的同學會看錯選到 (B) 去，千萬要張大眼睛看清楚！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑與口訣密碼',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 標準分解式大反轉陷阱：</div>
+                <p>求<strong>「最大」</strong>公因數 ➔ 找<strong>「共同」</strong>質因數 ➔ 取<strong>「最小」</strong>次方！</p>
+                <p>因為要「能夠整除所有人」，所以絕對不能包含別人沒有的質因數（如 2²），而且次方只能遷就次方最小的那一位！</p>
+              </div>
+            `,
+            speech: '名師提醒：為什麼求最大公因數反而要取最小次方？因為要大家都除得盡嘛！135 又沒有 2，如果你把 2 放進去，135 怎麼除得盡呢？所以只能拿大家都有的最小次方，這就是除法的真理！'
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: '長 180 公分、寬 135 公分的長方形紙張，切割成大小相同的最大正方形，邊長與個數為何？',
+        source: '2-2 主題 3 應用問題：正方形的切割與幾何',
+        options: [
+          '(A) 正方形邊長 45 公分，共切成 12 個',
+          '(B) 正方形邊長 45 公分，共切成 7 個',
+          '(C) 正方形邊長 15 公分，共切成 108 個',
+          '(D) 正方形邊長 90 公分，共切成 3 個'
+        ],
+        ans: 0,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 幾何切割問題核心模型：</div>
+                <p>1. <strong>切割成正方形</strong>：正方形四邊等長，要將長方形長與寬完全切盡且無剩餘，則正方形邊長必須同時整除長（180）與寬（135） 👉 <strong>邊長必定是長與寬的「公因數」</strong>！</p>
+                <p>2. <strong>最大正方形</strong>：題目要求切割成「最大」的正方形 👉 <strong>邊長就是長與寬的「最大公因數」</strong>！</p>
+                <p>3. <strong>最少正方形個數</strong>：邊長最大時，切出來的正方形個數就會最少！</p>
+              </div>
+            `,
+            speech: '幾何應用題登場！要把一張大長方形切成好多個一樣大的正方形，正方形的邊長一定要能整除長跟寬，所以一定是公因數；題目要切成「最大的正方形」，邊長當然就是最大公因數啦！'
+          },
+          {
+            badge: '📊 步驟 2：長方形切割動態幾何網格圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">📐 180 × 135 切割 45 × 45 正方形陣列</div>
+                <div style="display:inline-block; border:3px solid #0284c7; background:#bae6fd; border-radius:8px; padding:4px;">
+                  <div style="display:grid; grid-template-columns:repeat(4, 55px); grid-template-rows:repeat(3, 55px); gap:4px;">
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">1</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">2</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">3</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">4</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">5</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">6</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">7</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">8</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">9</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">10</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">11</div>
+                    <div style="background:#ffffff; border:1px dashed #0284c7; border-radius:4px; display:flex; align-items:center; justify-content:center; font-weight:800; color:#0369a1;">12</div>
+                  </div>
+                </div>
+                <div style="margin-top:10px; font-weight:700; color:#0369a1;">
+                  長邊 180 ÷ 45 = <strong>4 段</strong> ｜ 寬邊 135 ÷ 45 = <strong>3 段</strong> ➔ 總個數 = 4 × 3 = <strong>12 個</strong>
+                </div>
+              </div>
+            `,
+            speech: '看這張幾何剖切圖：180 除以 45 等於 4 段，135 除以 45 等於 3 段。橫的切 4 排、直的切 3 列，整張紙就像棋盤一樣，總共切出了 4 乘 3 等於 12 個大正方形！'
+          },
+          {
+            badge: '🧮 步驟 3：算式步驟逐一驗算',
+            html: `
+              <div class="rule-box">
+                <p>1. 求正方形最大邊長：(180, 135) = 45（公分）</p>
+                <p>2. 求可切成的個數：</p>
+                <p style="padding-left:16px;">長邊可切：180 ÷ 45 = 4（個）</p>
+                <p style="padding-left:16px;">寬邊可切：135 ÷ 45 = 3（個）</p>
+                <p style="padding-left:16px;"><strong>總個數 = 4 × 3 = 12（個）</strong></p>
+                <p>3. 面積驗算法：(180 × 135) ÷ (45 × 45) = 24300 ÷ 2025 = 12（個），驗算完全正確！</p>
+              </div>
+            `,
+            speech: '第三步算式驗算：邊長是 45 公分，長邊分 4 個、寬邊分 3 個，總個數用乘法 4 乘 3 等於 12 個！也可以用大面積除以小正方形面積 2025，同樣等於 12 個，萬無一失！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：是 4×3 不是 4+3！',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 全國段考最痛失分陷阱：</div>
+                <p>很多同學算出 4 與 3 之後，順手寫成 <strong>4 + 3 = 7 個</strong>，直接落入 (B) 的死穴陷阱！</p>
+                <p>請記住：二維平面的切割是<strong>「行數 × 列數」的矩陣相乘</strong>，絕對不是相加！</p>
+              </div>
+            `,
+            speech: '名師避坑提醒：這題選項 (B) 故意放 7 個，就是等著抓那些算出 4 跟 3 卻順手相加的同學！它是二維平面陣列，一定要相乘 4 乘 3 等於 12，選 (A) 才是真學霸！'
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: '當兩正整數存在倍數關係時，求最大公因數的極速判定法',
+        source: '2-2 主題 1 註記：因倍數特例關係',
+        options: [
+          '(A) (3, 18) = 18，當兩數有倍數關係時，較大的數就是最大公因數',
+          '(B) (3, 18) = 3，當兩數有倍數關係時，較小的數就是最大公因數',
+          '(C) (3, 18) = 54，最大公因數永遠等於兩數乘積',
+          '(D) (3, 18) = 1，任何兩數的最大公因數都必定為 1'
+        ],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 課本註記之因倍數特例定理：</div>
+                <p>課本第 2-2 節主題 1 明確註記：<strong>「當兩個整數之間存在因數與倍數關係時，則較小的數就是這兩個數的最大公因數！」</strong></p>
+                <p>以 3 與 18 為例：因為 18 = 3 × 6，18 是 3 的倍數，3 是 18 的因數。</p>
+              </div>
+            `,
+            speech: '課本裡面有一句超精華的註記：當兩個整數本身就有因倍數關係時，根本連短除法都不用寫，那個比較小的數就是他們的最大公因數！'
+          },
+          {
+            badge: '📊 步驟 2：包含關係圖解演繹',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#0369a1; margin-bottom:12px; font-size:1.1rem;">🍩 數的包含關係圖解</div>
+                <div style="background:#eff6ff; border:2px solid #3b82f6; border-radius:12px; padding:16px; max-width:420px; margin:0 auto;">
+                  <div style="font-weight:800; color:#1d4ed8; margin-bottom:8px;">18 的所有因數集合：</div>
+                  <div style="margin-bottom:8px;">{ 1, 2, <strong>3</strong>, 6, 9, 18 }</div>
+                  <div style="background:#dbeafe; border:2px dashed #2563eb; border-radius:8px; padding:8px; margin-top:8px;">
+                    <div style="font-weight:800; color:#1e40af;">3 的所有因數集合：</div>
+                    <div>{ 1, <strong>3</strong> }</div>
+                    <div style="font-size:0.85rem; color:#1e3a8a; margin-top:4px; font-weight:700;">👉 3 的因數完全被 18 包含！</div>
+                  </div>
+                </div>
+                <div style="margin-top:12px; font-weight:800; color:#16a34a;">
+                  共同因數就是 3 的因數 {1, 3}，最大者正是 3 本身！
+                </div>
+              </div>
+            `,
+            speech: '看到這個包含圖：18 的因數有 1、2、3、6、9、18；而 3 的因數只有 1 跟 3，全部都在 18 的肚子裡面！所以他們最大的共同因數，當然就是 3 本身啦！'
+          },
+          {
+            badge: '🧮 步驟 3：算式推導與選項判定',
+            html: `
+              <div class="rule-box">
+                <p>短除法秒驗算：</p>
+                <div style="font-family:monospace; font-size:1.1rem; padding-left:20px;">
+                  3 | 3 &nbsp; 18<br>
+                  ───<br>
+                  &nbsp; &nbsp; 1 &nbsp; &nbsp;6 &nbsp;👉 (1, 6) = 1 互質！
+                </div>
+                <p style="margin-top:10px;">左側除數只有 3，故 (3, 18) = 3。</p>
+                <p>對照選項：只有 (B) 正確指出「較小的數就是最大公因數」！</p>
+              </div>
+            `,
+            speech: '第三步算式驗算：短除法除以 3，底下直接剩下 1 跟 6 互質，最大公因數就是 3！所以選項 (B) 說「較小的數就是最大公因數」，完全正確！'
+          },
+          {
+            badge: '💡 步驟 4：名師秒殺秘笈：倍數一秒雙殺！',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚡ 會考考場秒殺雙寶：</div>
+                <p>若 a 是 b 的倍數（a > b）：</p>
+                <p>1. <strong>最大公因數 (a, b) = b</strong>（較小數！）</p>
+                <p>2. <strong>最小公倍數 [a, b] = a</strong>（較大數！）</p>
+                <p>例如：(25, 100) = 25，[25, 100] = 100；(7, 49) = 7，[7, 49] = 49。考場看到直接秒填答案！</p>
+              </div>
+            `,
+            speech: '名師秒殺口訣請收下：「大整除小不用算，小是公因大公倍」！像是 100 跟 25，最大公因數直接寫 25，最小公倍數直接寫 100，零秒出手，這就是實力！'
+          }
+        ]
+      }
+    ];
+
+
+ 
+
+    const DIAGRAM_QUESTIONS_LCM = [
+      {
+        id: 1,
+        title: '找出 12 與 18 的公倍數與最小公倍數 [12, 18]',
+        source: '2-2 主題 2 重點例題',
+        options: [
+          '(A) 公倍數只有 36、72 兩個，最小公倍數為 36',
+          '(B) 公倍數有無限多個，最小公倍數為 36，所有公倍數皆為 36 的倍數',
+          '(C) 最小公倍數是 72，所有公倍數皆為 72 的倍數',
+          '(D) [12, 18] 表示最大公因數，數值為 6'
+        ],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 公倍數核心定義：</div>
+                <p>1. <strong>公倍數</strong>：對於兩個或兩個以上的正整數，它們「共同的倍數」稱為公倍數（未特別指明時，倍數指正倍數）。</p>
+                <p>2. <strong>最小公倍數</strong>：所有公倍數中數值「最小」的數，以中括號 <strong>[a, b]</strong> 表示！</p>
+                <p>3. 正整數的倍數可以一直乘下去，有無窮多個，所以<strong>沒有「最大公倍數」</strong>，只能求「最小公倍數」！</p>
+              </div>
+            `,
+            speech: '歡迎來到最小公倍數展館！我是解說員小玟～這題要找 12 跟 18 的公倍數。大家要記得，倍數是無窮無盡的，所以數學上不可能有最大公倍數，我們只能找最小公倍數，符號是用中括號括起來喔！'
+          },
+          {
+            badge: '📊 步驟 2：數線倍數雷達波首次交會圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#c2410c; margin-bottom:12px; font-size:1.1rem;">📡 12 與 18 倍數雷達波首次交會檢驗</div>
+                <div style="text-align:left; background:#fff7ed; padding:12px 16px; border-radius:12px; border:1px solid #fed7aa; margin-bottom:12px;">
+                  <div style="font-weight:700; color:#9a3412; margin-bottom:6px;">🔹 12 的倍數步進：</div>
+                  <div style="display:flex; gap:6px; flex-wrap:wrap; font-size:0.95rem;">
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">12</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">24</span>
+                    <span style="background:#fed7aa; color:#c2410c; padding:3px 10px; border-radius:6px; font-weight:800; border:2px solid #ea580c;">⭐ 36</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">48</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">60</span>
+                    <span style="background:#fed7aa; color:#c2410c; padding:3px 10px; border-radius:6px; font-weight:800; border:2px solid #ea580c;">⭐ 72</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">84</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">96</span>
+                    <span style="background:#fed7aa; color:#c2410c; padding:3px 10px; border-radius:6px; font-weight:800; border:2px solid #ea580c;">⭐ 108</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">...</span>
+                  </div>
+                </div>
+                <div style="text-align:left; background:#fff7ed; padding:12px 16px; border-radius:12px; border:1px solid #fed7aa;">
+                  <div style="font-weight:700; color:#9a3412; margin-bottom:6px;">🔹 18 的倍數步進：</div>
+                  <div style="display:flex; gap:6px; flex-wrap:wrap; font-size:0.95rem;">
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">18</span>
+                    <span style="background:#fed7aa; color:#c2410c; padding:3px 10px; border-radius:6px; font-weight:800; border:2px solid #ea580c;">⭐ 36</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">54</span>
+                    <span style="background:#fed7aa; color:#c2410c; padding:3px 10px; border-radius:6px; font-weight:800; border:2px solid #ea580c;">⭐ 72</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">90</span>
+                    <span style="background:#fed7aa; color:#c2410c; padding:3px 10px; border-radius:6px; font-weight:800; border:2px solid #ea580c;">⭐ 108</span>
+                    <span style="background:#ffedd5; padding:3px 8px; border-radius:6px;">...</span>
+                  </div>
+                </div>
+                <div style="margin-top:14px; font-weight:800; color:#ea580c; font-size:1.05rem;">
+                  👉 共同倍數為 36, 72, 108, 144...；其中最小者為 <strong>[12, 18] = 36</strong>！
+                </div>
+              </div>
+            `,
+            speech: '來看倍數雷達圖：12 一步步跳 12、24、36；18 一步步跳 18、36。兩道波第一次撞在一起的地方是 36！這就是最小公倍數！後面撞在一起的 72 跟 108，通通都是 36 的倍數！'
+          },
+          {
+            badge: '🧮 步驟 3：算式歸納與選項辨析',
+            html: `
+              <div class="rule-box">
+                <p><strong>重要概念：所有的公倍數皆為最小公倍數的倍數！</strong></p>
+                <p>公倍數數列 = { 36×1, 36×2, 36×3, 36×4 ... } = { 36, 72, 108, 144 ... }</p>
+                <p>檢驗選項：(B) 敘述精準無誤，公倍數有無限多個且都是 36 的倍數，選 (B)！</p>
+              </div>
+            `,
+            speech: '第三步算式歸納：因為 36 是最小公倍數，之後所有的公倍數都會是 36 的整數倍。選項 (A) 說只有兩個太荒謬了，選項 (C) 的 72 不是最小的，選項 (D) 符號寫反了。所以選 (B) 滿分！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑與符號記憶法',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 括號符號會考切勿搞混：</div>
+                <p>• <strong>( a, b ) 小括號</strong> ➔ 最大公因數（字數多，括號小）</p>
+                <p>• <strong>[ a, b ] 中括號</strong> ➔ 最小公倍數（字數少，括號方正大）</p>
+                <p>例：(12, 18) = 6；[12, 18] = 36。考試若看錯括號，整題直接歸零！</p>
+              </div>
+            `,
+            speech: '名師避坑提醒：小括號是最大公因數，中括號是最小公倍數！記住中括號看起來方方正正像積木一樣可以一直往上堆倍數，所以中括號是最小公倍數，千萬不要看錯符號囉！'
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: '利用短除法與標準分解式求 [36, 84] 的最小公倍數',
+        source: '2-2 主題 2 兩數的最小公倍數例題',
+        options: [
+          '(A) 2² × 3 = 12',
+          '(B) 2² × 3² × 7 = 252',
+          '(C) 2⁴ × 3³ × 7 = 3024',
+          '(D) 2² × 3² = 36'
+        ],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 求兩數最小公倍數兩大黃金口訣：</div>
+                <p>1. <strong>短除法</strong>：除以兩數共同公因數直到兩數互質，將<strong>「左側除數」與「底層商數」全數相乘（呈 L 型）</strong>！</p>
+                <p>2. <strong>標準分解式</strong>：<strong>「先找出全部的質因數，再取最大的次方」</strong>！</p>
+              </div>
+            `,
+            speech: '求最小公倍數跟最大公因數剛好相反！標準分解式的口訣一定要刻在腦袋裡：「先找出全部的質因數，再取最大的次方」！'
+          },
+          {
+            badge: '📊 步驟 2：L型短除法與次方天秤對決圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; text-align:left;">
+                  <div style="background:#f8fafc; padding:14px; border-radius:12px; border:2px solid #fdba74;">
+                    <div style="font-weight:800; color:#ea580c; margin-bottom:8px;">🪜 L 型短除法演算：</div>
+                    <div style="font-family:monospace; font-size:1.15rem; line-height:1.6; background:#ffffff; padding:10px; border-radius:8px;">
+                      <span style="color:#ea580c; font-weight:800;">2</span> | 36 &nbsp; 84<br>
+                      &nbsp; ───────<br>
+                      <span style="color:#ea580c; font-weight:800;">2</span> | 18 &nbsp; 42<br>
+                      &nbsp; ───────<br>
+                      <span style="color:#ea580c; font-weight:800;">3</span> | &nbsp;9 &nbsp; 21<br>
+                      &nbsp; ───────<br>
+                      &nbsp; &nbsp; <span style="color:#2563eb; font-weight:800;">3</span> &nbsp; &nbsp;<span style="color:#2563eb; font-weight:800;">7</span> &nbsp;👉 (3, 7)=1 互質！
+                    </div>
+                    <div style="margin-top:8px; font-weight:700; color:#ea580c;">
+                      L 型相乘：2 × 2 × 3 × 3 × 7 = <strong>2² × 3² × 7 = 252</strong>
+                    </div>
+                  </div>
+                  <div style="background:#f8fafc; padding:14px; border-radius:12px; border:2px solid #cbd5e1;">
+                    <div style="font-weight:800; color:#334155; margin-bottom:8px;">🔬 標準分解式取最大次方：</div>
+                    <div style="font-family:monospace; font-size:1.05rem; line-height:1.8; background:#ffffff; padding:10px; border-radius:8px;">
+                      36 = <span style="background:#fed7aa; padding:2px 4px; border-radius:4px;">2²</span> × <span style="background:#fef08a; padding:2px 4px; border-radius:4px;">3²</span><br>
+                      84 = <span style="background:#fed7aa; padding:2px 4px; border-radius:4px;">2²</span> × 3¹ × <span style="background:#bbf7d0; padding:2px 4px; border-radius:4px;">7¹</span>
+                    </div>
+                    <div style="margin-top:8px; font-size:0.9rem; line-height:1.5;">
+                      • 全部質因數包含：<strong>2, 3, 7</strong>（通通要！）<br>
+                      • 質因數 2：最大次方取 <strong>2²</strong><br>
+                      • 質因數 3：最大次方取 <strong>3²</strong><br>
+                      • 質因數 7：最大次方取 <strong>7¹</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '看短除法：36 跟 84 除以 2 得 18 和 42，再除以 2 得 9 和 21，再除以 3 得 3 和 7。3 跟 7 互質停筆！注意是 L 型全部連乘，2 乘 2 乘 3 乘 3 乘 7 等於 252！右邊標準分解式找全部質因數 2、3、7 的最大次方，也是 2 平方乘 3 平方乘 7 等於 252！'
+          },
+          {
+            badge: '🧮 步驟 3：算式結果歸納',
+            html: `
+              <div class="rule-box">
+                <p>兩方法均驗證得到：</p>
+                <p style="font-size:1.25rem; font-weight:900; color:#ea580c; text-align:center; margin:12px 0;">
+                  [36, 84] = 2² × 3² × 7 = 252
+                </p>
+                <p>對照選項：(B) 2² × 3² × 7 = 252 命中！</p>
+                <p>注意：(A) 2² × 3 = 12 是最大公因數 (36, 84)，不要選成公因數喔！</p>
+              </div>
+            `,
+            speech: '第三步對照選項：(B) 選項 2 平方乘 3 平方乘 7 等於 252，正解無誤！(A) 選項是最大公因數 12，題目問的是最小公倍數，選 (B)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑大口訣',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">🥊 最大公因數 VS 最小公倍數 對照表：</div>
+                <table style="width:100%; border-collapse:collapse; margin-top:8px; font-size:0.95rem;">
+                  <tr style="background:#f1f5f9; font-weight:800;">
+                    <th style="padding:6px; border:1px solid #cbd5e1;">類別</th>
+                    <th style="padding:6px; border:1px solid #cbd5e1;">標準分解式法則</th>
+                    <th style="padding:6px; border:1px solid #cbd5e1;">短除法取法</th>
+                  </tr>
+                  <tr>
+                    <td style="padding:6px; border:1px solid #cbd5e1; font-weight:700; color:#0284c7;">最大公因數 ( )</td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">取<strong>共同</strong>質因數、<strong>最小</strong>次方</td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">只乘<strong>左側</strong>除數（I 型）</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:6px; border:1px solid #cbd5e1; font-weight:700; color:#ea580c;">最小公倍數 [ ]</td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">取<strong>全部</strong>質因數、<strong>最大</strong>次方</td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">連底層商數<strong>全部乘</strong>（L 型）</td>
+                  </tr>
+                </table>
+              </div>
+            `,
+            speech: '名師表格請截圖記住：最大公因數看共同取小次方、只乘左邊 I 型；最小公倍數看全部取大次方、連底相乘 L 型！清清楚楚，絕不混淆！'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: '利用短除法求三數 15、18、30 的最小公倍數 [15, 18, 30]',
+        source: '2-2 主題 2 三數的最小公倍數關鍵步驟',
+        options: [
+          '(A) 先除三數公因數 3，再除任兩數公因數，除不盡者照抄，結果為 2 × 3² × 5 = 90',
+          '(B) 只能除三數的共同公因數 3，結果為 3 × 5 × 6 × 10 = 900',
+          '(C) 任意兩數不能再除，最小公倍數等於最大公因數 3',
+          '(D) 直接三數相乘 15 × 18 × 30 = 8100'
+        ],
+        ans: 0,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 三個數求最小公倍數的短除法鐵律：</div>
+                <p>1. <strong>第一階段</strong>：先除以「三個數」的公因數。</p>
+                <p>2. <strong>第二階段（最關鍵！）</strong>：再除以「任意兩個數」的公因數，<strong>除不盡的數字必須「照抄移下來」</strong>！</p>
+                <p>3. 一路除到最後底層的所有數字<strong>「兩兩互質」</strong>才能停止！</p>
+              </div>
+            `,
+            speech: '這題是國中數學全台失分率最高的大魔王題！三個數求最小公倍數，除完三個數的公因數之後，只要其中任意兩個數還有公因數，就必須繼續除，除不盡的數字乖乖抄下來！'
+          },
+          {
+            badge: '📊 步驟 2：三階短除法分步圖解演繹',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#c2410c; margin-bottom:12px; font-size:1.1rem;">🪜 15、18、30 短除法三階完整演練</div>
+                <div style="font-family:monospace; font-size:1.15rem; line-height:1.7; background:#ffffff; padding:12px; border-radius:10px; border:2px solid #fdba74; max-width:440px; margin:0 auto; text-align:left;">
+                  <span style="color:#ea580c; font-weight:800;">3</span> | 15 &nbsp; 18 &nbsp; 30 &nbsp;👉 第1步：三數同除以 3<br>
+                  &nbsp; ───────────<br>
+                  <span style="color:#2563eb; font-weight:800;">2</span> | &nbsp;5 &nbsp; &nbsp;6 &nbsp; 10 &nbsp;👉 第2步：6與10除以2，<span style="background:#fee2e2; color:#b91c1c; padding:1px 4px; border-radius:4px;">5照抄！</span><br>
+                  &nbsp; ───────────<br>
+                  <span style="color:#16a34a; font-weight:800;">5</span> | &nbsp;5 &nbsp; &nbsp;3 &nbsp; &nbsp;5 &nbsp;👉 第3步：5與5除以5，<span style="background:#fee2e2; color:#b91c1c; padding:1px 4px; border-radius:4px;">3照抄！</span><br>
+                  &nbsp; ───────────<br>
+                  &nbsp; &nbsp; &nbsp;<span style="color:#7c3aed; font-weight:800;">1 &nbsp; &nbsp;3 &nbsp; &nbsp;1</span> &nbsp;👉 底層 1, 3, 1 兩兩互質，大功告成！
+                </div>
+                <div style="margin-top:12px; font-weight:800; color:#ea580c;">
+                  L 型連乘 = 3 × 2 × 5 × 1 × 3 × 1 = <strong>2 × 3² × 5 = 90</strong>！
+                </div>
+              </div>
+            `,
+            speech: '看清楚每一步：第一步除以 3 得 5、6、10；第二步注意！6 跟 10 都是偶數，除以 2 得到 3 和 5，除不盡的 5 直接照抄移下來！第三步 5 跟 5 再除以 5，3 照抄移下來！最後底層是 1、3、1 兩兩互質，全部 L 型乘起來等於 90！'
+          },
+          {
+            badge: '🧮 步驟 3：標準分解式雙向驗算',
+            html: `
+              <div class="rule-box">
+                <p>用標準分解式核對：</p>
+                <div style="font-family:monospace; font-size:1.05rem; padding-left:16px;">
+                  15 = 3 × 5<br>
+                  18 = 2 × 3²<br>
+                  30 = 2 × 3 × 5
+                </div>
+                <p style="margin-top:8px;">全部質因數為 2, 3, 5；最大次方分別為 2¹, 3², 5¹。</p>
+                <p style="font-size:1.15rem; font-weight:800; color:#ea580c; margin-top:6px;">
+                  [15, 18, 30] = 2 × 3² × 5 = 90
+                </p>
+                <p>兩方法完全吻合！正解為 (A)！</p>
+              </div>
+            `,
+            speech: '第三步我們用標準分解式檢查：15 是 3 乘 5，18 是 2 乘 3 平方，30 是 2 乘 3 乘 5。挑全部質因數 2、3、5 的最大次方，也是 2 乘 3 平方乘 5 等於 90！完全正確，選 (A)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：停在第一步直接扣 10 分！',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚠️ 90% 同學曾踩過的深坑：</div>
+                <p>許多同學第一步除完 3 得到 5、6、10，發現「三個數沒有共同因數了」，就誤以為算完了！</p>
+                <p>如果此時乘起來：3 × 5 × 6 × 10 = 900 ➔ <strong>直接選 (B) 零分！</strong></p>
+                <p>請牢記：求<strong>「最大公因數」</strong>才是三個數沒有公因數就停止（此時 (15, 18, 30) = 3）；但求<strong>「最小公倍數」</strong>必須除到「任兩個數都互質」為止！</p>
+              </div>
+            `,
+            speech: '會考避坑警告：選項 (B) 算出 900，那是全台灣每年段考都有無數人掉進去的死亡陷阱！如果只除三數公因數就停筆乘起來，算出來的是錯的！求最小公倍數一定要除到任兩數互質，這題選 (A)！'
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: '兩正整數乘積定理：若 a = 3 × 5² × 7，b = 2 × 3² × 5，則 (a, b) × [a, b] 等於何者？',
+        source: '2-2 主題 2 最大公因數與最小公倍數的乘積',
+        options: [
+          '(A) a + b',
+          '(B) a × b，即 2 × 3³ × 5³ × 7',
+          '(C) (a × b) ÷ 2',
+          '(D) a² × b²'
+        ],
+        ans: 1,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 兩正整數乘積核心定理：</div>
+                <p>課本第 2-2 節主題 2 核心公式：<strong>任意兩正整數的最大公因數與最小公倍數的乘積等於兩數的乘積！</strong></p>
+                <p style="font-size:1.25rem; font-weight:900; color:#ea580c; text-align:center; margin:10px 0;">
+                  ( a, b ) × [ a, b ] = a × b
+                </p>
+              </div>
+            `,
+            speech: '接下來是數學史上最優雅的公式之一！任意兩個正整數，他們的最大公因數乘以最小公倍數，結果百分之百等於這兩個數字自己的乘積，也就是小括號乘中括號等於 a 乘 b！'
+          },
+          {
+            badge: '📊 步驟 2：質因數次方拼圖圖解演繹',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#ea580c; margin-bottom:12px; font-size:1.1rem;">🧩 次方加總天秤演繹：min + max = 總次方</div>
+                <div style="text-align:left; background:#f8fafc; padding:12px; border-radius:10px; font-family:monospace; line-height:1.7;">
+                  a = 2⁰ × 3¹ × 5² × 7¹<br>
+                  b = 2¹ × 3² × 5¹ × 7⁰<br>
+                  ──────────────────────<br>
+                  (a, b) = 取最小次方 = 2⁰ × 3¹ × 5¹ × 7⁰<br>
+                  [a, b] = 取最大次方 = 2¹ × 3² × 5² × 7¹<br>
+                  ──────────────────────<br>
+                  <strong>(a,b) × [a,b] 次方相加：</strong><br>
+                  • 2 的次方：0 + 1 = <strong>1</strong><br>
+                  • 3 的次方：1 + 2 = <strong>3</strong><br>
+                  • 5 的次方：2 + 1 = <strong>3</strong><br>
+                  • 7 的次方：1 + 0 = <strong>1</strong>
+                </div>
+                <div style="margin-top:10px; font-weight:800; color:#16a34a;">
+                  相乘結果 = 2¹ × 3³ × 5³ × 7¹ ➔ 恰好等於 a × b！
+                </div>
+              </div>
+            `,
+            speech: '為什麼這條公式永遠成立？看次方對照：算最大公因數拿小次方，算最小公倍數拿大次方。兩邊一乘，指數相加，小次方加大家次方剛好就是 a 跟 b 次方的總和！天秤兩端完美平衡！'
+          },
+          {
+            badge: '🧮 步驟 3：算式計算逐一核對',
+            html: `
+              <div class="rule-box">
+                <p>直接計算：</p>
+                <p>(a, b) = 3 × 5</p>
+                <p>[a, b] = 2 × 3² × 5² × 7</p>
+                <p>(a, b) × [a, b] = (3 × 5) × (2 × 3² × 5² × 7) = <strong>2 × 3³ × 5³ × 7 = a × b</strong></p>
+                <p>對照選項：(B) 完全命中定理！</p>
+              </div>
+            `,
+            speech: '第三步算式核對：把 (a,b) 的 3 乘 5，跟 [a,b] 乘起來，整理之後剛好是 2 乘 3 的三次方乘 5 的三次方乘 7，完全等於 a 乘 b！選 (B) 一秒過關！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：未知數題型的救命公式！',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚡ 會考求未知數的逆天捷徑：</div>
+                <p>若題目出：「已知兩數乘積為 720，最大公因數為 6，求最小公倍數為何？」</p>
+                <p>傳統方法：辛苦列式猜數字 ➔ 超級浪費時間！</p>
+                <p>名師公式法：直接代入 <strong>[a, b] = (a × b) ÷ (a, b)</strong> = 720 ÷ 6 = <strong>120</strong>！3 秒鐘秒解！</p>
+              </div>
+            `,
+            speech: '名師補充這條公式的真正威力：當考試說兩數乘積是 720、最大公因數是 6，問最小公倍數是多少？千萬不要去猜那兩個數字！直接把 720 除以 6，3 秒鐘算出 120，這就是公式的強大！'
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: '任意三個正整數的最大公因數與最小公倍數乘積，是否等於三數的乘積？',
+        source: '2-2 補充重點 2：三數乘積不一定等於定理',
+        options: [
+          '(A) 一定等於，(a, b, c) × [a, b, c] = a × b × c 永遠成立',
+          '(B) 一定小於，乘積永遠比三數乘積小',
+          '(C) 不一定等於！可能相等，也可能不相等（如 3、5、6 就不相等）',
+          '(D) 一定大於，因為最小公倍數被放大了'
+        ],
+        ans: 2,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 課本補充重點 2 明確宣示：</div>
+                <p><strong>「任意三個正整數的最大公因數與最小公倍數的乘積，『不一定等於』三數的乘積！」</strong></p>
+                <p>許多同學學了兩數公式 (a, b) × [a, b] = a × b，就直接類推「以為三個數也成立」，這是會考最致命的思維盲點！</p>
+              </div>
+            `,
+            speech: '注意！這題是全國會考的殺手級陷阱題！兩數公式 (a,b) 乘 [a,b] 等於 ab，那三個數呢？很多人想都不想就覺得三個數也成立，大錯特錯！課本特別用黑體字註記：三數乘積「不一定等於」！'
+          },
+          {
+            badge: '📊 步驟 2：課本兩組權威案例對照圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#c2410c; margin-bottom:12px; font-size:1.1rem;">⚖️ 課本範例兩組案例嚴格檢驗</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; text-align:left;">
+                  <div style="background:#ecfdf5; border:2px solid #10b981; padding:12px; border-radius:10px;">
+                    <div style="font-weight:800; color:#047857;">案例 1：a=3, b=5, c=7（相等）</div>
+                    <div style="font-size:0.9rem; margin-top:6px; line-height:1.6;">
+                      • (3, 5, 7) = 1<br>
+                      • [3, 5, 7] = 3 × 5 × 7 = 105<br>
+                      • (a,b,c) × [a,b,c] = 1 × 105 = <strong>105</strong><br>
+                      • a × b × c = 3 × 5 × 7 = <strong>105</strong><br>
+                      👉 此時兩者<strong>相等 ✅</strong>！
+                    </div>
+                  </div>
+                  <div style="background:#fff1f2; border:2px solid #f43f5e; padding:12px; border-radius:10px;">
+                    <div style="font-weight:800; color:#be123c;">案例 2：a=3, b=5, c=6（不相等！）</div>
+                    <div style="font-size:0.9rem; margin-top:6px; line-height:1.6;">
+                      • (3, 5, 6) = 1<br>
+                      • [3, 5, 6] = 30<br>
+                      • (a,b,c) × [a,b,c] = 1 × 30 = <strong style="color:#e11d48;">30</strong><br>
+                      • a × b × c = 3 × 5 × 6 = <strong style="color:#e11d48;">90</strong><br>
+                      👉 <strong>30 ≠ 90，兩者不相等 ❌！</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `,
+            speech: '看課本給的兩組案例：第一組 3、5、7，算出來剛好都是 105，相等；可是第二組 3、5、6，最大公因數是 1，最小公倍數是 30，相乘是 30；可是三數乘積是 90！30 根本不等於 90！一個反例就能推翻，所以答案是「不一定等於」！'
+          },
+          {
+            badge: '🧮 步驟 3：邏輯歸納與真假研判',
+            html: `
+              <div class="rule-box">
+                <p>既然存在「相等」的情況（如 3, 5, 7），也存在「不相等」的情況（如 3, 5, 6）：</p>
+                <p>因此在數學邏輯上，只能下結論為<strong>「不一定等於」</strong>！</p>
+                <p>若說「一定等於」或「一定小於」皆屬以偏概全的錯誤命題！正解為 (C)！</p>
+              </div>
+            `,
+            speech: '第三步邏輯歸納：既然有的時候相等、有的時候不相等，數學上的標準說法就是「不一定等於」！千萬不能武斷說一定等於或一定小於，所以選 (C) 完全正確！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：為什麼三數公式會失效？',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">🔬 深入本質：為什麼三數乘積不等於？</div>
+                <p>在兩數中，每個質因數不是分給小括號（min），就是分給中括號（max），兩者加起來剛好是所有質因數。</p>
+                <p>但在三數中，質因數可能在「其中兩數」重複出現（例如 3 和 6 都有因數 3），短除法時被化簡掉了，沒有被算三次！因此<strong>三數的乘積會把公因數多乘了好幾次</strong>，導致 a×b×c 往往遠大於乘積！</p>
+              </div>
+            `,
+            speech: '想知道為什麼會失效嗎？因為 3 跟 6 裡面都有 3，算最小公倍數時只算了一次 3，可是 a 乘 b 乘 c 卻把 3 乘了兩次！所以三個數絕對不能套兩數公式，牢記 3、5、6 這個反例保平安！'
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: '用長 12 公分、寬 18 公分的長方形拼成一個最小的大正方形，邊長與卡片數為何？',
+        source: '2-2 主題 3 應用問題：正方形的拼合與幾何',
+        options: [
+          '(A) 正方形邊長 36 公分，最少需要 6 張卡片',
+          '(B) 正方形邊長 36 公分，最少需要 5 張卡片',
+          '(C) 正方形邊長 72 公分，最少需要 24 張卡片',
+          '(D) 正方形邊長 6 公分，最少需要 6 張卡片'
+        ],
+        ans: 0,
+        steps: [
+          {
+            badge: '🔍 步驟 1：審題關鍵線索拆解',
+            html: `
+              <div class="rule-box important">
+                <div class="rule-title">🎯 幾何拼合問題核心模型：</div>
+                <p>1. <strong>拼成大正方形</strong>：大正方形邊長是由很多張長方形的長（12）與寬（18）拼疊而成，因此正方形邊長必定是長與寬的<strong>「公倍數」</strong>！</p>
+                <p>2. <strong>最小大正方形</strong>：題目要求「最小」的大正方形 ➔ <strong>邊長就是長與寬的「最小公倍數」</strong>！</p>
+                <p>3. <strong>卡片張數計算</strong>：等於「橫排張數 × 縱排張數」，即 (正方形邊長 ÷ 長) × (正方形邊長 ÷ 寬)！</p>
+              </div>
+            `,
+            speech: '幾何拼圖大題登場！這次是要拿小長方形卡片拼成大正方形，因為邊長是拼出來的、越變越大，所以要找公倍數；題目要拼「最小的大正方形」，邊長當然就是最小公倍數囉！'
+          },
+          {
+            badge: '📊 步驟 2：長方形拼合動態幾何網格圖解',
+            html: `
+              <div class="visual-canvas-card">
+                <div style="font-weight:800; color:#ea580c; margin-bottom:12px; font-size:1.1rem;">🧱 12 × 18 卡片拼合 36 × 36 大正方形陣列</div>
+                <div style="display:inline-block; border:3px solid #ea580c; background:#ffedd5; border-radius:8px; padding:4px;">
+                  <div style="display:grid; grid-template-columns:repeat(3, 70px); grid-template-rows:repeat(2, 70px); gap:4px;">
+                    <div style="background:#ffffff; border:1px solid #ea580c; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; color:#c2410c;">
+                      <span>卡片 1</span>
+                      <small style="font-size:0.75rem; color:#64748b;">12×18</small>
+                    </div>
+                    <div style="background:#ffffff; border:1px solid #ea580c; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; color:#c2410c;">
+                      <span>卡片 2</span>
+                      <small style="font-size:0.75rem; color:#64748b;">12×18</small>
+                    </div>
+                    <div style="background:#ffffff; border:1px solid #ea580c; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; color:#c2410c;">
+                      <span>卡片 3</span>
+                      <small style="font-size:0.75rem; color:#64748b;">12×18</small>
+                    </div>
+                    <div style="background:#ffffff; border:1px solid #ea580c; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; color:#c2410c;">
+                      <span>卡片 4</span>
+                      <small style="font-size:0.75rem; color:#64748b;">12×18</small>
+                    </div>
+                    <div style="background:#ffffff; border:1px solid #ea580c; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; color:#c2410c;">
+                      <span>卡片 5</span>
+                      <small style="font-size:0.75rem; color:#64748b;">12×18</small>
+                    </div>
+                    <div style="background:#ffffff; border:1px solid #ea580c; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; color:#c2410c;">
+                      <span>卡片 6</span>
+                      <small style="font-size:0.75rem; color:#64748b;">12×18</small>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-top:10px; font-weight:700; color:#ea580c;">
+                  橫排（長 12 公分）：36 ÷ 12 = <strong>3 張</strong> ｜ 縱排（寬 18 公分）：36 ÷ 18 = <strong>2 張</strong> ➔ 總張數 = 3 × 2 = <strong>6 張</strong>
+                </div>
+              </div>
+            `,
+            speech: '看這張拼磚圖：12 跟 18 的最小公倍數是 36 公分，這就是大正方形的邊長！橫向排 36 除以 12 等於 3 張，縱向排 36 除以 18 等於 2 張，總共排成了 3 乘 2 等於 6 張卡片！'
+          },
+          {
+            badge: '🧮 步驟 3：算式計算與面積雙驗算',
+            html: `
+              <div class="rule-box">
+                <p>1. 求正方形最小邊長：[12, 18] = 36（公分）</p>
+                <p>2. 求最少需要卡片張數：</p>
+                <p style="padding-left:16px;">橫向需要：36 ÷ 12 = 3（張）</p>
+                <p style="padding-left:16px;">縱向需要：36 ÷ 18 = 2（張）</p>
+                <p style="padding-left:16px;"><strong>最少張數 = 3 × 2 = 6（張）</strong></p>
+                <p>3. 面積雙重驗算：大正方形面積 = 36 × 36 = 1296 平方公分；每張卡片面積 = 12 × 18 = 216 平方公分；1296 ÷ 216 = <strong>6 張</strong>，完全相符！故選 (A)！</p>
+              </div>
+            `,
+            speech: '第三步算式核對：邊長是 36 公分，橫的排 3 張、直的排 2 張，總張數 3 乘 2 等於 6 張！用大面積 1296 除以小卡片面積 216，也剛好等於 6 張，驗算百分之百正確，選 (A)！'
+          },
+          {
+            badge: '💡 步驟 4：名師避坑：切割 VS 拼合終極大對決',
+            html: `
+              <div class="rule-box trap">
+                <div class="rule-title">⚡ 切割 vs 拼合 一秒判別心法：</div>
+                <table style="width:100%; border-collapse:collapse; margin-top:8px; font-size:0.95rem;">
+                  <tr style="background:#f1f5f9; font-weight:800;">
+                    <th style="padding:6px; border:1px solid #cbd5e1;">題型特徵</th>
+                    <th style="padding:6px; border:1px solid #cbd5e1;">思考方向</th>
+                    <th style="padding:6px; border:1px solid #cbd5e1;">求取目標</th>
+                    <th style="padding:6px; border:1px solid #cbd5e1;">數量公式</th>
+                  </tr>
+                  <tr>
+                    <td style="padding:6px; border:1px solid #cbd5e1; font-weight:700; color:#0284c7;">長方形「切成」正方形</td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">圖形變小</td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">求<strong>最大公因數</strong></td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">(長÷邊長) × (寬÷邊長)</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:6px; border:1px solid #cbd5e1; font-weight:700; color:#ea580c;">長方形「拼成」正方形</td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">圖形變大</td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">求<strong>最小公倍數</strong></td>
+                    <td style="padding:6px; border:1px solid #cbd5e1;">(邊長÷長) × (邊長÷寬)</td>
+                  </tr>
+                </table>
+              </div>
+            `,
+            speech: '最後的名師心法大統整：大長方形「切小」找公因數，小長方形「拼大」找公倍數！看清楚題目是切還是拼，公式直接代進去，會考幾何應用題十拿九穩！'
+          }
+        ]
+      }
+    ];
+
+
+const DIAGRAM_QUESTIONS_DATA = [
       {
         id: 1,
         title: '筆記本每本售價超過 10 元，小錦花費 36 元，小勳花費可能為何？',
@@ -4310,19 +5583,102 @@
       }
     ];
 
-    let currentDiagramUnit = 'ch2'; // 預設展示新上傳的整數四則運算
+    let currentDiagramUnit = 'gcd'; // 預設展館為 2-2 最大公因數經典展館
     let currentDiagramQIndex = 0;
     let currentDiagramSlideStep = 0;
 
     function getActiveDiagramDataset() {
+      if (currentDiagramUnit === 'gcd') return DIAGRAM_QUESTIONS_GCD;
+      if (currentDiagramUnit === 'lcm') return DIAGRAM_QUESTIONS_LCM;
       return DIAGRAM_QUESTIONS_DATA;
+    }
+
+    /* 一鍵切換經典展館 (GCD / LCM / CH2) */
+    function switchDiagramPavilion(unitKey, qIdx = 0) {
+      currentDiagramUnit = unitKey;
+      currentDiagramQIndex = qIdx;
+      currentDiagramSlideStep = 0;
+
+      // 更新展館按鈕狀態
+      const btnGcd = document.getElementById('btn-pavilion-gcd');
+      const btnLcm = document.getElementById('btn-pavilion-lcm');
+      const btnCh2 = document.getElementById('btn-pavilion-ch2');
+      if (btnGcd) btnGcd.classList.toggle('active', unitKey === 'gcd');
+      if (btnLcm) btnLcm.classList.toggle('active', unitKey === 'lcm');
+      if (btnCh2) btnCh2.classList.toggle('active', unitKey === 'ch2');
+
+      // 更新頂部導航鈕狀態
+      const navGcd = document.getElementById('nav-btn-gcd');
+      const navLcm = document.getElementById('nav-btn-lcm');
+      if (navGcd) navGcd.classList.toggle('active', unitKey === 'gcd');
+      if (navLcm) navLcm.classList.toggle('active', unitKey === 'lcm');
+
+      // 更新展館視覺 Banner (NONOBALANA Style)
+      updatePavilionHero(unitKey);
+
+      // 重新初始化題號導覽與第一步簡報
+      initDiagramIsland();
+
+      // 更新 URL Hash
+      const q = getActiveDiagramDataset()[currentDiagramQIndex];
+      if (history.replaceState) {
+        history.replaceState(null, null, `#unit=${unitKey}&q=${q ? q.id : 1}&step=0`);
+      }
+    }
+
+    function showPavilionDirect(unitKey) {
+      showView('view-diagram-island');
+      switchDiagramPavilion(unitKey, 0);
+    }
+
+    function updatePavilionHero(unitKey) {
+      const img = document.getElementById('pavilion-hero-img');
+      const title = document.getElementById('pavilion-hero-title');
+      const desc = document.getElementById('pavilion-hero-desc');
+      const tags = document.getElementById('pavilion-hero-tags');
+
+      if (!img || !title || !desc || !tags) return;
+
+      if (unitKey === 'gcd') {
+        img.src = 'images/gcd_pavilion_hero.png';
+        img.alt = '最大公因數展館 3D 浮島';
+        title.textContent = '🧩 最大公因數經典展館 (Greatest Common Divisor)';
+        desc.textContent = '掌握公因數彩虹篩選法、相異質數必互質、標準分解式取共同質因數最小次方、長方形切割正方形幾何模型！5 道核心題型全面擊破！';
+        tags.innerHTML = `
+          <span class="hero-pill">國中一年級 2-2</span>
+          <span class="hero-pill accent">短除階梯演繹</span>
+          <span class="hero-pill">互質反例大擊破</span>
+          <span class="hero-pill gold">NONOBALANA 3D 浮島</span>
+        `;
+      } else if (unitKey === 'lcm') {
+        img.src = 'images/lcm_pavilion_hero.png';
+        img.alt = '最小公倍數展館 3D 浮島';
+        title.textContent = '⚡ 最小公倍數經典展館 (Least Common Multiple)';
+        desc.textContent = '倍數雷達首次交會、三數短除法關鍵雙階過濾、兩數乘積定理 (a,b)×[a,b]=ab、三數乘積大陷阱 30≠90、長方形拼合幾何應用！6 大必考題一網打盡！';
+        tags.innerHTML = `
+          <span class="hero-pill">國中一年級 2-2</span>
+          <span class="hero-pill gold">倍數雷達波</span>
+          <span class="hero-pill accent">兩數乘積定理</span>
+          <span class="hero-pill" style="background:#fee2e2; color:#b91c1c; border-color:#fca5a5;">三數乘積大陷阱</span>
+        `;
+      } else {
+        img.src = 'images/gcd_pavilion_hero.png';
+        img.alt = '2-1 會考全錦囊';
+        title.textContent = '🌟 2-1 因倍質數會考全錦囊 (Review)';
+        desc.textContent = '精選 107~112 歷屆會考基測 8 道高鑑別度經典魔王題：花費因倍篩選、216與18倍因數交集、30張紙牌骨牌篩除法、質數密碼！';
+        tags.innerHTML = `
+          <span class="hero-pill">國中一年級 2-1</span>
+          <span class="hero-pill accent">107~112 歷屆會考</span>
+          <span class="hero-pill gold">名師素養避坑</span>
+        `;
+      }
     }
 
     
     /* =====================================================================
        深層網址分享與連結跳轉機制 (Deep Link Engine)
        ===================================================================== */
-    function copyCurrentSlideLink() {
+        function copyCurrentSlideLink() {
       const q = getActiveDiagramDataset()[currentDiagramQIndex];
       const baseUrl = window.location.origin + window.location.pathname;
       const shareUrl = `${baseUrl}#unit=${currentDiagramUnit}&q=${q.id}&step=${currentDiagramSlideStep}`;
@@ -4364,6 +5720,12 @@
       } else if (hash === 'boat') {
         showView('view-boat');
         return;
+      } else if (hash === 'gcd') {
+        showPavilionDirect('gcd');
+        return;
+      } else if (hash === 'lcm') {
+        showPavilionDirect('lcm');
+        return;
       }
 
       const params = new URLSearchParams(hash);
@@ -4371,11 +5733,13 @@
       const q = parseInt(params.get('q'));
       const step = parseInt(params.get('step')) || 0;
 
-      if (unit && !isNaN(q)) {
+      if (unit) {
         showView('view-diagram-island');
-        switchDiagramUnit(unit);
-        selectDiagramQuestion(q - 1);
-        gotoSlideStep(step);
+        const qIdx = (!isNaN(q) && q > 0) ? q - 1 : 0;
+        switchDiagramPavilion(unit, qIdx);
+        if (!isNaN(step) && step >= 0 && step <= 3) {
+          gotoSlideStep(step);
+        }
       }
     }
 
@@ -4629,7 +5993,8 @@
         currentDiagramSlideStep++;
         renderCurrentDiagramSlide();
       } else {
-        if (currentDiagramQIndex < DIAGRAM_QUESTIONS_DATA.length - 1) {
+        const curDataset = getActiveDiagramDataset();
+        if (currentDiagramQIndex < curDataset.length - 1) {
           selectDiagramQuestion(currentDiagramQIndex + 1);
         } else {
           showModal('🎉 8 大魔王題全數剖析完畢！', '你已經掌握了 107~112 會考與基測所有核心命題陷阱與解題絕招！', '🏆');
